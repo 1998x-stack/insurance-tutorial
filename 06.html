@@ -7,11 +7,12 @@
     <link rel="stylesheet" href="theme.css">
 </head>
 <body>
+<a class="skip-link" href="#main">跳到正文</a>
 <div class="double-border">
 <div class="container">
-    <div class="sidebar">
-        <h3>📖 课程目录</h3>
-        <ul class="chapter-list">
+    <nav class="sidebar" aria-label="章节目录">
+        <h3 id="toc-heading">📖 课程目录</h3>
+        <ul class="chapter-list" aria-labelledby="toc-heading">
             <li><a href="01.html">第1章 风险与风险管理</a></li>
             <li><a href="02.html">第2章 保险概述</a></li>
             <li><a href="03.html">第3章 保险基本原则（上）</a></li>
@@ -41,9 +42,9 @@
             <li><a href="27.html">第27章 中国保险市场专题分析</a></li>
             <li><a href="28.html">第28章 综合案例：保险公司经营分析</a></li>
         </ul>
-    </div>
-    <div class="main-content">
-        <h2>第6章 保险费率与精算原理</h2>
+    </nav>
+    <main class="main-content" id="main">
+        <h1>第6章 保险费率与精算原理</h1>
 
 <p>大家好，我是你们的讲师。前面五章我们一直在聊保险的法律和制度层面，这一章终于进入保险最"硬核"的部分——<strong>精算科学</strong>。</p>
 
@@ -61,7 +62,7 @@
 
 <p>精算学家用公式来表达这个原理：</p>
 
-<pre><code>设 X₁, X₂, ..., Xₙ 为 n 个独立同分布的风险单位的损失金额
+<pre style="overflow-x:auto"><code>设 X₁, X₂, ..., Xₙ 为 n 个独立同分布的风险单位的损失金额
 每个风险单位的期望损失为 E[X] = μ，方差为 Var[X] = σ²
 
 则 n 个风险单位的平均损失为 X̄ = (X₁ + X₂ + ... + Xₙ)/n
@@ -74,6 +75,19 @@ P(|X̄ - μ| < ε) ≥ 1 - σ²/(nε²)  (切比雪夫不等式)
 
 这意味着：承保的同质风险越多，实际赔付率就越接近预期赔付率，
 保险公司面临的不确定性就越小。</code></pre>
+
+<div class="math-equation" role="group" aria-label="样本均值的方差公式">
+    <p class="eq-label">式 (6-1)　样本均值的方差随承保风险单位数增大而减小</p>
+    <div class="math-scroll" style="overflow-x:auto" data-math-scroll tabindex="0" role="region" aria-label="样本均值方差公式，可横向滚动">
+        <math display="block" aria-label="样本均值 X̄ 的方差等于总体方差 σ 的平方除以风险单位数 n">
+            <mrow>
+                <mi>Var</mi><mo>(</mo><mover><mi>X</mi><mo>‾</mo></mover><mo>)</mo>
+                <mo>=</mo>
+                <mfrac><msup><mi>σ</mi><mn>2</mn></msup><mi>n</mi></mfrac>
+            </mrow>
+        </math>
+    </div>
+</div>
 
 <p>这条定律决定了保险公司必须追求<strong>规模</strong>——没有足够的保单数量，精算定价就失去了统计基础，风险定价就会失准。</p>
 
@@ -88,6 +102,7 @@ P(|X̄ - μ| < ε) ≥ 1 - σ²/(nε²)  (切比雪夫不等式)
 
 <p>一份保单的保费由几个部分构成：</p>
 
+<div class="table-scroll" style="overflow-x:auto">
 <table>
     <tr>
         <th>组成部分</th>
@@ -115,8 +130,50 @@ P(|X̄ - μ| < ε) ≥ 1 - σ²/(nε²)  (切比雪夫不等式)
         <td>保险公司的预期利润，包括风险资本回报</td>
     </tr>
 </table>
+</div>
 
-<p>用公式表示：<strong>毛保费 = 纯保费 + 安全附加 + 附加保费 + 利润附加</strong></p>
+<p>用公式表示，毛保费由四部分组成：</p>
+
+<div class="math-equation" role="group" aria-label="毛保费构成公式">
+    <p class="eq-label">式 (6-2)　毛保费的构成</p>
+    <div class="math-scroll" style="overflow-x:auto" data-math-scroll tabindex="0" role="region" aria-label="毛保费构成公式，可横向滚动">
+        <math display="block" aria-label="毛保费等于纯保费加安全附加加附加保费加利润附加">
+            <mrow><mtext>毛保费</mtext><mo>=</mo><mtext>纯保费</mtext><mo>+</mo><mtext>安全附加</mtext><mo>+</mo><mtext>附加保费</mtext><mo>+</mo><mtext>利润附加</mtext></mrow>
+        </math>
+    </div>
+</div>
+
+<figure>
+    <svg viewBox="0 0 720 210" role="img" aria-labelledby="prem-title prem-desc" xmlns="http://www.w3.org/2000/svg">
+        <title id="prem-title">毛保费的四个组成部分</title>
+        <desc id="prem-desc">毛保费拆为纯保费、安全附加、附加保费与利润附加四段，纯保费占比最大，用于支付预期赔款。</desc>
+        <rect width="720" height="210" fill="#f8faff"/>
+        <g font-family="system-ui, 'PingFang SC', sans-serif">
+            <rect x="30" y="46" width="442" height="60" fill="#6366f1"/>
+            <rect x="472" y="46" width="53" height="60" fill="#818cf8"/>
+            <rect x="525" y="46" width="132" height="60" fill="#a5b4fc"/>
+            <rect x="657" y="46" width="33" height="60" fill="#c7d2fe"/>
+            <g font-size="15" font-weight="700" fill="#ffffff" text-anchor="middle">
+                <text x="251" y="82">纯保费</text>
+            </g>
+            <g font-size="13" fill="#312e81" text-anchor="middle">
+                <text x="251" y="132">期望赔款</text>
+                <text x="498" y="132">安全附加</text>
+                <text x="591" y="132">附加保费</text>
+                <text x="673" y="160">利润附加</text>
+                <text x="498" y="160">缓冲垫</text>
+                <text x="591" y="160">佣金/管理</text>
+            </g>
+            <g font-size="12" fill="#4338ca" text-anchor="middle">
+                <text x="251" y="170">约 60%–75%</text>
+                <text x="498" y="186">5%–10%</text>
+                <text x="591" y="186">15%–25%</text>
+            </g>
+            <text x="673" y="186" font-size="12" fill="#4338ca" text-anchor="middle">2%–5%</text>
+        </g>
+    </svg>
+    <figcaption><strong>图 6-1</strong>：毛保费由纯保费、安全附加、附加保费与利润附加四部分堆叠而成。表中占比为行业常见区间，仅作<em>教学示意</em>，具体产品差异很大。</figcaption>
+</figure>
 
 <p>纯保费的计算思路是：如果你承保了1000栋房子，每栋值100万，历史数据显示每年约有1栋着火全损。那么纯保费就是 1/1000 × 100万 = 1000元/栋。但这只是"平均"——实际可能一年烧2栋（赔200万），也可能一年都不烧。为了应对这种波动，需要加安全附加。通常使用标准差的一定倍数作为安全附加。</p>
 
@@ -136,7 +193,7 @@ P(|X̄ - μ| < ε) ≥ 1 - σ²/(nε²)  (切比雪夫不等式)
 <h3>追溯法（Retrospective Rating）</h3>
 <p>最复杂的定价方式：先按标准费率收保费，保险期满后根据实际发生的损失来确定最终保费。损失小—退费；损失大—加费。追溯法常见于大型企业的团体保险方案，把被保险人的风险管理积极性与保费直接挂钩。</p>
 
-<pre><code>四种费率厘定方法的对比：
+<pre style="overflow-x:auto"><code>四种费率厘定方法的对比：
 
 方法       数据来源           公平性    复杂度    适用场景
 分类法     行业/群体数据       低        低        个人标准化产品
@@ -167,6 +224,7 @@ P(|X̄ - μ| < ε) ≥ 1 - σ²/(nε²)  (切比雪夫不等式)
 <h3>三差分析</h3>
 <p>寿险公司的利润来源可以用"三差"来概括：</p>
 
+<div class="table-scroll" style="overflow-x:auto">
 <table>
     <tr>
         <th>名称</th>
@@ -189,6 +247,7 @@ P(|X̄ - μ| < ε) ≥ 1 - σ²/(nε²)  (切比雪夫不等式)
         <td>实际投资回报比预定高 → 利差益</td>
     </tr>
 </table>
+</div>
 
 <div class="tip">
     <p><strong>行业趋势</strong>：近年来，中国寿险业的利润结构中，利差益的占比越来越高（超过80%），死差益和费差益的贡献在下降。这意味着寿险公司越来越像"资产管理公司"——不是靠"少死人"赚钱，而是靠"投资能力强"赚钱。这也带来了新的风险：如果市场利率持续下行，寿险公司的利差可能从"益"变成"损"（利差损）。这正是2024-2025年很多保险公司面临的挑战：过去承诺了较高的预定利率，但当前市场利率大幅下降，导致巨大的利差损风险。</p>

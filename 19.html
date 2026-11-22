@@ -7,11 +7,12 @@
     <link rel="stylesheet" href="theme.css">
 </head>
 <body>
+<a class="skip-link" href="#main">跳到正文</a>
 <div class="double-border">
 <div class="container">
-    <div class="sidebar">
-        <h3>🛡️ 课程目录</h3>
-        <ul class="chapter-list">
+    <nav class="sidebar" aria-label="章节目录">
+        <h3 id="toc-heading">🛡️ 课程目录</h3>
+        <ul class="chapter-list" aria-labelledby="toc-heading">
             <li><a href="01.html">第1章 风险与风险管理</a></li>
             <li><a href="02.html">第2章 保险概述</a></li>
             <li><a href="03.html">第3章 保险基本原则（上）</a></li>
@@ -41,9 +42,9 @@
             <li><a href="27.html">第27章 中国保险市场专题分析</a></li>
             <li><a href="28.html">第28章 综合案例：保险公司经营分析</a></li>
         </ul>
-    </div>
-    <div class="main-content">
-        <h2>第19章 寿险精算基础</h2>
+    </nav>
+    <main class="main-content" id="main">
+        <h1>第19章 寿险精算基础</h1>
 
 <p>我从业第三年的时候，参与了一款终身寿险产品的定价工作。当时的精算经理在审核我做的定价模型时，只问了一个问题："你用的预定利率3.5%，但公司投资部门平均收益只有4.0%，你知道这意味着什么吗？"我自信地回答："有50个基点的利差益空间。"他笑了笑说："再做一遍。你把费用率、退保率、死亡率的假设都调得太乐观了。扣除费用和风险成本之后，你那50个基点的利差可能只剩10个基点。更可怕的是——万一利率下行到2.5%，这款产品每卖一份就亏一份。"</p>
 
@@ -61,6 +62,7 @@
 
 <p>中国精算师（CAA, China Actuary Association）和北美精算师（SOA, Society of Actuaries）等资格认证体系中，精算师的核心职责包括：</p>
 
+<div class="table-scroll" style="overflow-x:auto">
 <table>
     <tr>
         <th>职责领域</th>
@@ -93,6 +95,7 @@
         <td>定价假设更新</td>
     </tr>
 </table>
+</div>
 
 <h3>精算在保险中的角色</h3>
 
@@ -106,6 +109,7 @@
 
 <p>下面是一个简化的生命表示例（各年龄的核心指标）：</p>
 
+<div class="table-scroll" style="overflow-x:auto">
 <table>
     <tr>
         <th>年龄 x</th>
@@ -143,6 +147,7 @@
         <td>8.7</td>
     </tr>
 </table>
+</div>
 
 <p>表中各指标的关系非常直观：</p>
 <ul>
@@ -177,7 +182,7 @@
 
 <p>最基本的公式：</p>
 
-<pre><code>折现因子（Discount Factor）: v = 1 / (1 + i)
+<pre style="overflow-x:auto"><code>折现因子（Discount Factor）: v = 1 / (1 + i)
 
 其中 i 为年利率
 
@@ -187,7 +192,19 @@ PV = 1 × vᵗ = 1 / (1 + i)ᵗ
 举例：i = 3.5%, 20年后的100万元的现值:
 PV = 1,000,000 / (1.035)²⁰ ≈ 502,565元</code></pre>
 
-<p>这个看似简单的公式，是一切寿险定价的基础。同样的100万保额，利率假设差0.5%，算出来的现值和保费就可能差10%以上。</p>
+<div class="math-equation" role="group" aria-label="现值公式">
+    <p class="eq-label">式 (19-1)　折现：t 年后 1 元的现值</p>
+    <div class="math-scroll" style="overflow-x:auto" data-math-scroll tabindex="0" role="region" aria-label="现值公式，可横向滚动">
+        <math display="block" aria-label="t 年后 1 元的现值等于折现因子 v 的 t 次方，也等于 1 加利率 i 的 t 次方分之一">
+            <mrow>
+                <mi>PV</mi><mo>=</mo><msup><mi>v</mi><mi>t</mi></msup><mo>=</mo>
+                <mfrac><mn>1</mn><msup><mrow><mo>(</mo><mn>1</mn><mo>+</mo><mi>i</mi><mo>)</mo></mrow><mi>t</mi></msup></mfrac>
+            </mrow>
+        </math>
+    </div>
+</div>
+
+<p>这个看似简单的公式,是一切寿险定价的基础。同样的100万保额,利率假设差0.5%,算出来的现值和保费就可能差10%以上。</p>
 
 <h3>预定利率</h3>
 
@@ -217,7 +234,7 @@ PV = 1,000,000 / (1.035)²⁰ ≈ 502,565元</code></pre>
 
 <p><strong>趸缴净保费（Single Net Premium）</strong>就是一次性交清的净保费。举例：一个30岁男性买100万保额的终身寿险，趸缴净保费的计算逻辑是：</p>
 
-<pre><code>SNP = Σ (dₓ / l₃₀) × vᵗ × 保额
+<pre style="overflow-x:auto"><code>SNP = Σ (dₓ / l₃₀) × vᵗ × 保额
 
 其中 t 从 0 到 (ω - 30)，ω为生命表极限年龄
 
@@ -235,7 +252,7 @@ Aₓ = Σ vᵗ × ₜpₓ × qₓ₊ₜ
 
 <p>用精算符号表示：</p>
 
-<pre><code>Pₓ × äₓ = Aₓ
+<pre style="overflow-x:auto"><code>Pₓ × äₓ = Aₓ
 
 所以: Pₓ = Aₓ / äₓ
 
@@ -244,7 +261,19 @@ Aₓ = Σ vᵗ × ₜpₓ × qₓ₊ₜ
 - äₓ 为x岁人的生命年金现值系数（即每期1元、持续缴费至身故的现值之和）
 - Aₓ 为趸缴净保费系数</code></pre>
 
-<p>这个"把一次性支付分摊为分期支付"的过程，本质上是利用人的死亡率特征做了一个复杂的等额分期计划。缴费期间如果被保险人去世，剩余保费就不再收取——这相当于保单自带了一个"隐性豁免"。均衡保费的精妙之处就在于此。</p>
+<div class="math-equation" role="group" aria-label="均衡净保费公式">
+    <p class="eq-label">式 (19-2)　均衡净保费系数</p>
+    <div class="math-scroll" style="overflow-x:auto" data-math-scroll tabindex="0" role="region" aria-label="均衡净保费公式，可横向滚动">
+        <math display="block" aria-label="年缴均衡净保费系数 P x 等于趸缴净保费系数 A x 除以连续生命年金现值系数">
+            <mrow>
+                <msub><mi>P</mi><mi>x</mi></msub><mo>=</mo>
+                <mfrac><msub><mi>A</mi><mi>x</mi></msub><msub><mover><mi>a</mi><mo>¨</mo></mover><mi>x</mi></msub></mfrac>
+            </mrow>
+        </math>
+    </div>
+</div>
+
+<p>这个“把一次性支付分摊为分期支付"的过程,本质上是利用人的死亡率特征做了一个复杂的等额分期计划。缴费期间如果被保险人去世,剩余保费就不再收取--这相当于保单自带了一个"隐性豁免"。均衡保费的精妙之处就在于此。</p>
 
 <h2>毛保费与附加费用</h2>
 
@@ -252,6 +281,7 @@ Aₓ = Σ vᵗ × ₜpₓ × qₓ₊ₜ
 
 <p>一款寿险产品的利润来源，传统上被概括为"三差"——这是中国寿险业最经典的分析框架：</p>
 
+<div class="table-scroll" style="overflow-x:auto">
 <table>
     <tr>
         <th>三差</th>
@@ -278,6 +308,7 @@ Aₓ = Σ vᵗ × ₜpₓ × qₓ₊ₜ
         <td>利率下行导致的利差损是最大风险</td>
     </tr>
 </table>
+</div>
 
 <p>当前中国寿险业的真实情况是：<strong>利差是利润的绝对主力</strong>，很多公司利差贡献占比超过80%。这意味着一旦利率持续下行，寿险公司的利润将受到毁灭性打击。2019年监管叫停4.025%年金险、2023年将预定利率上限从3.5%降到3.0%，本质上都是在堵这个"利差损"的黑洞。</p>
 
@@ -307,7 +338,7 @@ Aₓ = Σ vᵗ × ₜpₓ × qₓ₊ₜ
 
 <p>准备金评估有两种等价的数学方法：</p>
 
-<pre><code>前瞻法（Prospective Method）:
+<pre style="overflow-x:auto"><code>前瞻法（Prospective Method）:
 Vₜ = 未来赔付支出现值 - 未来净保费收入现值
 
 回溯法（Retrospective Method）:
@@ -316,7 +347,32 @@ Vₜ = 已收净保费累积值（含利息）- 已发生赔付累积值（含�
 理论上两种方法完全等价 —— 它们算出来的是同一个数。
 但实务中，前瞻法更常用，因为它直接反映了"未来还需要准备多少钱"。</code></pre>
 
-<p>这里有一个重要的直觉：在保单早期，均衡净保费远高于当年的预期赔付成本，多收的部分累积起来形成准备金。随着保单年龄增长，准备金逐渐上升，在某个时点达到峰值，然后随着死亡率的上升（赔付增加），准备金开始下降，直到保单终止时归零。这条"先上升后下降"的准备金曲线是所有长期寿险产品的共同特征。</p>
+<figure>
+    <svg viewBox="0 0 720 260" role="img" aria-labelledby="res-title res-desc" xmlns="http://www.w3.org/2000/svg">
+        <title id="res-title">长期寿险保单责任准备金随保单年度的变化</title>
+        <desc id="res-desc">准备金在保单早期因均衡保费高于当年赔付成本而快速累积，中期达到峰值，后期随死亡率上升、赔付增加而逐渐下降，保单终止时归零。</desc>
+        <rect width="720" height="260" fill="#f8faff"/>
+        <g font-family="system-ui, 'PingFang SC', sans-serif">
+            <line x1="70" y1="210" x2="690" y2="210" stroke="#94a3b8" stroke-width="2"/>
+            <line x1="70" y1="30" x2="70" y2="210" stroke="#94a3b8" stroke-width="2"/>
+            <path d="M70 210 C 180 120 300 78 430 76 C 545 74 630 130 682 208" fill="none" stroke="#6366f1" stroke-width="3.5"/>
+            <line x1="430" y1="76" x2="430" y2="210" stroke="#c7d2fe" stroke-width="1.5" stroke-dasharray="5 4"/>
+            <circle cx="430" cy="76" r="5" fill="#4338ca"/>
+            <text x="430" y="64" text-anchor="middle" font-size="13" font-weight="700" fill="#312e81">准备金峰值</text>
+            <text x="560" y="198" text-anchor="middle" font-size="12" fill="#4338ca">保单终止，准备金归零</text>
+            <text x="60" y="26" font-size="12" fill="#4338ca">准备金</text>
+            <g font-size="11" fill="#64748b">
+                <text x="70" y="232" text-anchor="middle">0</text>
+                <text x="430" y="232" text-anchor="middle">约第 20 年</text>
+                <text x="682" y="232" text-anchor="middle">第 30 年</text>
+            </g>
+            <text x="380" y="252" text-anchor="middle" font-size="12" fill="#4338ca">保单经过年数 →</text>
+        </g>
+    </svg>
+    <figcaption><strong>图 19-1</strong>：均衡净保费使准备金呈“先升后降”的驼峰形——早期多收的保费累积为负债，后期随死亡率上升逐步消耗。曲线形状为<em>教学示意</em>，实际峰值位置取决于产品与假设。</figcaption>
+</figure>
+
+<p>这里有一个重要的直觉：在保单早期,均衡净保费远高于当年的预期赔付成本,多收的部分累积起来形成准备金。随着保单年龄增长,准备金逐渐上升,在某个时点达到峰值,然后随着死亡率的上升(赔付增加),准备金开始下降,直到保单终止时归零。这条"先上升后下降"的准备金曲线是所有长期寿险产品的共同特征。</p>
 
 <div class="tip">
     <p><strong>实务要点</strong>：准备金评估是保险公司"调节利润"最常见的技术手段之一——因为准备金假设的小幅变化（如评估利率调整0.25%、死亡率假设调整、退保率假设调整）都会对当期利润产生显著影响。这也是监管为何对准备金评估假设有严格规范的原因。作为精算师，我们常说一句话："产品定价是艺术，准备金会计是纪律。"</p>

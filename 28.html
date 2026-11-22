@@ -7,11 +7,12 @@
     <link rel="stylesheet" href="theme.css">
 </head>
 <body>
+<a class="skip-link" href="#main">跳到正文</a>
 <div class="double-border">
 <div class="container">
-    <div class="sidebar">
-        <h3>🛡️ 课程目录</h3>
-        <ul class="chapter-list">
+    <nav class="sidebar" aria-label="章节目录">
+        <h3 id="toc-heading">🛡️ 课程目录</h3>
+        <ul class="chapter-list" aria-labelledby="toc-heading">
             <li><a href="01.html">第1章 风险与风险管理</a></li>
             <li><a href="02.html">第2章 保险概述</a></li>
             <li><a href="03.html">第3章 保险基本原则（上）</a></li>
@@ -41,9 +42,9 @@
             <li><a href="27.html">第27章 中国保险市场专题分析</a></li>
             <li><a href="28.html" class="active">第28章 综合案例：保险公司经营分析</a></li>
         </ul>
-    </div>
-    <div class="main-content">
-        <h2>第28章 综合案例：保险公司经营分析</h2>
+    </nav>
+    <main class="main-content" id="main">
+        <h1>第28章 综合案例：保险公司经营分析</h1>
 
 <p>同学们，欢迎来到保险学课程的最后一章。从风险的本质开始，我们走过了保险基本原则、合同法律、产品形态、核保理赔、再保险、资金运用、精算基础、偿付能力、风险管理、监管体系、会计信息披露、保险科技，再到中国保险市场的全景分析——整整27章的知识积累，都是为了这一刻。</p>
 
@@ -53,6 +54,7 @@
 
 <p><strong>安泰人寿保险股份有限公司</strong>（简称"安泰人寿"）是一家成立于2005年的中型寿险公司，总部位于华东某省会城市。公司注册资本金50亿元，在全国设有18家省级分公司，员工约8000人（含约3万名营销员）。2024年末总资产约1200亿元，在行业内排名约第35位。</p>
 
+<div class="table-scroll" style="overflow-x:auto">
 <table>
     <tr>
         <th>指标</th>
@@ -97,6 +99,7 @@
         <td>小型偏中型</td>
     </tr>
 </table>
+</div>
 
 <p>安泰人寿的股权结构为：三家民营股东持股合计65%，一家地方国企持股20%，管理层持股15%。公司近年来面临增速放缓、盈利波动、偿付能力吃紧等多重挑战。公司董事会委托我们进行独立的经营诊断分析。</p>
 
@@ -112,7 +115,20 @@
 
 <p>赔付支出方面：2024年赔付及给付合计75亿元，综合赔付率约41.7%。这个数字表面上看不算高，但需结合险种结构来看——安泰的传统寿险和年金险占比较高（赔付率相对低），而保障属性更强的重疾险和医疗险赔付率呈上升趋势。</p>
 
-<pre><code>安泰人寿2024年利润简表（单位：亿元）
+<div class="math-equation" role="group" aria-label="综合赔付率公式">
+    <p class="eq-label">式 (28-1)　综合赔付率</p>
+    <div class="math-scroll" style="overflow-x:auto" data-math-scroll tabindex="0" role="region" aria-label="综合赔付率公式，可横向滚动">
+        <math display="block" aria-label="综合赔付率等于赔付及给付支出除以已赚保费，再乘以百分之百">
+            <mrow>
+                <mtext>综合赔付率</mtext><mo>=</mo>
+                <mfrac><mtext>赔付及给付</mtext><mtext>已赚保费</mtext></mfrac>
+                <mo>×</mo><mn>100</mn><mo>%</mo>
+            </mrow>
+        </math>
+    </div>
+</div>
+
+<pre style="overflow-x:auto"><code>安泰人寿2024年利润简表（单位：亿元）
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 已赚保费                       175.0
 投资收益                        45.0
@@ -145,6 +161,7 @@
 
 <h3>各渠道新单保费占比</h3>
 
+<div class="table-scroll" style="overflow-x:auto">
 <table>
     <tr>
         <th>渠道</th>
@@ -189,6 +206,7 @@
         <td>价值率偏低</td>
     </tr>
 </table>
+</div>
 
 <p>安泰的产品渠道结构呈现出典型的"规模优先、价值不足"特征——银保占比过高（56%）而新业务价值率极低（5%），个险占比太低（28%）导致整体新业务价值拉低。与行业龙头（如平安寿险NBV margin约35%）相比差距明显。</p>
 
@@ -243,7 +261,7 @@
 
 <p>这是安泰精算假设中最敏感的变量。公司当前的定价假设中，长期投资收益率假设为4.5%。但在利率持续下行的大环境下（10年期国债收益率已降至2.0%附近），这个假设显得过于乐观。2024年安泰的实际投资收益率为3.8%，低于定价假设70个基点。</p>
 
-<pre><code>投资收益率假设敏感性分析（对EV的影响）
+<pre style="overflow-x:auto"><code>投资收益率假设敏感性分析（对EV的影响）
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 假设变动           ┃ 内含价值变动
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -259,8 +277,51 @@
 
 <p>综合以上六个维度的分析，我们来给安泰人寿做一份战略诊断报告。这里我用自己的话总结核心问题，同时标注对应课程章节——你可以回头复习相关知识点。</p>
 
+<figure>
+    <svg viewBox="0 0 720 250" role="img" aria-labelledby="diag-title diag-desc" xmlns="http://www.w3.org/2000/svg">
+        <title id="diag-title">安泰人寿经营诊断的六个维度</title>
+        <desc id="diag-desc">渠道结构失衡、产品价值偏低、精算假设偏乐观严重度高；偿付能力承压为中高；退保率超预期与科技投入不足为中。</desc>
+        <rect width="720" height="250" fill="#f8faff"/>
+        <text x="360" y="26" text-anchor="middle" font-family="system-ui, 'PingFang SC', sans-serif" font-size="15" font-weight="700" fill="#312e81">安泰人寿经营诊断 · 六个维度</text>
+        <g font-family="system-ui, 'PingFang SC', sans-serif">
+            <g>
+                <rect x="30" y="48" width="200" height="80" rx="14" fill="#fee2e2" stroke="#ef4444" stroke-width="2"/>
+                <text x="130" y="82" text-anchor="middle" font-size="14" font-weight="700" fill="#7f1d1d">渠道结构失衡</text>
+                <text x="130" y="106" text-anchor="middle" font-size="12" fill="#b91c1c">严重度：高</text>
+            </g>
+            <g>
+                <rect x="250" y="48" width="200" height="80" rx="14" fill="#fee2e2" stroke="#ef4444" stroke-width="2"/>
+                <text x="350" y="82" text-anchor="middle" font-size="14" font-weight="700" fill="#7f1d1d">产品价值偏低</text>
+                <text x="350" y="106" text-anchor="middle" font-size="12" fill="#b91c1c">严重度：高</text>
+            </g>
+            <g>
+                <rect x="470" y="48" width="200" height="80" rx="14" fill="#fee2e2" stroke="#ef4444" stroke-width="2"/>
+                <text x="570" y="82" text-anchor="middle" font-size="14" font-weight="700" fill="#7f1d1d">精算假设偏乐观</text>
+                <text x="570" y="106" text-anchor="middle" font-size="12" fill="#b91c1c">严重度：高</text>
+            </g>
+            <g>
+                <rect x="30" y="146" width="200" height="80" rx="14" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+                <text x="130" y="180" text-anchor="middle" font-size="14" font-weight="700" fill="#92400e">偿付能力承压</text>
+                <text x="130" y="204" text-anchor="middle" font-size="12" fill="#b45309">严重度：中高</text>
+            </g>
+            <g>
+                <rect x="250" y="146" width="200" height="80" rx="14" fill="#e0e7ff" stroke="#6366f1" stroke-width="2"/>
+                <text x="350" y="180" text-anchor="middle" font-size="14" font-weight="700" fill="#312e81">退保率超预期</text>
+                <text x="350" y="204" text-anchor="middle" font-size="12" fill="#4338ca">严重度：中</text>
+            </g>
+            <g>
+                <rect x="470" y="146" width="200" height="80" rx="14" fill="#e0e7ff" stroke="#6366f1" stroke-width="2"/>
+                <text x="570" y="180" text-anchor="middle" font-size="14" font-weight="700" fill="#312e81">科技投入不足</text>
+                <text x="570" y="204" text-anchor="middle" font-size="12" fill="#4338ca">严重度：中</text>
+            </g>
+        </g>
+    </svg>
+    <figcaption><strong>图 28-1</strong>：六个维度诊断的结果以色阶区分严重程度——三个维度为高、一个中高、两个中。<em>（教学示意，数据均属虚构案例）</em></figcaption>
+</figure>
+
 <h3>核心问题清单</h3>
 
+<div class="table-scroll" style="overflow-x:auto">
 <table>
     <tr>
         <th>问题领域</th>
@@ -305,6 +366,7 @@
         <td>第26章 保险科技</td>
     </tr>
 </table>
+</div>
 
 <h3>战略改进建议</h3>
 

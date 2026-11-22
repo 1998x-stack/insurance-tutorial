@@ -7,11 +7,12 @@
     <link rel="stylesheet" href="theme.css">
 </head>
 <body>
+<a class="skip-link" href="#main">跳到正文</a>
 <div class="double-border">
 <div class="container">
-    <div class="sidebar">
-        <h3>🛡️ 课程目录</h3>
-        <ul class="chapter-list">
+    <nav class="sidebar" aria-label="章节目录">
+        <h3 id="toc-heading">🛡️ 课程目录</h3>
+        <ul class="chapter-list" aria-labelledby="toc-heading">
             <li><a href="01.html">第1章 风险与风险管理</a></li>
             <li><a href="02.html">第2章 保险概述</a></li>
             <li><a href="03.html">第3章 保险基本原则（上）</a></li>
@@ -41,9 +42,9 @@
             <li><a href="27.html">第27章 中国保险市场专题分析</a></li>
             <li><a href="28.html">第28章 综合案例：保险公司经营分析</a></li>
         </ul>
-    </div>
-    <div class="main-content">
-        <h2>第21章 偿二代与偿付能力</h2>
+    </nav>
+    <main class="main-content" id="main">
+        <h1>第21章 偿二代与偿付能力</h1>
 
 <p>2016年1月，中国保险业发生了一件震惊业界的事——<strong>中融人寿</strong>因偿付能力充足率跌破100%被保监会叫停所有新业务。这是一家资产超过200亿元的寿险公司，仅因为偿付能力不达标而"休克"。消息传出当天，整个行业都在疯狂测算自己的偿付能力指标。我在一家中型寿险公司工作，那天晚上精算部全员加班到凌晨两点，反复核对各项数据，确保第二天能向管理层保证公司的核心指标还在安全线以上。</p>
 
@@ -59,10 +60,23 @@
 
 <p>偿付能力充足率是最直观的衡量指标：</p>
 
-<pre><code>偿付能力充足率 = 实际资本 / 最低资本要求 × 100%
+<pre style="overflow-x:auto"><code>偿付能力充足率 = 实际资本 / 最低资本要求 × 100%
 
 实际资本（Actual Capital）= 认可资产 - 认可负债
 最低资本要求（Minimum Capital Requirement, MCR）= 监管设定的最低资本门槛</code></pre>
+
+<div class="math-equation" role="group" aria-label="偿付能力充足率公式">
+    <p class="eq-label">式 (21-1)　偿付能力充足率</p>
+    <div class="math-scroll" style="overflow-x:auto" data-math-scroll tabindex="0" role="region" aria-label="偿付能力充足率公式，可横向滚动">
+        <math display="block" aria-label="偿付能力充足率等于实际资本除以最低资本要求，再乘以百分之百">
+            <mrow>
+                <mtext>偿付能力充足率</mtext><mo>=</mo>
+                <mfrac><mtext>实际资本</mtext><mtext>最低资本要求</mtext></mfrac>
+                <mo>×</mo><mn>100</mn><mo>%</mo>
+            </mrow>
+        </math>
+    </div>
+</div>
 
 <p>如果这个比率是200%，意味着你的"安全垫"是最低要求的2倍。在偿二代框架下，核心偿付能力充足率、综合偿付能力充足率和风险综合评级构成了三大核心监管指标。</p>
 
@@ -70,6 +84,7 @@
 
 <p>全球主要保险市场的偿付能力监管体系各有特色：</p>
 
+<div class="table-scroll" style="overflow-x:auto">
 <table>
     <tr>
         <th>体系</th>
@@ -102,6 +117,7 @@
         <td>开发中，2025年试行</td>
     </tr>
 </table>
+</div>
 
 <h2>偿二代体系框架</h2>
 
@@ -130,6 +146,39 @@
 <p><strong>第三支柱：市场约束（Pillar 3）</strong></p>
 <p>要求保险公司公开披露偿付能力信息，利用市场力量倒逼公司规范经营。你的偿付能力报告、风险状况、资本结构都公之于众——投资人、评级机构、媒体都在盯着这些数据。在第三支柱的压力下，没有哪家公司敢在偿付能力问题上"造假"。一个公开传播的负面报道，对公司品牌的打击甚至比监管罚款还严重。</p>
 
+<figure>
+    <svg viewBox="0 0 720 300" role="img" aria-labelledby="pillar-title pillar-desc" xmlns="http://www.w3.org/2000/svg">
+        <title id="pillar-title">偿二代三大支柱框架</title>
+        <desc id="pillar-desc">第一支柱定量要求设定资本底线，第二支柱定性监管评估管理能力，第三支柱市场约束依靠信息披露，三者共同支撑偿付能力。</desc>
+        <rect width="720" height="300" fill="#f8faff"/>
+        <g font-family="system-ui, 'PingFang SC', sans-serif" text-anchor="middle">
+            <polygon points="70,78 360,26 650,78" fill="#4338ca"/>
+            <text x="360" y="68" font-size="17" font-weight="700" fill="#ffffff">偿付能力</text>
+            <rect x="90" y="100" width="150" height="150" rx="14" fill="#6366f1"/>
+            <rect x="285" y="100" width="150" height="150" rx="14" fill="#818cf8"/>
+            <rect x="480" y="100" width="150" height="150" rx="14" fill="#a5b4fc"/>
+            <g font-size="16" font-weight="700" fill="#ffffff">
+                <text x="165" y="150">第一支柱</text>
+                <text x="360" y="150">第二支柱</text>
+            </g>
+            <text x="555" y="150" font-size="16" font-weight="700" fill="#312e81">第三支柱</text>
+            <g font-size="13" fill="#eef2ff">
+                <text x="165" y="180">定量要求</text>
+                <text x="165" y="204">资本底线</text>
+                <text x="360" y="180">定性监管</text>
+                <text x="360" y="204">管理能力</text>
+            </g>
+            <g font-size="13" fill="#312e81">
+                <text x="555" y="180">市场约束</text>
+                <text x="555" y="204">信息披露</text>
+            </g>
+            <rect x="70" y="262" width="580" height="30" rx="10" fill="#e0e7ff" stroke="#c7d2fe"/>
+            <text x="360" y="283" font-size="13" fill="#312e81">三大支柱缺一不可，构成闭环</text>
+        </g>
+    </svg>
+    <figcaption><strong>图 21-1</strong>：偿二代三大支柱——第一支柱定资本底线，第二支柱评管理能力，第三支柱靠市场透明度。<em>（教学示意）</em></figcaption>
+</figure>
+
 <div class="highlight">
     <p><strong>体系设计逻辑</strong>：三大支柱的关系是"递进式"的。第一支柱是"底线"——你至少要有这么多钱；第二支柱是"能力"——你的管理能力配不配持有这么多钱；第三支柱是"透明"——你不敢乱来因为市场在看。三者缺一不可，构成一个闭环。</p>
 </div>
@@ -155,6 +204,7 @@
 
 <p>偿二代体系下，监管和公司管理层最关注的<strong>三个核心指标</strong>是：</p>
 
+<div class="table-scroll" style="overflow-x:auto">
 <table>
     <tr>
         <th>指标</th>
@@ -181,10 +231,11 @@
         <td>≥ B类（低于即采取监管措施）</td>
     </tr>
 </table>
+</div>
 
 <p>三个指标中，最敏感的是核心偿付能力充足率。核心资本主要由股东投入的资本金和留存收益构成，质量最高。如果这个指标逼近80%的监管关注线，公司就必须启动资本补充动作了。综合偿付能力充足率相对更"宽裕"一些——它包括了次级债等附属资本，但监管对附属资本有比例限制（不得超过核心资本的100%）。</p>
 
-<pre><code>偿付能力充足率的分级监管措施（重点监管线触发后）:
+<pre style="overflow-x:auto"><code>偿付能力充足率的分级监管措施（重点监管线触发后）:
 
 核心充足率 &lt; 80% 或 综合充足率 &lt; 120%:
 → 监管约谈 → 限制分红 → 限制高管薪酬
@@ -230,7 +281,7 @@
     <li>分红政策的资本约束（分红比例上限由偿付能力决定）</li>
 </ul>
 
-<pre><code>资本规划示例（某寿险公司2025-2027年预测）:
+<pre style="overflow-x:auto"><code>资本规划示例（某寿险公司2025-2027年预测）:
 年份      2025E     2026E     2027E
 综合充足率  175%      155%      130%
 核心充足率  120%      105%      85%

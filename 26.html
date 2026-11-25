@@ -7,11 +7,12 @@
     <link rel="stylesheet" href="theme.css">
 </head>
 <body>
+<a class="skip-link" href="#main">跳到正文</a>
 <div class="double-border">
 <div class="container">
-    <div class="sidebar">
-        <h3>🛡️ 课程目录</h3>
-        <ul class="chapter-list">
+    <nav class="sidebar" aria-label="章节目录">
+        <h3 id="toc-heading">📖 课程目录</h3>
+        <ul class="chapter-list" aria-labelledby="toc-heading">
             <li><a href="01.html">第1章 风险与风险管理</a></li>
             <li><a href="02.html">第2章 保险概述</a></li>
             <li><a href="03.html">第3章 保险基本原则（上）</a></li>
@@ -41,9 +42,9 @@
             <li><a href="27.html">第27章 中国保险市场专题分析</a></li>
             <li><a href="28.html">第28章 综合案例：保险公司经营分析</a></li>
         </ul>
-    </div>
-    <div class="main-content">
-        <h2>第26章 保险科技与数字化转型</h2>
+    </nav>
+    <main class="main-content" id="main">
+        <h1>第26章 保险科技与数字化转型</h1>
 
 <p>同学们，我们先来看一组数字。2015年，全球保险科技（InsurTech）投资额约为25亿美元；到了2021年，这个数字飙升至150亿美元，六年增长了6倍。2023年虽然受宏观环境影响有所回调，但中国保险科技市场规模已突破500亿元人民币。如果你觉得这跟你一个学保险的人没关系，那我讲个真实的事。</p>
 
@@ -63,7 +64,7 @@
 
 <p>回顾全球保险科技的投资浪潮，大致可以分为三个阶段：</p>
 
-<table>
+<div class="table-scroll" style="overflow-x:auto"><table>
     <tr>
         <th>阶段</th>
         <th>时间段</th>
@@ -88,7 +89,7 @@
         <td>资本回归理性，关注盈利能力和商业本质</td>
         <td>传统险企自研科技、B2B模式崛起</td>
     </tr>
-</table>
+</table></div>
 
 <p>2024年以来，全球保险科技投资呈现出明显的"理性回归"特征——不再烧钱买用户，而是聚焦于技术能否真正降低综合成本率（Combined Ratio）。投资人终于想明白了：保险科技首先得是保险，然后才是科技。</p>
 
@@ -118,7 +119,7 @@
 
 <p>智能核保引擎的工作原理可以概括为三个步骤：</p>
 
-<pre><code>输入层 → 规则引擎 → 输出层
+<pre style="overflow-x:auto"><code>输入层 → 规则引擎 → 输出层
  │              │            │
  ├ 健康告知      ├ 自动核保规则  ├ 标准承保
  ├ 体检数据      ├ 机器学习模型  ├ 加费承保
@@ -141,6 +142,39 @@
 <p><strong>AIGC（生成式AI）</strong>：2023年以来，大语言模型（LLM）开始渗入保险理赔领域。AI可以自动撰写理赔报告、回答客户关于理赔进度的查询、甚至辅助判断复杂案件中条款的适用性。太保产险推出的"数字理赔员"能够7×24小时在线处理理赔咨询，将一次性处理率提升到85%以上。</p>
 
 <p><strong>反欺诈</strong>：AI通过图神经网络（GNN）分析理赔案件之间的关联关系，发现可疑的欺诈网络。例如，同一台手机在不同案件中上传了不同"事故现场"的照片，或者多位"互不相识"的客户在同一个修车厂出险——这些异常模式在传统审核中很难被发现，但对AI而言是显而易见的异常信号。</p>
+
+<figure>
+    <svg viewBox="0 0 720 208" role="img" aria-labelledby="ai-title ai-desc" xmlns="http://www.w3.org/2000/svg">
+        <title id="ai-title">AI 赋能保险价值链</title>
+        <desc id="ai-desc">AI 在保险价值链的营销、核保、理赔与客户服务四个环节分别承担个性化推荐、自动核保、图像识别与反欺诈、数字理赔员等职能。</desc>
+        <rect width="720" height="208" fill="#f8faff"/>
+        <g font-family="system-ui, 'PingFang SC', sans-serif" text-anchor="middle">
+            <text x="360" y="34" font-size="14" font-weight="700" fill="#312e81">AI 赋能保险价值链</text>
+            <g fill="#e0e7ff" stroke="#6366f1" stroke-width="2">
+                <rect x="20" y="52" width="160" height="96" rx="14"/>
+                <rect x="190" y="52" width="160" height="96" rx="14"/>
+                <rect x="360" y="52" width="160" height="96" rx="14"/>
+                <rect x="530" y="52" width="160" height="96" rx="14"/>
+            </g>
+            <g font-size="14" font-weight="700" fill="#1e1b4b">
+                <text x="100" y="88">智能营销</text><text x="270" y="88">智能核保</text>
+                <text x="440" y="88">智能理赔</text><text x="610" y="88">智能服务</text>
+            </g>
+            <g font-size="11" fill="#4338ca">
+                <text x="100" y="112">千人千面推荐</text><text x="100" y="130">客户画像标签</text>
+                <text x="270" y="112">自动核保引擎</text><text x="270" y="130">规则+机器学习</text>
+                <text x="440" y="112">图像识别/OCR</text><text x="440" y="130">反欺诈 GNN</text>
+                <text x="610" y="112">数字理赔员</text><text x="610" y="130">7×24 在线咨询</text>
+            </g>
+            <g stroke="#a5b4fc" stroke-width="3" marker-end="url(#aim)">
+                <path d="M180 100 H188"/><path d="M350 100 H358"/><path d="M520 100 H528"/>
+            </g>
+            <text x="360" y="184" font-size="12" fill="#916c22">部分应用效果引自本章所述企业披露数据，具体数值以原文为准</text>
+        </g>
+        <defs><marker id="aim" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#a5b4fc"/></marker></defs>
+    </svg>
+    <figcaption><strong>图 26-1</strong>：AI 在保险价值链四个环节的典型应用——营销、核保、理赔与客户服务，共同构成“AI+保险”的完整图景。（场景归纳示意）</figcaption>
+</figure>
 
 <h2>大数据与精算创新</h2>
 
@@ -178,7 +212,7 @@
 
 <p><strong>智能合约（Smart Contract）</strong>是区块链在保险中最具想象力的应用。将理赔条件编写为智能合约代码，当约定的条件被触发（如航班延误超过4小时、天气指数达到阈值），智能合约自动执行赔付流程，无需人工干预。</p>
 
-<pre><code>// 航班延误险智能合约（伪代码）
+<pre style="overflow-x:auto"><code>// 航班延误险智能合约（伪代码）
 contract FlightDelayInsurance {
     // 承保条件
     policy = Policy {
@@ -230,7 +264,7 @@ contract FlightDelayInsurance {
 
 <p>新华保险在2023年发布了"AI+"战略规划，计划三年投入30亿元用于人工智能基础设施建设。其核心布局包括三大平台：</p>
 
-<table>
+<div class="table-scroll" style="overflow-x:auto"><table>
     <tr>
         <th>平台</th>
         <th>投入规模</th>
@@ -255,7 +289,7 @@ contract FlightDelayInsurance {
         <td>智能客服、智能理赔、AI培训</td>
         <td>客服自助率提升至70%、理赔时效缩短80%</td>
     </tr>
-</table>
+</table></div>
 
 <p>新华保险的"AI+"战略传递了一个明确的信号：对于中型险企而言，不主动拥抱AI，未来5年将在效率和成本两个维度上被头部公司越甩越远。</p>
 
@@ -278,7 +312,7 @@ contract FlightDelayInsurance {
             <a href="index.html">📖 返回目录</a>
             <a href="27.html">下一章 →</a>
         </div>
-    </div>
+    </main>
 </div>
 </div>
 </body>

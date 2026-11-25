@@ -7,11 +7,12 @@
     <link rel="stylesheet" href="theme.css">
 </head>
 <body>
+<a class="skip-link" href="#main">跳到正文</a>
 <div class="double-border">
 <div class="container">
-    <div class="sidebar">
-        <h3>🛡️ 课程目录</h3>
-        <ul class="chapter-list">
+    <nav class="sidebar" aria-label="章节目录">
+        <h3 id="toc-heading">📖 课程目录</h3>
+        <ul class="chapter-list" aria-labelledby="toc-heading">
             <li><a href="01.html">第1章 风险与风险管理</a></li>
             <li><a href="02.html">第2章 保险概述</a></li>
             <li><a href="03.html">第3章 保险基本原则（上）</a></li>
@@ -41,9 +42,9 @@
             <li><a href="27.html">第27章 中国保险市场专题分析</a></li>
             <li><a href="28.html">第28章 综合案例：保险公司经营分析</a></li>
         </ul>
-    </div>
-    <div class="main-content">
-        <h2>第25章 保险会计与信息披露</h2>
+    </nav>
+    <main class="main-content" id="main">
+        <h1>第25章 保险会计与信息披露</h1>
 
         <p>同学们好。这一章我们要讲一个看起来"枯燥"但实际上是保险公司"命门"的话题——保险会计。</p>
 
@@ -57,7 +58,7 @@
 
         <h3>与非保险企业的差异</h3>
 
-        <table>
+        <div class="table-scroll" style="overflow-x:auto"><table>
             <tr>
                 <th>维度</th>
                 <th>非保险企业</th>
@@ -88,7 +89,7 @@
                 <td>交易完成时确认大部分利润</td>
                 <td>长期合同在合同期间逐步释放利润</td>
             </tr>
-        </table>
+        </table></div>
 
         <p>保险会计中最核心、也最容易引起误解的概念就是<strong>责任准备金</strong>。责任准备金是保险公司为未来赔付义务而计提的负债。它不是"储备金"或"存款"，而是一笔会计负债——意味着公司从收到的保费里拿出一大块，记在负债科目下，不能算作利润。责任准备金的计提方法由精算师根据保险事故发生率、利率、费用率等因素计算确定。</p>
 
@@ -98,7 +99,7 @@
 
         <p>一个常见的误解是：保险公司收了100元保费，会计上就确认100元收入。错了。保险公司的"保费收入"是一个<strong>毛收入概念</strong>，需要扣除大量项目后才成为实际可支配的收入：</p>
 
-        <pre><code>保费收入（毛收入）
+        <pre style="overflow-x:auto"><code>保费收入（毛收入）
         │
         ├─ 减：分出保费（支付给再保险公司的部分）
         ├─ 减：提取未到期责任准备金
@@ -142,7 +143,7 @@
 
         <p>IFRS 17根据保险合同的特性，提供了三种计量方法：</p>
 
-        <table>
+        <div class="table-scroll" style="overflow-x:auto"><table>
             <tr>
                 <th>模型</th>
                 <th>全称</th>
@@ -167,7 +168,34 @@
                 <td>短期合同（一般一年以内），如车险</td>
                 <td>简化处理，不要求折现，不确认CSM</td>
             </tr>
-        </table>
+        </table></div>
+
+        <figure>
+            <svg viewBox="0 0 720 196" role="img" aria-labelledby="ifrs-title ifrs-desc" xmlns="http://www.w3.org/2000/svg">
+                <title id="ifrs-title">IFRS 17 的三种计量模型</title>
+                <desc id="ifrs-desc">IFRS 17 提供一般计量模型 BBA、可变收费法 VFA 与保费分配法 PAA 三种计量方法，依次适用于长期合同、分红万能投连类与短期合同。</desc>
+                <rect width="720" height="196" fill="#f8faff"/>
+                <g font-family="system-ui, 'PingFang SC', sans-serif" text-anchor="middle">
+                    <rect x="28" y="36" width="208" height="124" rx="14" fill="#e0e7ff" stroke="#6366f1" stroke-width="2"/>
+                    <text x="132" y="68" font-size="18" font-weight="700" fill="#312e81">BBA</text>
+                    <text x="132" y="94" font-size="13" fill="#1e1b4b">一般计量模型</text>
+                    <text x="132" y="120" font-size="12" fill="#4338ca">长期寿险、健康险</text>
+                    <text x="132" y="142" font-size="12" fill="#4338ca">含 CSM、折现、风险调整</text>
+                    <rect x="256" y="36" width="208" height="124" rx="14" fill="#ede9fe" stroke="#7c3aed" stroke-width="2"/>
+                    <text x="360" y="68" font-size="18" font-weight="700" fill="#4c1d95">VFA</text>
+                    <text x="360" y="94" font-size="13" fill="#1e1b4b">可变收费法</text>
+                    <text x="360" y="120" font-size="12" fill="#6d28d9">分红、万能、投连险</text>
+                    <text x="360" y="142" font-size="12" fill="#6d28d9">CSM 随资产公允价值变动</text>
+                    <rect x="484" y="36" width="208" height="124" rx="14" fill="#dcfce7" stroke="#0f766e" stroke-width="2"/>
+                    <text x="588" y="68" font-size="18" font-weight="700" fill="#0f3d38">PAA</text>
+                    <text x="588" y="94" font-size="13" fill="#1e1b4b">保费分配法</text>
+                    <text x="588" y="120" font-size="12" fill="#0f766e">短期合同（一般一年内）</text>
+                    <text x="588" y="142" font-size="12" fill="#0f766e">简化处理，不确认 CSM</text>
+                    <text x="360" y="182" font-size="12" fill="#4338ca">合同属性越接近投资 → 越向 VFA / PAA 倾斜</text>
+                </g>
+            </svg>
+            <figcaption><strong>图 25-1</strong>：IFRS 17 的三种计量模型及其适用场景——长期保障类多用 BBA，投资连结类用 VFA，短期险用 PAA。（模型分类示意，适用场景取自正文表格）</figcaption>
+        </figure>
 
         <p>业界普遍认为，IFRS 17的影响远比想象中大。它不只是财务部门的技术切换，而是会倒逼整个业务链条的变革——从产品定价（定价假设要从"锁定"变为"动态"）、到系统建设（需要全新的数据系统和计量模型）、到绩效考核（从"首年利润"变为"逐年释放"）、再到投资策略（资产负债匹配要求更高）。</p>
 
@@ -259,7 +287,7 @@
 
         <p>保险公司的利润表有两个核心板块：</p>
 
-        <pre><code>保险公司的利润结构：
+        <pre style="overflow-x:auto"><code>保险公司的利润结构：
         │
         ├─ 承保利润（Underwriting Profit）
         │   ├─ 已赚保费
@@ -298,7 +326,7 @@
             <a href="index.html">📖 返回目录</a>
             <a href="26.html">下一章 →</a>
         </div>
-    </div>
+    </main>
 </div>
 </div>
 </body>

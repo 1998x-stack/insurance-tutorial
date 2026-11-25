@@ -7,11 +7,12 @@
     <link rel="stylesheet" href="theme.css">
 </head>
 <body>
+<a class="skip-link" href="#main">跳到正文</a>
 <div class="double-border">
 <div class="container">
-    <div class="sidebar">
-        <h3>🛡️ 课程目录</h3>
-        <ul class="chapter-list">
+    <nav class="sidebar" aria-label="章节目录">
+        <h3 id="toc-heading">📖 课程目录</h3>
+        <ul class="chapter-list" aria-labelledby="toc-heading">
             <li><a href="01.html">第1章 风险与风险管理</a></li>
             <li><a href="02.html">第2章 保险概述</a></li>
             <li><a href="03.html">第3章 保险基本原则（上）</a></li>
@@ -41,9 +42,9 @@
             <li><a href="27.html">第27章 中国保险市场专题分析</a></li>
             <li><a href="28.html">第28章 综合案例：保险公司经营分析</a></li>
         </ul>
-    </div>
-    <div class="main-content">
-        <h2>第24章 保险法与消费者保护</h2>
+    </nav>
+    <main class="main-content" id="main">
+        <h1>第24章 保险法与消费者保护</h1>
 
         <p>同学们好。在开始这一章之前，我想先分享一个真实的法庭案例。</p>
 
@@ -68,7 +69,7 @@
 
         <p>《保险法》自1995年颁布以来，经历了多次修订，每次修订都对应着保险市场发展的关键阶段：</p>
 
-        <table>
+        <div class="table-scroll" style="overflow-x:auto"><table>
             <tr>
                 <th>版本</th>
                 <th>主要变化</th>
@@ -93,7 +94,7 @@
                 <td>2025年</td>
                 <td>列入国务院立法计划，正在修订中（详见本章最后一节）</td>
             </tr>
-        </table>
+        </table></div>
 
         <p>特别值得注意的是<strong>2009年修订</strong>，这是《保险法》最重要的一次修订。包括"不可抗辩条款"——保险合同成立满两年后，保险公司不得以未如实告知为由解除合同——都是这次修订引入的。这次修订的立法精神非常明确：<strong>在保险公司和投保人之间重新平衡权利义务</strong>。</p>
 
@@ -119,7 +120,7 @@
 
         <p>违反如实告知义务的法律后果，分为几种情况：</p>
 
-        <pre><code>违反如实告知义务的后果（《保险法》第16条）：
+        <pre style="overflow-x:auto"><code>违反如实告知义务的后果（《保险法》第16条）：
         │
         ├─ 故意不告知
         │   ├─ 保险公司有权解除合同
@@ -200,6 +201,34 @@
             <li><strong>财产保险</strong>：保险公司破产时，保险保障基金对保单持有人提供救助——5万元以内的全额救助，超过5万元的部分救助80%</li>
         </ul>
 
+        <figure>
+            <svg viewBox="0 0 720 224" role="img" aria-labelledby="l92-title l92-desc" xmlns="http://www.w3.org/2000/svg">
+                <title id="l92-title">保险法第 92 条的人寿保单安全保障</title>
+                <desc id="l92-desc">寿险公司被撤销或破产时，其人寿保单及责任准备金必须转让给其他寿险公司，无人受让时由监管机构指定；保险保障基金对投保人利益提供补偿。</desc>
+                <rect width="720" height="224" fill="#f8faff"/>
+                <g font-family="system-ui, 'PingFang SC', sans-serif" text-anchor="middle">
+                    <rect x="20" y="34" width="150" height="52" rx="12" fill="#fde2e2" stroke="#ef4444" stroke-width="2"/>
+                    <text x="95" y="65" font-size="13" fill="#7f1d1d">寿险公司破产/被撤销</text>
+                    <rect x="200" y="34" width="150" height="52" rx="12" fill="#e0e7ff" stroke="#6366f1" stroke-width="2"/>
+                    <text x="275" y="58" font-size="13" fill="#1e1b4b">保单及责任准备金</text>
+                    <text x="275" y="76" font-size="13" fill="#1e1b4b">必须转让</text>
+                    <rect x="380" y="34" width="150" height="52" rx="12" fill="#e0e7ff" stroke="#6366f1" stroke-width="2"/>
+                    <text x="455" y="58" font-size="13" fill="#1e1b4b">其他寿险公司</text>
+                    <text x="455" y="76" font-size="13" fill="#1e1b4b">协商或监管指定</text>
+                    <rect x="560" y="34" width="140" height="52" rx="12" fill="#dcfce7" stroke="#0f766e" stroke-width="2"/>
+                    <text x="630" y="65" font-size="13" fill="#0f3d38">保障继续有效</text>
+                    <g stroke="#a5b4fc" stroke-width="3" marker-end="url(#l92m)">
+                        <path d="M170 60 H198"/><path d="M350 60 H378"/><path d="M530 60 H558"/>
+                    </g>
+                    <rect x="60" y="130" width="600" height="66" rx="14" fill="#fef9c3" stroke="#facc15"/>
+                    <text x="360" y="158" font-size="13" font-weight="700" fill="#713f12">保险保障基金兜底补偿</text>
+                    <text x="360" y="182" font-size="12" fill="#916c22">人身险：5 万元内全额补偿，超 5 万元部分补偿 90%</text>
+                </g>
+                <defs><marker id="l92m" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#a5b4fc"/></marker></defs>
+            </svg>
+            <figcaption><strong>图 24-1</strong>：保险法第 92 条的人寿保单安全保障链条——强制转让确保保障延续，保险保障基金提供补偿托底。（机制示意，补偿比例取自正文）</figcaption>
+        </figure>
+
         <div class="highlight">
             <p><strong>深度解析</strong>：安邦保险风险处置就是一个鲜活的案例。安邦被接管后，其持有的大量人寿保单没有被撤销，而是通过新成立"大家保险集团"整体承接。保险保障基金作为出资方，注资608亿元，确保了安邦旗下1.5万亿资产、5000万客户的所有保单保障不受影响。这个案例佐证了第92条的制度价值：<strong>人寿保单的安全保障，不仅写在了法律条文里，而且通过了实战检验</strong>。</p>
         </div>
@@ -212,7 +241,7 @@
 
         <p>根据目前公开的信息，本次修订的主要方向包括：</p>
 
-        <table>
+        <div class="table-scroll" style="overflow-x:auto"><table>
             <tr>
                 <th>修订领域</th>
                 <th>拟解决问题</th>
@@ -243,7 +272,7 @@
                 <td>现有法律未覆盖互联网保险等新业态</td>
                 <td>增加互联网保险、数据安全等相关条款</td>
             </tr>
-        </table>
+        </table></div>
 
         <p>特别值得关注的是<strong>违法成本提高</strong>的趋势。现行《保险法》对违规行为的罚款上限为30万元（个人）和300万元（机构），这远远低于违规收益。新修订拟大幅提高处罚标准，增设对个人的"双罚制"——既罚机构也罚责任人，甚至可能引入市场禁入和刑事责任的衔接。这意味着保险从业人员的职业风险在显著上升。</p>
 
@@ -260,7 +289,7 @@
             <a href="index.html">📖 返回目录</a>
             <a href="25.html">下一章 →</a>
         </div>
-    </div>
+    </main>
 </div>
 </div>
 </body>

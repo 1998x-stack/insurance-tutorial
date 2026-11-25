@@ -7,11 +7,12 @@
     <link rel="stylesheet" href="theme.css">
 </head>
 <body>
+<a class="skip-link" href="#main">跳到正文</a>
 <div class="double-border">
 <div class="container">
-    <div class="sidebar">
-        <h3>📖 课程目录</h3>
-        <ul class="chapter-list">
+    <nav class="sidebar" aria-label="章节目录">
+        <h3 id="toc-heading">📖 课程目录</h3>
+        <ul class="chapter-list" aria-labelledby="toc-heading">
             <li><a href="01.html">第1章 风险与风险管理</a></li>
             <li><a href="02.html">第2章 保险概述</a></li>
             <li><a href="03.html">第3章 保险基本原则（上）</a></li>
@@ -41,9 +42,9 @@
             <li><a href="27.html">第27章 中国保险市场专题分析</a></li>
             <li><a href="28.html">第28章 综合案例：保险公司经营分析</a></li>
         </ul>
-    </div>
-    <div class="main-content">
-        <h2>第5章 保险合同</h2>
+    </nav>
+    <main class="main-content" id="main">
+        <h1>第5章 保险合同</h1>
 
 <p>大家好，我是你们的讲师。前面两章我们讲了保险的基本原则，这一章我们来研究保险的"法律外壳"——<strong>保险合同</strong>。</p>
 
@@ -59,6 +60,7 @@
 
 <p>保险合同涉及多个当事人和关系人，比普通合同复杂得多：</p>
 
+<div class="table-scroll" style="overflow-x:auto">
 <table>
     <tr>
         <th>角色</th>
@@ -86,6 +88,40 @@
         <td>被保险人死亡后领取保险金</td>
     </tr>
 </table>
+</div>
+
+<figure>
+    <svg viewBox="0 0 720 260" role="img" aria-labelledby="party-title party-desc" xmlns="http://www.w3.org/2000/svg">
+        <title id="party-title">保险合同的当事人与关系人</title>
+        <desc id="party-desc">投保人向保险人缴纳保费，保险人向被保险人提供保障与赔偿；人身保险中被保险人死亡时由受益人领取保险金。</desc>
+        <rect width="720" height="260" fill="#f8faff"/>
+        <g font-family="system-ui, 'PingFang SC', sans-serif" text-anchor="middle">
+            <rect x="60" y="40" width="200" height="58" rx="14" fill="#e0e7ff" stroke="#6366f1" stroke-width="2"/>
+            <text x="160" y="76" font-size="15" font-weight="700" fill="#1e1b4b">投保人</text>
+            <rect x="460" y="40" width="200" height="58" rx="14" fill="#ede9fe" stroke="#7c3aed" stroke-width="2"/>
+            <text x="560" y="76" font-size="15" font-weight="700" fill="#1e1b4b">保险人</text>
+            <path d="M262 58 H456" stroke="#6366f1" stroke-width="3" marker-end="url(#pa)"/>
+            <text x="360" y="50" font-size="12" fill="#4338ca">缴纳保费</text>
+            <path d="M456 88 H262" stroke="#7c3aed" stroke-width="3" marker-end="url(#pb)"/>
+            <text x="360" y="108" font-size="12" fill="#6d28d9">承担赔偿/给付</text>
+            <rect x="60" y="170" width="200" height="58" rx="14" fill="#e0e7ff" stroke="#6366f1" stroke-width="2"/>
+            <text x="160" y="206" font-size="15" font-weight="700" fill="#1e1b4b">被保险人</text>
+            <rect x="460" y="170" width="200" height="58" rx="14" fill="#fef9c3" stroke="#facc15" stroke-width="2"/>
+            <text x="560" y="206" font-size="15" font-weight="700" fill="#1e1b4b">受益人</text>
+            <path d="M460 199 H262" stroke="#6366f1" stroke-width="3" marker-end="url(#pa)"/>
+            <text x="360" y="191" font-size="12" fill="#4338ca">保障与赔付</text>
+            <path d="M560 100 V168" stroke="#facc15" stroke-width="3" stroke-dasharray="6 4" marker-end="url(#pc)"/>
+            <text x="640" y="140" font-size="11" fill="#916c22">身故保险金</text>
+            <text x="640" y="156" font-size="11" fill="#916c22">（人身险）</text>
+        </g>
+        <defs>
+            <marker id="pa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#6366f1"/></marker>
+            <marker id="pb" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#7c3aed"/></marker>
+            <marker id="pc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#facc15"/></marker>
+        </defs>
+    </svg>
+    <figcaption><strong>图 5-1</strong>：保险合同的角色关系——投保人缴费、保险人承保；被保险人享有保障与请求权；受益人仅在人身保险中经指定后领取身故保险金。（关系示意）</figcaption>
+</figure>
 
 <p>投保人和被保险人可以是同一个人（你给自己买保险），也可以是不同的人（你给孩子买保险）。<strong>受益人</strong>是人身保险特有的概念，财产保险中没有"受益人"这个角色——财产保险的保险金属于被保险人。</p>
 
@@ -105,7 +141,7 @@
 
 <p>实务中完整的投保流程如下：</p>
 
-<pre><code>投保人填写投保单/在线投保 → 提交投保信息
+<pre style="overflow-x:auto"><code>投保人填写投保单/在线投保 → 提交投保信息
            ↓
 保险公司核保（审核风险、评估是否接受）
            ↓
@@ -156,6 +192,7 @@
 
 <h3>合同的解除</h3>
 
+<div class="table-scroll" style="overflow-x:auto">
 <table>
     <tr>
         <th>解除类型</th>
@@ -178,6 +215,7 @@
         <td>按合同约定的条件解除</td>
     </tr>
 </table>
+</div>
 
 <h3>期满终止</h3>
 <p>保险合同期满自然终止。对于一年期的财产险合同，到期后如果想继续保障，需要办理续保手续。需要注意的是，续保不是原合同的自动延续——新的合同是一个独立的合同。如果被保险人的风险状况在续保时发生了变化，保险公司可能调整费率甚至拒绝续保。</p>
@@ -186,7 +224,7 @@
 
 <p>保险纠纷发生后的处理渠道有四种，建议按顺序尝试：</p>
 
-<pre><code>第一阶段：协商（最经济、最高效）
+<pre style="overflow-x:auto"><code>第一阶段：协商（最经济、最高效）
   → 双方坐下来谈，各退一步
   → 成功率取决于争议的性质和金额大小
 
@@ -235,7 +273,7 @@
             <a href="index.html">📖 返回目录</a>
             <a href="06.html">下一章 →</a>
         </div>
-    </div>
+    </main>
 </div>
 </div>
 </body>

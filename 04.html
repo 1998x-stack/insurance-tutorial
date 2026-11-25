@@ -7,11 +7,12 @@
     <link rel="stylesheet" href="theme.css">
 </head>
 <body>
+<a class="skip-link" href="#main">跳到正文</a>
 <div class="double-border">
 <div class="container">
-    <div class="sidebar">
-        <h3>📖 课程目录</h3>
-        <ul class="chapter-list">
+    <nav class="sidebar" aria-label="章节目录">
+        <h3 id="toc-heading">📖 课程目录</h3>
+        <ul class="chapter-list" aria-labelledby="toc-heading">
             <li><a href="01.html">第1章 风险与风险管理</a></li>
             <li><a href="02.html">第2章 保险概述</a></li>
             <li><a href="03.html">第3章 保险基本原则（上）</a></li>
@@ -41,9 +42,9 @@
             <li><a href="27.html">第27章 中国保险市场专题分析</a></li>
             <li><a href="28.html">第28章 综合案例：保险公司经营分析</a></li>
         </ul>
-    </div>
-    <div class="main-content">
-        <h2>第4章 保险基本原则（下）</h2>
+    </nav>
+    <main class="main-content" id="main">
+        <h1>第4章 保险基本原则（下）</h1>
 
 <p>大家好，我是你们的讲师。上一章我们学了最大诚信原则和保险利益原则，这一章我们继续完成后三个基本原则——近因原则、损失补偿原则、代位求偿与分摊原则。</p>
 
@@ -59,7 +60,7 @@
 
 <p>认定近因需要考虑整个因果链条，而不是只看"最后发生了什么"。近因分析的标准方法是"链条测试"：</p>
 
-<pre><code>方法一：链条连续测试
+<pre style="overflow-x:auto"><code>方法一：链条连续测试
 从损失出发，向前追溯每一个因果环节，问"如果没有A，B是否会发生？"
 如果答案是否定的，则A是B的必要原因。
 沿着链条一直追溯到最初的、仍属于因果关系范围内的原因。
@@ -79,6 +80,7 @@
 
 <p>现实中，损失往往不是单一原因造成的。多个原因并发时，处理规则如下：</p>
 
+<div class="table-scroll" style="overflow-x:auto">
 <table>
     <tr>
         <th>情况</th>
@@ -101,6 +103,7 @@
         <td>新原因是否"中断"了原有因果关系（Novus Actus Interveniens）是关键</td>
     </tr>
 </table>
+</div>
 
 <div class="highlight">
     <p><strong>典型判例</strong>：1961年英国著名的"Leyland Shipping v. Norwich Union"案。一艘船在航行中遭遇了潜水艇的攻击，虽然只受了轻伤，但船长为了安全把船驶入港口。停靠期间，潮汐变化导致船反复撞击码头，最终造成沉没。保险人主张"沉没的原因是触撞码头"（保单不保），但法院认为真正的近因是潜水艇的攻击——它是一连串事件的起点和决定性原因。这个判例成为了近因原则的经典教材案例。</p>
@@ -118,6 +121,7 @@
 
 <p>损失补偿不是无上限的"损失多少赔多少"，而是要受三个层次的约束：</p>
 
+<div class="table-scroll" style="overflow-x:auto">
 <table>
     <tr>
         <th>限制因素</th>
@@ -140,6 +144,32 @@
         <td>贷款购房者只对已还贷部分拥有完整保险利益</td>
     </tr>
 </table>
+</div>
+
+<figure>
+    <svg viewBox="0 0 720 232" role="img" aria-labelledby="ind-title ind-desc" xmlns="http://www.w3.org/2000/svg">
+        <title id="ind-title">损失补偿的三重限额</title>
+        <desc id="ind-desc">实际赔偿以保险金额、保险价值与可保利益三者中的最小值为上限，不得使被保险人获利。</desc>
+        <rect width="720" height="232" fill="#f8faff"/>
+        <g font-family="system-ui, 'PingFang SC', sans-serif" text-anchor="middle">
+            <rect x="55" y="36" width="180" height="60" rx="12" fill="#e0e7ff" stroke="#6366f1" stroke-width="2"/>
+            <text x="145" y="72" font-size="15" fill="#1e1b4b">保险金额</text>
+            <rect x="270" y="36" width="180" height="60" rx="12" fill="#e0e7ff" stroke="#6366f1" stroke-width="2"/>
+            <text x="360" y="72" font-size="15" fill="#1e1b4b">保险价值</text>
+            <rect x="485" y="36" width="180" height="60" rx="12" fill="#e0e7ff" stroke="#6366f1" stroke-width="2"/>
+            <text x="575" y="72" font-size="15" fill="#1e1b4b">可保利益</text>
+            <text x="145" y="118" font-size="12" fill="#4338ca">保单最高限额</text>
+            <text x="360" y="118" font-size="12" fill="#4338ca">标的实际价值</text>
+            <text x="575" y="118" font-size="12" fill="#4338ca">经济利益范围</text>
+            <path d="M360 130 V158" stroke="#a5b4fc" stroke-width="3" marker-end="url(#ar4)"/>
+            <text x="430" y="152" font-size="12" fill="#4338ca">取最小值</text>
+            <rect x="210" y="168" width="300" height="48" rx="14" fill="#6366f1"/>
+            <text x="360" y="198" font-size="16" font-weight="700" fill="#ffffff">实际赔偿金额</text>
+        </g>
+        <defs><marker id="ar4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#a5b4fc"/></marker></defs>
+    </svg>
+    <figcaption><strong>图 4-1</strong>：损失补偿原则下的赔偿上限——取保险金额、保险价值、可保利益三者的最小值，以恰好弥补实际损失而不使被保险人获利。（限额关系示意）</figcaption>
+</figure>
 
 <h3>定值保险与不定值保险</h3>
 
@@ -169,7 +199,7 @@
 
 <h3>代位求偿的条件与限制</h3>
 
-<pre><code>代位求偿的成立条件：
+<pre style="overflow-x:auto"><code>代位求偿的成立条件：
 1. 保险事故的发生是由第三人的行为造成的
 2. 保险人已经向被保险人支付了保险赔偿金
 3. 被保险人对第三人的损害赔偿请求权仍然存在（未放弃、未过时效）
@@ -196,6 +226,7 @@
 
 <p>分摊的方式有三种：</p>
 
+<div class="table-scroll" style="overflow-x:auto">
 <table>
     <tr>
         <th>分摊方式</th>
@@ -218,6 +249,7 @@
         <td>A先赔满其保额，不足B再赔</td>
     </tr>
 </table>
+</div>
 
 <p>我国保险实务中最常用的是<strong>比例分摊法</strong>。比如一栋房子价值500万，在A公司投保400万，在B公司投保300万（总保额700万，超出实际价值）。发生火灾损失100万：A公司赔付 100 × 400/700 ≈ 57.14万，B公司赔付 100 × 300/700 ≈ 42.86万，合计100万——被保险人不能因为买了多家保险就多拿钱。</p>
 
@@ -229,7 +261,7 @@
 
 <p>这五个原则不是孤立存在的，在实际理赔中往往是多个原则同时发挥作用。让我们通过一个综合案例来感受一下：</p>
 
-<pre><code>【综合案例】
+<pre style="overflow-x:auto"><code>【综合案例】
 A公司向B银行贷款1000万修建厂房，厂房实际价值1200万。
 A公司为厂房在甲保险公司投保财产险800万（不定值保险），
 同时又在乙保险公司投保500万。在保险合同有效期内，
@@ -264,7 +296,7 @@ A公司为厂房在甲保险公司投保财产险800万（不定值保险），
             <a href="index.html">📖 返回目录</a>
             <a href="05.html">下一章 →</a>
         </div>
-    </div>
+    </main>
 </div>
 </div>
 </body>

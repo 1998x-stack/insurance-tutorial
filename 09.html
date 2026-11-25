@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="theme.css">
 </head>
 <body>
+<a class="skip-link" href="#main">跳到正文</a>
 <div class="double-border">
 <div class="container">
     <div class="sidebar">
@@ -41,9 +42,9 @@
             <li><a href="27.html">第27章 中国保险市场专题分析</a></li>
             <li><a href="28.html">第28章 综合案例：保险公司经营分析</a></li>
         </ul>
-    </div>
-    <div class="main-content">
-        <h2>第9章 年金保险</h2>
+    </nav>
+    <main class="main-content" id="main">
+        <h1>第9章 年金保险</h1>
 
 <p>我有个客户王阿姨，2010年退休时手里有50万存款。她把这笔钱分成两份：25万存银行定期，25万买了某保险公司的一款养老年金保险。2024年我们见面时，银行的25万已经花得差不多了（日常开销+孙子上学补贴），而年金那25万还在源源不断地给她"发工资"——每个月固定到账1500元，已经领了14年，预计还能领到90岁。王阿姨说："银行存款是越花越少，心里发慌。年金是每个月都来，心里踏实。"</p>
 
@@ -55,6 +56,7 @@
 
 <h3>即期年金 vs 延期年金</h3>
 
+<div class="table-scroll" style="overflow-x:auto">
 <table>
     <tr>
         <th>维度</th>
@@ -82,8 +84,39 @@
         <td>中年人提前规划养老，利用时间积累收益</td>
     </tr>
 </table>
+</div>
 
 <p>举个例子：张阿姨65岁退休，用100万买了即期年金，从次月开始每月领5000元，领到去世。李经理45岁时买了一份延期年金，分10年交费，从60岁开始按月领取——他给自己留了15年的积累期，让保费有更多时间增值。</p>
+
+<figure>
+    <svg viewBox="0 0 720 240" role="img" aria-labelledby="ann-title ann-desc" xmlns="http://www.w3.org/2000/svg">
+        <title id="ann-title">即期年金与延期年金的时间结构</title>
+        <desc id="ann-desc">即期年金趸缴后立即开始定期领取；延期年金先经历缴费期与积累期，过了约定期间才开始领取。</desc>
+        <rect width="720" height="240" fill="#f8faff"/>
+        <g font-family="system-ui, 'PingFang SC', sans-serif">
+            <text x="70" y="70" text-anchor="middle" font-size="15" font-weight="700" fill="#312e81">即期年金</text>
+            <line x1="140" y1="72" x2="690" y2="72" stroke="#a5b4fc" stroke-width="2"/>
+            <circle cx="170" cy="72" r="8" fill="#6366f1"/>
+            <text x="170" y="50" text-anchor="middle" font-size="12" fill="#4338ca">趸缴保费</text>
+            <g stroke="#6366f1" stroke-width="4">
+                <line x1="215" y1="58" x2="215" y2="86"/><line x1="265" y1="58" x2="265" y2="86"/>
+                <line x1="315" y1="58" x2="315" y2="86"/><line x1="365" y1="58" x2="365" y2="86"/>
+                <line x1="415" y1="58" x2="415" y2="86"/><line x1="465" y1="58" x2="465" y2="86"/>
+                <line x1="515" y1="58" x2="515" y2="86"/><line x1="565" y1="58" x2="565" y2="86"/>
+                <line x1="615" y1="58" x2="615" y2="86"/><line x1="665" y1="58" x2="665" y2="86"/>
+            </g>
+            <text x="440" y="112" text-anchor="middle" font-size="12" fill="#4338ca">缴费后立即开始定期领取</text>
+            <text x="70" y="188" text-anchor="middle" font-size="15" font-weight="700" fill="#312e81">延期年金</text>
+            <rect x="140" y="162" width="120" height="44" fill="#e0e7ff" stroke="#818cf8"/>
+            <rect x="260" y="162" width="140" height="44" fill="#fef9c3" stroke="#facc15"/>
+            <rect x="400" y="162" width="290" height="44" fill="#dcfce7" stroke="#4ade80"/>
+            <g font-size="13" fill="#1e1b4b" text-anchor="middle">
+                <text x="200" y="190">缴费期</text><text x="330" y="190">积累期</text><text x="545" y="190">给付期</text>
+            </g>
+        </g>
+    </svg>
+    <figcaption><strong>图 9-1</strong>：即期年金在趸缴后立即进入给付期；延期年金则有缴费期与积累期，只有在约定期间过后才开始领取，让保费有更长的增值时间。（时间结构示意）</figcaption>
+</figure>
 
 <h3>个人年金 vs 团体年金</h3>
 
@@ -116,7 +149,7 @@
 
 <p><strong>分红年金</strong>介于固定年金和变额年金之间——它有一个固定的基础给付金额，保险公司每年根据经营状况分配红利，红利可以增加给付金额或累积生息。与变额年金不同，分红年金的保底部分是确定的，客户不承担投资损失的风险，只是红利部分不确定。</p>
 
-<pre><code>年金类型 vs 风险收益特征
+<pre style="overflow-x:auto"><code>年金类型 vs 风险收益特征
 
 固定年金：低风险，低收益（确定给付）
         │
@@ -132,7 +165,7 @@
 
 <p>年金保险的定价核心是一个叫做<strong>年金因子（Annuity Factor）</strong>的数值。它表示：在当前利率和死亡率假设下，每1元保费可以购买到的未来每年的年金金额。用公式表示：</p>
 
-<pre><code>年金因子 = Σ [ₜPₓ / (1 + i)ᵗ]  (t从0到ω-x-1)
+<pre style="overflow-x:auto"><code>年金因子 = Σ [ₜPₓ / (1 + i)ᵗ]  (t从0到ω-x-1)
 
 其中：
   ₜPₓ = x岁的人在t年后仍然生存的概率
@@ -161,6 +194,7 @@
 
 <p>中国的养老保障体系是"三支柱"结构：</p>
 
+<div class="table-scroll" style="overflow-x:auto">
 <table>
     <tr>
         <th>支柱</th>
@@ -187,6 +221,7 @@
         <td>2022年起步，快速发展中</td>
     </tr>
 </table>
+</div>
 
 <p><strong>个人养老金制度</strong>于2022年11月正式启动，在全国36个城市试点。核心机制是：个人在银行开立个人养老金账户，每年最多可存入12000元，这笔钱可以购买指定的金融产品（包括储蓄、基金、理财、保险四类），享受<strong>税收递延优惠</strong>——存入时不计入当年应纳税所得额，领取时按3%的优惠税率征收。</p>
 
@@ -194,7 +229,7 @@
 
 <p>对工薪阶层来说，个人养老金最大的吸引力在于节税。我们来算一笔账：</p>
 
-<pre><code>假设某人年应纳税所得额处于25%的税率档：
+<pre style="overflow-x:auto"><code>假设某人年应纳税所得额处于25%的税率档：
   每年存入：12,000元
   当年节税：12,000 × 25% = 3,000元
   领取时缴税：假设账户增值到15,000元，领取缴税15,000 × 3% = 450元
@@ -227,7 +262,7 @@
             <a href="index.html">📖 返回目录</a>
             <a href="10.html">下一章 →</a>
         </div>
-    </div>
+    </main>
 </div>
 </div>
 </body>

@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="theme.css">
 </head>
 <body>
+<a class="skip-link" href="#main">跳到正文</a>
 <div class="double-border">
 <div class="container">
     <div class="sidebar">
@@ -41,9 +42,9 @@
             <li><a href="27.html">第27章 中国保险市场专题分析</a></li>
             <li><a href="28.html">第28章 综合案例：保险公司经营分析</a></li>
         </ul>
-    </div>
-    <div class="main-content">
-        <h2>第8章 人寿保险</h2>
+    </nav>
+    <main class="main-content" id="main">
+        <h1>第8章 人寿保险</h1>
 
 <p>2019年，一位35岁的互联网大厂程序员老张被确诊为胃癌晚期。他是家庭唯一的收入来源——妻子全职带娃，孩子刚上小学，房贷还有150万没还。老张的积蓄撑了半年化疗就见了底。幸运的是，他在2016年买了一份100万保额的<strong>定期寿险</strong>，年缴保费仅2000多元。老张离世后，妻子拿到100万理赔金，还清了房贷，用剩余的钱给孩子存了教育金。他在最后的日子里说："这辈子做得最对的一件事，就是在健康的时候买了这份寿险。"</p>
 
@@ -61,6 +62,7 @@
 
 <p>与其他险种相比，人寿保险有三个非常鲜明的特征：</p>
 
+<div class="table-scroll" style="overflow-x:auto">
 <table>
     <tr>
         <th>特点</th>
@@ -83,6 +85,7 @@
         <td>不可替代的情感价值+经济价值，"留爱不留债"</td>
     </tr>
 </table>
+</div>
 
 <div class="highlight">
     <p><strong>深度理解</strong>：寿险的"长期性"有一个被很多人忽略的涵义——保费在缴费期内是"平准"的（level premium）。年轻时风险低但保费和年老时一样高，意味着你在前些年多缴了一些钱，这些钱被保险公司拿去投资增值，用来补贴后些年保费不足的部分。这种"前多后少"的时间再分配，就是现金价值的来源。不理解这一点，就看不懂为什么退保会有损失。</p>
@@ -145,6 +148,7 @@
 
 <p>两全保险的满期给付通常是以下三种形式之一：</p>
 
+<div class="table-scroll" style="overflow-x:auto">
 <table>
     <tr>
         <th>形式</th>
@@ -167,10 +171,42 @@
         <td>中长期财务规划——对抗通胀</td>
     </tr>
 </table>
+</div>
 
 <div class="highlight">
     <p><strong>产品定位</strong>：两全保险在中国保险市场上曾经是"绝对主力"。2010年前后，银行保险渠道销售的几乎全是两全保险。但从2020年开始，监管层开始"限两全、推保障"——因为大量两全产品保障成分极低、储蓄成分极高，客户花了大价钱买了"类理财"产品，背离了保险姓保的原则。2024年国家金融监管总局进一步收紧5年期以下两全保险的销售，引导行业回归保障本源。</p>
 </div>
+
+<figure>
+    <svg viewBox="0 0 720 300" role="img" aria-labelledby="life-title life-desc" xmlns="http://www.w3.org/2000/svg">
+        <title id="life-title">定期、终身与两全寿险的对比</title>
+        <desc id="life-desc">定期寿险只保约定期限、期满不还本；终身寿险保终身且积累现金价值；两全保险无论生死均在约定时点给付，保费最高。</desc>
+        <rect width="720" height="300" fill="#f8faff"/>
+        <g font-family="system-ui, 'PingFang SC', sans-serif">
+            <rect x="200" y="30" width="160" height="40" rx="8" fill="#6366f1"/>
+            <rect x="368" y="30" width="160" height="40" rx="8" fill="#7c3aed"/>
+            <rect x="536" y="30" width="160" height="40" rx="8" fill="#0f766e"/>
+            <g font-size="15" font-weight="700" fill="#ffffff" text-anchor="middle">
+                <text x="280" y="56">定期寿险</text><text x="448" y="56">终身寿险</text><text x="616" y="56">两全保险</text>
+            </g>
+            <g font-size="13" fill="#4338ca" text-anchor="end">
+                <text x="190" y="98">保障期限</text><text x="190" y="144">身故给付</text>
+                <text x="190" y="190">满期生存给付</text><text x="190" y="236">相对保费</text>
+            </g>
+            <g font-size="13" fill="#1e1b4b" text-anchor="middle">
+                <text x="280" y="98">固定年限</text><text x="448" y="98">终身</text><text x="616" y="98">约定期限</text>
+                <text x="280" y="144">期内身故赔</text><text x="448" y="144">必然赔付</text><text x="616" y="144">期内身故赔</text>
+                <text x="280" y="190">无（不还本）</text><text x="448" y="190">退保取现金价值</text><text x="616" y="190">满期仍生存也赔</text>
+                <text x="280" y="236">最低</text><text x="448" y="236">较高</text><text x="616" y="236">最高</text>
+            </g>
+            <g stroke="#e0e7ff" stroke-width="1">
+                <line x1="200" y1="112" x2="696" y2="112"/><line x1="200" y1="158" x2="696" y2="158"/>
+                <line x1="200" y1="204" x2="696" y2="204"/><line x1="200" y1="250" x2="696" y2="250"/>
+            </g>
+        </g>
+    </svg>
+    <figcaption><strong>图 8-1</strong>：三类传统寿险的定位对比——从“纯保障”的定期寿险，到“保终身+现金价值”的终身寿险，再到“生死均赔”的两全保险，保费依次升高。（产品结构示意，具体以条款为准）</figcaption>
+</figure>
 
 <h2>新型人寿保险</h2>
 
@@ -184,7 +220,7 @@
 
 <p>万能险的保费结构比较复杂，我通常用这个公式给学生讲：</p>
 
-<pre><code>每月保费进入保单账户
+<pre style="overflow-x:auto"><code>每月保费进入保单账户
   ├─ 扣除初始费用（5%-10%，通常在缴费前几年较高）
   ├─ 扣除风险保费（死亡保障的成本，随年龄增长）
   ├─ 扣除保单管理费（固定费用）
@@ -207,6 +243,7 @@
 
 <p>除了基本的死亡保障，寿险产品通常还包含一些<strong>附加条款（Riders）</strong>，在基础保障之上提供增量保障。以下是最常见的几种：</p>
 
+<div class="table-scroll" style="overflow-x:auto">
 <table>
     <tr>
         <th>附加条款</th>
@@ -234,6 +271,7 @@
         <td>年轻时先买50万保额打底，结婚生子后自动可加到100万</td>
     </tr>
 </table>
+</div>
 
 <div class="tip">
     <p><strong>配置策略</strong>：在这些附加条款中，"豁免保费"是最实用的——尤其当投保人和被保险人不是同一人（如父母为子女投保）。"提前给付"在医疗费用高昂的今天也很有价值。但要注意：附加了条款意味着需要支付额外保费。有些代理人会打包一堆你用不上的附加条款来抬升保费。正确做法是：<strong>先看基础保障够不够，再考虑附加条款值不值</strong>。</p>
@@ -248,7 +286,7 @@
             <a href="index.html">📖 返回目录</a>
             <a href="09.html">下一章 →</a>
         </div>
-    </div>
+    </main>
 </div>
 </div>
 </body>

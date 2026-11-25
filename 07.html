@@ -7,11 +7,12 @@
     <link rel="stylesheet" href="theme.css">
 </head>
 <body>
+<a class="skip-link" href="#main">跳到正文</a>
 <div class="double-border">
 <div class="container">
-    <div class="sidebar">
-        <h3>📖 课程目录</h3>
-        <ul class="chapter-list">
+    <nav class="sidebar" aria-label="章节目录">
+        <h3 id="toc-heading">📖 课程目录</h3>
+        <ul class="chapter-list" aria-labelledby="toc-heading">
             <li><a href="01.html">第1章 风险与风险管理</a></li>
             <li><a href="02.html">第2章 保险概述</a></li>
             <li><a href="03.html">第3章 保险基本原则（上）</a></li>
@@ -41,9 +42,9 @@
             <li><a href="27.html">第27章 中国保险市场专题分析</a></li>
             <li><a href="28.html">第28章 综合案例：保险公司经营分析</a></li>
         </ul>
-    </div>
-    <div class="main-content">
-        <h2>第7章 保险市场与经营</h2>
+    </nav>
+    <main class="main-content" id="main">
+        <h1>第7章 保险市场与经营</h1>
 
 <p>大家好，我是你们的讲师。前六章我们学的都是保险的"内功"——风险、原则、合同、费率。这一章我们把镜头拉远，看看保险的"江湖"——<strong>保险市场</strong>是怎么运作的。</p>
 
@@ -65,6 +66,7 @@
 <h3>市场组织形态</h3>
 <p>保险公司可以采取不同的组织形态：</p>
 
+<div class="table-scroll" style="overflow-x:auto">
 <table>
     <tr>
         <th>组织形态</th>
@@ -92,6 +94,7 @@
         <td>中国出口信用保险公司</td>
     </tr>
 </table>
+</div>
 
 <p>相互保险公司在欧美市场占有相当高的份额（美国约30%的寿险市场是相互制），但在中国占比较小。不过随着消费者对"利润归属"的关注增加，相互制保险近年在国内有抬头趋势。</p>
 
@@ -112,13 +115,45 @@
 <h3>互联网保险</h3>
 <p>这是增长最快的渠道。投保人通过保险公司的官网、微信小程序、支付宝保险频道、抖音直播间等线上渠道自助购买。互联网保险的优点是<strong>方便、透明、价格低</strong>（没有代理人佣金）。但缺点是：适合简单、标准化产品（如意外险、百万医疗险），复杂产品（如终身寿险、年金）的线上转化率很低——因为没人面对面讲解，客户"不敢下单"。</p>
 
-<pre><code>2024年中国保险渠道保费占比（估算）
+<pre style="overflow-x:auto"><code>2024年中国保险渠道保费占比（估算）
 个险渠道     → 约35%（寿险为主，持续下降）
 银保渠道     → 约25%（理财型为主，受利率波动影响大）
 经代渠道     → 约12%（持续上升）
 互联网渠道   → 约10%（健康险、意外险为主）
 电销及其他   → 约5%（持续萎缩）
 团体直销     → 约13%（企业团险、政府项目）</code></pre>
+
+<figure>
+    <svg viewBox="0 0 720 272" role="img" aria-labelledby="ch-title ch-desc" xmlns="http://www.w3.org/2000/svg">
+        <title id="ch-title">中国保险营销渠道保费占比</title>
+        <desc id="ch-desc">个险代理人约35%居首，银保约25%，团体直销约13%，经代约12%，互联网约10%，电销及其他约5%。</desc>
+        <rect width="720" height="272" fill="#f8faff"/>
+        <g font-family="system-ui, 'PingFang SC', sans-serif">
+            <g font-size="14" fill="#1e1b4b" text-anchor="end">
+                <text x="170" y="63">个险代理人</text><text x="170" y="99">银保渠道</text>
+                <text x="170" y="135">团体直销</text><text x="170" y="171">经代渠道</text>
+                <text x="170" y="207">互联网</text><text x="170" y="243">电销及其他</text>
+            </g>
+            <g stroke="#e0e7ff" stroke-width="1">
+                <line x1="310" y1="30" x2="310" y2="255"/><line x1="420" y1="30" x2="420" y2="255"/>
+                <line x1="530" y1="30" x2="530" y2="255"/><line x1="640" y1="30" x2="640" y2="255"/>
+            </g>
+            <g>
+                <rect x="180" y="44" width="385" height="26" fill="#6366f1"/>
+                <rect x="180" y="80" width="275" height="26" fill="#818cf8"/>
+                <rect x="180" y="116" width="143" height="26" fill="#a5b4fc"/>
+                <rect x="180" y="152" width="132" height="26" fill="#a78bfa"/>
+                <rect x="180" y="188" width="110" height="26" fill="#c4b5fd"/>
+                <rect x="180" y="224" width="55" height="26" fill="#ddd6fe"/>
+            </g>
+            <g font-size="13" fill="#3730a3">
+                <text x="573" y="63">35%</text><text x="463" y="99">25%</text><text x="331" y="135">13%</text>
+                <text x="320" y="171">12%</text><text x="298" y="207">10%</text><text x="243" y="243">5%</text>
+            </g>
+        </g>
+    </svg>
+    <figcaption><strong>图 7-1</strong>：中国保险营销渠道保费占比（2024 年估算值，与正文表格一致）。渠道结构正在向“产销分离”与线上化演进，具体比例随市场变化较快，此处仅作<em>教学示意</em>。</figcaption>
+</figure>
 
 <h3>电销渠道</h3>
 <p>电话销售曾经火过一阵（2015年前后），但因为消费者对电话推销的抵触越来越强、监管对电销的合规要求越来越严，电销渠道在持续萎缩。2024年电销渠道保费占比已降至5%以下。</p>
@@ -184,6 +219,7 @@
 <h3>渠道变化</h3>
 <p>2024-2025年最显著的变化是：代理人渠道的"量减质升"。代理人数量从高峰期的近千万人降至约400万人，但人均产能（每人每年卖出的保费）提高了约40%。银保渠道在利率下行背景下经历了"报行合一"的整顿——监管要求银保产品的手续费必须与实际发生的费用"一致"，杜绝了"高手续费换规模"的模式。互联网渠道则保持了20%以上的增速。</p>
 
+<div class="table-scroll" style="overflow-x:auto">
 <table>
     <tr>
         <th>指标</th>
@@ -222,6 +258,7 @@
         <td>快速提升</td>
     </tr>
 </table>
+</div>
 
 <div class="warning">
     <p><strong>踩坑故事</strong>：2023年，一家互联网保险公司推出一款"百万医疗险"，在抖音上投放了大量广告，以"每月不到一杯咖啡钱，享有600万医疗保障"为卖点，一年内获取了超过500万客户。但到了续保期，续保率只有不到30%。原因很简单：低价吸引了大量对保险认知不足的"冲动消费型"客户，这些人买了之后发现自己根本搞不清免赔额、等待期、既往症这些概念，真正需要理赔时产生了大量纠纷和投诉，然后就不再续保了。这个案例说明：保险经营的难点不仅在于"卖出产品"，更在于"找到对的客户、管理好客户预期"。这是所有渠道都面临的核心挑战。</p>
@@ -231,6 +268,7 @@
 
 <p>最后我们来谈谈保险市场的重要角色——保险中介。很多消费者分不清代理人、经纪人、公估人的区别，这里统一做个梳理：</p>
 
+<div class="table-scroll" style="overflow-x:auto">
 <table>
     <tr>
         <th>角色</th>
@@ -257,6 +295,7 @@
         <td>独立、客观、公正，对双方负责</td>
     </tr>
 </table>
+</div>
 
 <p>简单区分：代理人<strong>帮保险公司卖保险</strong>，经纪人<strong>帮客户买保险</strong>，公估人<strong>在出险后评估损失</strong>。三者各自的专业领域不同，都在保险市场中发挥着不可替代的作用。</p>
 
@@ -273,7 +312,7 @@
             <a href="index.html">📖 返回目录</a>
             <a href="08.html">下一章 →</a>
         </div>
-    </div>
+    </main>
 </div>
 </div>
 </body>

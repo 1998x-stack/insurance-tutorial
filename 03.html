@@ -7,11 +7,12 @@
     <link rel="stylesheet" href="theme.css">
 </head>
 <body>
+<a class="skip-link" href="#main">跳到正文</a>
 <div class="double-border">
 <div class="container">
-    <div class="sidebar">
-        <h3>📖 课程目录</h3>
-        <ul class="chapter-list">
+    <nav class="sidebar" aria-label="章节目录">
+        <h3 id="toc-heading">📖 课程目录</h3>
+        <ul class="chapter-list" aria-labelledby="toc-heading">
             <li><a href="01.html">第1章 风险与风险管理</a></li>
             <li><a href="02.html">第2章 保险概述</a></li>
             <li><a href="03.html" class="active">第3章 保险基本原则（上）</a></li>
@@ -41,9 +42,9 @@
             <li><a href="27.html">第27章 中国保险市场专题分析</a></li>
             <li><a href="28.html">第28章 综合案例：保险公司经营分析</a></li>
         </ul>
-    </div>
-    <div class="main-content">
-        <h2>第3章 保险基本原则（上）</h2>
+    </nav>
+    <main class="main-content" id="main">
+        <h1>第3章 保险基本原则（上）</h1>
 
 <p>大家好，我是你们的讲师。这一章和下一章，我们进入保险学理论中最核心的部分——<strong>保险基本原则</strong>。一共五个原则：最大诚信、保险利益、近因、损失补偿、代位求偿与分摊。这些原则是保险合同的"宪法"，几乎所有保险纠纷的判决依据都可以追溯到这些原则上来。</p>
 
@@ -63,6 +64,7 @@
 
 <p>从国际比较看，告知义务有两种立法模式：</p>
 
+<div class="table-scroll" style="overflow-x:auto">
 <table>
     <tr>
         <th>模式</th>
@@ -83,6 +85,7 @@
         <td>对投保人更友好，降低告知负担</td>
     </tr>
 </table>
+</div>
 
 <p>我国《保险法》第十六条采用<strong>询问回答主义</strong>："订立保险合同，保险人就保险标的或者被保险人的有关情况提出询问的，投保人应当如实告知。"也就是说，保险公司问了你就得如实回答，保险公司没问的——原则上你不需要主动披露。但实务中保险公司的健康告知问卷非常详尽，基本上把你需要告知的事项都涵盖了。</p>
 
@@ -107,7 +110,7 @@
 
 <p>根据我国《保险法》第十六条，违反如实告知义务的后果分几种情况：</p>
 
-<pre><code>投保人未如实告知 → 判断主观故意/重大过失
+<pre style="overflow-x:auto"><code>投保人未如实告知 → 判断主观故意/重大过失
 
 故意不告知：
   → 保险人有权解除合同
@@ -149,6 +152,7 @@
 
 <p>人身保险的保险利益规则不同。我国《保险法》第三十一条规定，投保人对以下人员具有保险利益：</p>
 
+<div class="table-scroll" style="overflow-x:auto">
 <table>
     <tr>
         <th>关系类型</th>
@@ -175,12 +179,36 @@
         <td>被保险人同意投保人为其订立合同，视为有保险利益</td>
     </tr>
 </table>
+</div>
 
 <p>人身保险的保险利益要求在<strong>投保时</strong>必须存在，但后续如果保险利益关系发生变化（比如离婚），已经成立的人身保险合同通常不受影响——这一点和财产保险完全不同。</p>
 
 <div class="highlight">
     <p><strong>对比分析</strong>：财产保险的保险利益要求"损失发生时存在"；人身保险的保险利益要求"投保时存在"。为什么有这个差异？因为财产保险的目的是补偿损失，如果没有保险利益就没有损失，自然不需要补偿。而人身保险合同往往具有储蓄和投资性质（如终身寿险、年金），如果因为婚姻关系变化就导致保单失效，对被保险人（受益人）可能不公平。这种差异体现了财产保险"补偿性"和人身保险"给付性"的本质区别。</p>
 </div>
+
+<figure>
+    <svg viewBox="0 0 720 250" role="img" aria-labelledby="ii-title ii-desc" xmlns="http://www.w3.org/2000/svg">
+        <title id="ii-title">财产保险与人身保险的保险利益时点</title>
+        <desc id="ii-desc">财产保险要求损失发生时存在保险利益、投保时可不要求；人身保险要求投保时必须存在保险利益，其后关系变化一般不影响已订合同。</desc>
+        <rect width="720" height="250" fill="#f8faff"/>
+        <g font-family="system-ui, 'PingFang SC', sans-serif">
+            <rect x="40" y="34" width="300" height="182" rx="16" fill="#e0e7ff" stroke="#6366f1" stroke-width="2"/>
+            <text x="190" y="64" text-anchor="middle" font-size="16" font-weight="700" fill="#312e81">财产保险</text>
+            <circle cx="190" cy="104" r="22" fill="#6366f1"/>
+            <text x="190" y="110" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">损失时</text>
+            <text x="190" y="152" text-anchor="middle" font-size="14" fill="#1e1b4b">必须存在保险利益</text>
+            <text x="190" y="180" text-anchor="middle" font-size="12" fill="#4338ca">投保时可不要求</text>
+            <rect x="380" y="34" width="300" height="182" rx="16" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+            <text x="530" y="64" text-anchor="middle" font-size="16" font-weight="700" fill="#4c1d95">人身保险</text>
+            <circle cx="530" cy="104" r="22" fill="#7c3aed"/>
+            <text x="530" y="110" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">投保时</text>
+            <text x="530" y="152" text-anchor="middle" font-size="14" fill="#1e1b4b">必须存在保险利益</text>
+            <text x="530" y="180" text-anchor="middle" font-size="12" fill="#4338ca">其后关系变化一般不影响已订合同</text>
+        </g>
+    </svg>
+    <figcaption><strong>图 3-1</strong>：财产保险的保险利益强调<em>损失发生时</em>存在（补偿性），人身保险强调<em>投保时</em>存在（给付性）。人身保险的法定保险利益范围见《保险法》第三十一条。（法规要点，未逐字引用）</figcaption>
+</figure>
 
 <h2>保险利益的特殊问题</h2>
 
@@ -206,7 +234,7 @@
 
 <p>近年来，随着保险纠纷数量增加，法院对如实告知义务的认定越来越精细化。主要的争议焦点包括：</p>
 
-<pre><code>争议焦点一：什么是"明知"？
+<pre style="overflow-x:auto"><code>争议焦点一：什么是"明知"？
   → 投保人说自己"不知道"有某种疾病即可免责？
   → 司法实践：以"正常人应知"为标准。体检报告明确提示异常
     且医生建议复查的，投保人不能以"没仔细看"为由主张不知情。
@@ -242,7 +270,7 @@
             <a href="index.html">📖 返回目录</a>
             <a href="04.html">下一章 →</a>
         </div>
-    </div>
+    </main>
 </div>
 </div>
 </body>

@@ -7,11 +7,12 @@
     <link rel="stylesheet" href="theme.css">
 </head>
 <body>
+<a class="skip-link" href="#main">跳到正文</a>
 <div class="double-border">
 <div class="container">
-    <div class="sidebar">
-        <h3>📖 课程目录</h3>
-        <ul class="chapter-list">
+    <nav class="sidebar" aria-label="章节目录">
+        <h3 id="toc-heading">📖 课程目录</h3>
+        <ul class="chapter-list" aria-labelledby="toc-heading">
             <li><a href="01.html">第1章 风险与风险管理</a></li>
             <li><a href="02.html" class="active">第2章 保险概述</a></li>
             <li><a href="03.html">第3章 保险基本原则（上）</a></li>
@@ -41,9 +42,9 @@
             <li><a href="27.html">第27章 中国保险市场专题分析</a></li>
             <li><a href="28.html">第28章 综合案例：保险公司经营分析</a></li>
         </ul>
-    </div>
-    <div class="main-content">
-        <h2>第2章 保险概述</h2>
+    </nav>
+    <main class="main-content" id="main">
+        <h1>第2章 保险概述</h1>
 
 <p>大家好，我是你们的讲师。上一章我们聊了风险，这一章我们聊聊风险的"解药"——保险本身。</p>
 
@@ -63,7 +64,7 @@
 
 <p>从法律视角看，保险是一种<strong>合同关系</strong>。我国《保险法》第二条对保险的定义是：</p>
 
-<pre><code>"本法所称保险，是指投保人根据合同约定，向保险人支付保险费，保险人对于
+<pre style="overflow-x:auto"><code>"本法所称保险，是指投保人根据合同约定，向保险人支付保险费，保险人对于
 合同约定的可能发生的事故因其发生所造成的财产损失承担赔偿保险金责任，或者
 当被保险人死亡、伤残、疾病或者达到合同约定的年龄、期限等条件时承担给付
 保险金责任的商业保险行为。"</code></pre>
@@ -98,6 +99,7 @@
 
 <h3>现代保险的演进</h3>
 
+<div class="table-scroll" style="overflow-x:auto">
 <table>
     <tr>
         <th>时期</th>
@@ -145,6 +147,7 @@
         <td>保险科技改变销售和服务模式</td>
     </tr>
 </table>
+</div>
 
 <p>回顾保险的发展史，一个清晰的趋势是：保险的边界在不断扩展。从最初的海上货物，到人寿、火灾、汽车、责任、信用、航天，再到今天的网络安全保险、气候保险、流行病保险——保险业一直在把新的风险纳入可保范围。这个扩展背后的驱动力是精算技术的进步和资本市场的深度。</p>
 
@@ -163,6 +166,7 @@
 
 <h3>派生职能</h3>
 
+<div class="table-scroll" style="overflow-x:auto">
 <table>
     <tr>
         <th>派生职能</th>
@@ -185,6 +189,35 @@
         <td>农业保险保障粮食安全、巨灾保险减轻财政压力、医疗责任保险化解医患矛盾</td>
     </tr>
 </table>
+</div>
+
+<figure>
+    <svg viewBox="0 0 720 300" role="img" aria-labelledby="fn-title fn-desc" xmlns="http://www.w3.org/2000/svg">
+        <title id="fn-title">保险的职能结构</title>
+        <desc id="fn-desc">保险在基本职能（经济补偿、保险金给付）之上派生出防灾防损、资金融通与社会管理三项职能。</desc>
+        <rect width="720" height="300" fill="#f8faff"/>
+        <g font-family="system-ui, 'PingFang SC', sans-serif">
+            <rect x="40" y="40" width="240" height="220" rx="16" fill="#e0e7ff" stroke="#6366f1" stroke-width="2"/>
+            <text x="160" y="70" text-anchor="middle" font-size="16" font-weight="700" fill="#312e81">基本职能</text>
+            <rect x="70" y="92" width="180" height="52" rx="10" fill="#ffffff" stroke="#818cf8"/>
+            <text x="160" y="123" text-anchor="middle" font-size="14" fill="#1e1b4b">经济补偿</text>
+            <rect x="70" y="160" width="180" height="52" rx="10" fill="#ffffff" stroke="#818cf8"/>
+            <text x="160" y="191" text-anchor="middle" font-size="14" fill="#1e1b4b">保险金给付</text>
+            <path d="M290 150 H358" stroke="#a5b4fc" stroke-width="3" marker-end="url(#ar2)"/>
+            <text x="324" y="138" text-anchor="middle" font-size="11" fill="#4338ca">派生</text>
+            <rect x="370" y="40" width="300" height="220" rx="16" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+            <text x="520" y="70" text-anchor="middle" font-size="16" font-weight="700" fill="#4c1d95">派生职能</text>
+            <rect x="400" y="88" width="240" height="46" rx="10" fill="#ffffff" stroke="#a78bfa"/>
+            <text x="520" y="116" text-anchor="middle" font-size="14" fill="#1e1b4b">防灾防损</text>
+            <rect x="400" y="146" width="240" height="46" rx="10" fill="#ffffff" stroke="#a78bfa"/>
+            <text x="520" y="174" text-anchor="middle" font-size="14" fill="#1e1b4b">资金融通</text>
+            <rect x="400" y="204" width="240" height="46" rx="10" fill="#ffffff" stroke="#a78bfa"/>
+            <text x="520" y="232" text-anchor="middle" font-size="14" fill="#1e1b4b">社会管理</text>
+        </g>
+        <defs><marker id="ar2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#a5b4fc"/></marker></defs>
+    </svg>
+    <figcaption><strong>图 2-1</strong>：保险的职能分两层——基本职能是经济补偿与保险金给付；在此基础上派生出防灾防损、资金融通与社会管理。（结构示意）</figcaption>
+</figure>
 
 <div class="tip">
     <p><strong>实践经验</strong>：保险的"社会管理"职能在实务中经常被低估。举个例子，2021年河南暴雨灾害后，保险业赔付超过120亿元。如果不是保险承担了这部分损失，大量中小企业和受灾家庭可能直接破产，地方财政和社会救助体系将不堪重负。从社会整体视角看，保险起到了"社会稳定器"的作用。</p>
@@ -203,6 +236,7 @@
 <h3>按保险标的分类</h3>
 <p>这是保险业最核心的分类方式：</p>
 
+<div class="table-scroll" style="overflow-x:auto">
 <table>
     <tr>
         <th>类别</th>
@@ -220,6 +254,7 @@
         <td>人寿保险、健康保险、意外伤害保险、年金保险</td>
     </tr>
 </table>
+</div>
 
 <h3>按经营目的分类</h3>
 <ul>
@@ -236,6 +271,7 @@
 
 <p>因为"保险"这个共同的名字，很多人对商业保险和社会保险的理解是模糊的。这里做一个系统的对比：</p>
 
+<div class="table-scroll" style="overflow-x:auto">
 <table>
     <tr>
         <th>维度</th>
@@ -278,6 +314,7 @@
         <td>全体公民或劳动者（法律规定范围内）</td>
     </tr>
 </table>
+</div>
 
 <p>两者不是替代关系，而是<strong>互补关系</strong>。社会保险提供基础保障（"保基本"），商业保险提供更高层次、更多样化的保障（"做补充"）。成熟的保险市场中，两者共同构成多层次的社会保障体系。</p>
 
@@ -313,7 +350,7 @@
             <a href="index.html">📖 返回目录</a>
             <a href="03.html">下一章 →</a>
         </div>
-    </div>
+    </main>
 </div>
 </div>
 </body>

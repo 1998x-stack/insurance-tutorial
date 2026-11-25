@@ -7,11 +7,12 @@
     <link rel="stylesheet" href="theme.css">
 </head>
 <body>
+<a class="skip-link" href="#main">跳到正文</a>
 <div class="double-border">
 <div class="container">
-    <div class="sidebar">
-        <h3>🛡️ 课程目录</h3>
-        <ul class="chapter-list">
+    <nav class="sidebar" aria-label="章节目录">
+        <h3 id="toc-heading">🛡️ 课程目录</h3>
+        <ul class="chapter-list" aria-labelledby="toc-heading">
             <li><a href="01.html">第1章 风险与风险管理</a></li>
             <li><a href="02.html">第2章 保险概述</a></li>
             <li><a href="03.html">第3章 保险基本原则（上）</a></li>
@@ -41,9 +42,9 @@
             <li><a href="27.html">第27章 中国保险市场专题分析</a></li>
             <li><a href="28.html">第28章 综合案例：保险公司经营分析</a></li>
         </ul>
-    </div>
-    <div class="main-content">
-        <h2>第23章 保险监管体系</h2>
+    </nav>
+    <main class="main-content" id="main">
+        <h1>第23章 保险监管体系</h1>
 
         <p>同学们好。这一章我们来聊一个"看不见的手"——保险监管。很多朋友觉得监管就是政府管企业，离自己的日常工作很远。但我想讲一个真实的案例，让你马上明白监管的份量。</p>
 
@@ -77,6 +78,7 @@
 
         <p>中国的保险监管体制经历了几次重大变革。2023年3月，国务院机构改革方案通过，在原银保监会基础上组建<strong>国家金融监督管理总局</strong>，统一负责除证券业之外的金融业监管。这意味着保险监管的格局发生了根本性变化：原来分业监管下银行和保险的"监管套利"空间被大幅压缩，金监总局整合了原银保监会的全部职责，同时将人民银行对金融控股公司的监管职能也划入其中。</p>
 
+        <div class="table-scroll" style="overflow-x:auto">
         <table>
             <tr>
                 <th>时期</th>
@@ -104,6 +106,31 @@
                 <td>大金融监管框架，覆盖所有金融业（除证券）</td>
             </tr>
         </table>
+        </div>
+
+        <figure>
+            <svg viewBox="0 0 720 200" role="img" aria-labelledby="reg-title reg-desc" xmlns="http://www.w3.org/2000/svg">
+                <title id="reg-title">中国保险监管体制的演变</title>
+                <desc id="reg-desc">保险监管从中国人民银行兼管，到中国保监会、银保监会，再到 2023 年组建的国家金融监督管理总局，呈现由分业监管走向大金融统一监管的脉络。</desc>
+                <rect width="720" height="200" fill="#f8faff"/>
+                <g font-family="system-ui, 'PingFang SC', sans-serif">
+                    <line x1="60" y1="104" x2="670" y2="104" stroke="#a5b4fc" stroke-width="3"/>
+                    <g fill="#6366f1">
+                        <circle cx="110" cy="104" r="9"/><circle cx="280" cy="104" r="9"/><circle cx="450" cy="104" r="9"/><circle cx="620" cy="104" r="9"/>
+                    </g>
+                    <g font-size="12" fill="#4338ca" text-anchor="middle">
+                        <text x="110" y="72">1949–1998</text><text x="280" y="72">1998–2018</text>
+                        <text x="450" y="72">2018–2023</text><text x="620" y="72">2023–至今</text>
+                    </g>
+                    <g font-size="13" fill="#1e1b4b" text-anchor="middle">
+                        <text x="110" y="140">人民银行兼管</text><text x="280" y="140">中国保监会</text>
+                        <text x="450" y="140">中国银保监会</text><text x="620" y="140">金融监督管理总局</text>
+                    </g>
+                    <text x="60" y="180" font-size="12" fill="#4338ca">分业监管 → 银保统一监管 → 大金融统一监管</text>
+                </g>
+            </svg>
+            <figcaption><strong>图 23-1</strong>：中国保险监管体制的演变——从央行兼管到独立监管，再到 2023 年组建国家金融监督管理总局。制度脉络取自正文表格。（时间轴示意）</figcaption>
+        </figure>
 
         <h3>央地协同监管</h3>
 
@@ -168,7 +195,7 @@
 
         <p>关联交易是风险重灾区。监管要求保险公司建立关联交易管理制度，对关联方进行识别和名单管理，关联交易必须按照金额和性质进行分类审批或备案。重大关联交易（交易金额达到一定标准）需要董事会审议，独立董事应当发表意见。特别需要注意的是<strong>禁止性规定</strong>：保险公司不得利用关联交易向股东、实际控制人输送利益，不得通过关联交易虚增保费、转移资产。</p>
 
-        <pre><code>关联交易分类管理（按金额分级）：
+        <pre style="overflow-x:auto"><code>关联交易分类管理（按金额分级）：
         ├─ 一般关联交易 &lt; 公司上季度末总资产0.5%
         │   └─ 报董事会备案
         ├─ 重大关联交易 ≥ 公司上季度末总资产1%
@@ -211,6 +238,7 @@
 
         <p>2025年3月，金监总局正式发布《保险公司监管评级办法》，这是中国保险监管历史上第一套<strong>统一、量化的保险公司评级体系</strong>。该办法从公司治理、偿付能力、风险管理、业务经营、资金运用、信息科技等6个维度进行评分，将保险公司分为1-5级和S级（特别监管类）。</p>
 
+        <div class="table-scroll" style="overflow-x:auto">
         <table>
             <tr>
                 <th>评级</th>
@@ -248,6 +276,7 @@
                 <td>接管或重组，启动市场退出程序</td>
             </tr>
         </table>
+        </div>
 
         <p>这套评级体系的意义在于：监管从"一刀切"转向了"精准监管"。1级公司可以享受创新业务试点的红利，而3级及以下公司将面临越来越严格的限制——业务范围缩小、资本要求提高、高管薪酬受限。这本质上是在构建一个<strong>正向激励与反向约束并存的监管框架</strong>。</p>
 
@@ -274,7 +303,7 @@
             <a href="index.html">📖 返回目录</a>
             <a href="24.html">下一章 →</a>
         </div>
-    </div>
+    </main>
 </div>
 </div>
 </body>

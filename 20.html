@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="theme.css">
 </head>
 <body>
+<a class="skip-link" href="#main">跳到正文</a>
 <div class="double-border">
 <div class="container">
     <div class="sidebar">
@@ -41,9 +42,9 @@
             <li><a href="27.html">第27章 中国保险市场专题分析</a></li>
             <li><a href="28.html">第28章 综合案例：保险公司经营分析</a></li>
         </ul>
-    </div>
-    <div class="main-content">
-        <h2>第20章 非寿险精算</h2>
+    </nav>
+    <main class="main-content" id="main">
+        <h1>第20章 非寿险精算</h1>
 
 <p>2017年，我作为精算顾问参与了一家车险公司的费率改革项目。客户的总精算师对我说了这么一句话："寿险精算师是在平稳的湖面上划船——死亡率有生命表，利率有国债曲线，一切都可预测。我们非寿险精算师是在大海里冲浪——车险事故率随天气和路况波动，责任险的长尾可以拖十几年，巨灾来了整个损失分布都是颠覆性的。"他说的也许有点夸张，但确实点出了非寿险精算的核心挑战：<strong>不确定性更大，数据的"信号"更弱，对精算师的判断力要求更高</strong>。</p>
 
@@ -55,6 +56,7 @@
 
 <p>非寿险精算和寿险精算虽然共享"精算"这个前缀，但从方法论到实务操作，差异非常大：</p>
 
+<div class="table-scroll" style="overflow-x:auto">
 <table>
     <tr>
         <th>维度</th>
@@ -92,6 +94,7 @@
         <td>基于损失分布、信度理论、经验费率</td>
     </tr>
 </table>
+</div>
 
 <p>非寿险精算还有一个寿险没有的"痛"——<strong>长尾责任</strong>。责任险、工伤险的理赔可能拖10年、20年才完全结案（比如石棉肺赔偿案，暴露后几十年才发病）。这意味着非寿险精算师在做IBNR（已发生未报案）准备金估计时，面对的不确定性远比寿险大。</p>
 
@@ -114,6 +117,7 @@
 
 <p>赔付金额分布描述的是"一旦发生理赔，要赔多少钱"。实际数据的典型特征是<strong>右偏（Right-skewed）</strong>——大部分理赔金额很小，少数大额理赔占了总赔付的很大比例。常用分布包括：</p>
 
+<div class="table-scroll" style="overflow-x:auto">
 <table>
     <tr>
         <th>分布</th>
@@ -141,10 +145,11 @@
         <td>多场景的损失金额（综合拟合）</td>
     </tr>
 </table>
+</div>
 
 <p>实际建模中，精算师通常用<strong>复合分布（Compound Distribution）</strong>——频率分布和金额分布的乘积——来描述总损失。S = X₁ + X₂ + ... + X<sub>N</sub>，其中N是理赔次数、Xᵢ是单次赔付金额。这就是著名的<strong>集体风险模型（Collective Risk Model）</strong>。</p>
 
-<pre><code>集体风险模型:
+<pre style="overflow-x:auto"><code>集体风险模型:
 总损失 S = X₁ + X₂ + ... + X<sub>N</sub>
 
 其中 N ~ 频率分布（如泊松或负二项）
@@ -162,7 +167,7 @@
 <p><strong>纯保费法（Pure Premium Method）</strong>是最直接的非寿险定价方法。纯保费 = 预期总损失 / 承保风险单位数。再纯保费的基础上加上费用附加和利润附加，得到毛保费。</p>
 
 <p>纯保费法的核心步骤：</p>
-<pre><code>1. 计算纯保费 PP = 期望损失频率 × 期望损失金额
+<pre style="overflow-x:auto"><code>1. 计算纯保费 PP = 期望损失频率 × 期望损失金额
 2. 计算毛保费 GP = PP / (1 - 费用率 - 目标利润率)
 3. 举例: PP = 200元, 费用率=30%, 利润率=5%
    GP = 200 / (1 - 0.30 - 0.05) = 200/0.65 ≈ 307.7元</code></pre>
@@ -191,7 +196,7 @@
 
 <p><strong>链梯法（Chain-Ladder Method）</strong>是最经典的IBNR估计方法。它基于"发展三角形"（Run-off Triangle）——把理赔数据按"事故发生年"和"发展年"排列成一个三角矩阵，然后观察每个事故年的赔付在后续发展年中的演变模式，用这个模式外推未发展完全的赔付金额。</p>
 
-<pre><code>发展三角形示例（累计赔付金额，单位万元）:
+<pre style="overflow-x:auto"><code>发展三角形示例（累计赔付金额，单位万元）:
 事故年     发展年1    发展年2    发展年3    发展年4
 2019        1,200      2,100      2,500      2,700
 2020        1,350      2,300      2,750      ?
@@ -212,6 +217,35 @@
    2022年最终赔付估计 = 1,700 × f2 × f3 × f4
 
 4. IBNR = 最终赔付估计 - 已报案赔付</code></pre>
+
+<figure>
+    <svg viewBox="0 0 720 244" role="img" aria-labelledby="tri-title tri-desc" xmlns="http://www.w3.org/2000/svg">
+        <title id="tri-title">链梯法的发展三角形</title>
+        <desc id="tri-desc">把各事故年已发展的赔付按发展年排列成三角，右下方的空格为尚未报案的赔付，常用发展因子外推补齐并推算 IBNR。</desc>
+        <rect width="720" height="244" fill="#f8faff"/>
+        <g font-family="system-ui, 'PingFang SC', sans-serif">
+            <g font-size="13" fill="#4338ca" text-anchor="middle">
+                <text x="232" y="40">发展年1</text><text x="340" y="40">发展年2</text><text x="448" y="40">发展年3</text><text x="556" y="40">发展年4</text>
+            </g>
+            <g font-size="13" fill="#1e1b4b" text-anchor="end">
+                <text x="120" y="68">2019</text><text x="120" y="102">2020</text><text x="120" y="136">2021</text><text x="120" y="170">2022</text>
+            </g>
+            <g fill="#e0e7ff" stroke="#6366f1">
+                <rect x="130" y="50" width="476" height="24"/>
+                <rect x="130" y="84" width="357" height="24"/>
+                <rect x="130" y="118" width="238" height="24"/>
+                <rect x="130" y="152" width="119" height="24"/>
+            </g>
+            <g fill="#fef9c3" stroke="#facc15" stroke-dasharray="5 4">
+                <rect x="487" y="84" width="119" height="24"/>
+                <rect x="368" y="118" width="238" height="24"/>
+                <rect x="249" y="152" width="357" height="24"/>
+            </g>
+            <text x="249" y="205" font-size="12" fill="#4338ca">浅色 = 已发展赔款，虚线 = 尚未报案（需外推）</text>
+        </g>
+    </svg>
+    <figcaption><strong>图 20-1</strong>：链梯法的发展三角形——按“事故年×发展年”排列理赔数据，右下方三角为仍需外推的未发展赔款，其估计值与已报案赔款之差即 IBNR。（结构示意，数值取自正文示例）</figcaption>
+</figure>
 
 <h3>Bornhuetter-Ferguson法</h3>
 
@@ -249,7 +283,7 @@
 
 <p><strong>Buhlmann模型</strong>是最经典的信度模型，它的核心思想是把信度因子Z表达为：</p>
 
-<pre><code>Bühlmann信度模型:
+<pre style="overflow-x:auto"><code>Bühlmann信度模型:
 估计值 = Z × 个人经验 + (1 - Z) × 先验均值
 
 信度因子 Z = N / (N + K)
@@ -281,7 +315,7 @@
 
 <p><strong>敏感性分析（Sensitivity Analysis）</strong>比压力测试更精细——它不仅看"会不会死"，还要看"哪个变量对偿付能力的影响最大"。常见的敏感性指标包括：</p>
 
-<pre><code>核心偿付能力充足率的敏感性:
+<pre style="overflow-x:auto"><code>核心偿付能力充足率的敏感性:
 假设变化                       影响幅度
 赔付率上升5个百分点             -15%
 费用率上升2个百分点              -6%
@@ -304,7 +338,7 @@
             <a href="index.html">📖 返回目录</a>
             <a href="21.html">下一章 →</a>
         </div>
-    </div>
+    </main>
 </div>
 </div>
 </body>

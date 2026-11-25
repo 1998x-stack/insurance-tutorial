@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="theme.css">
 </head>
 <body>
+<a class="skip-link" href="#main">跳到正文</a>
 <div class="double-border">
 <div class="container">
     <div class="sidebar">
@@ -41,9 +42,9 @@
             <li><a href="27.html">第27章 中国保险市场专题分析</a></li>
             <li><a href="28.html">第28章 综合案例：保险公司经营分析</a></li>
         </ul>
-    </div>
-    <div class="main-content">
-        <h2>第11章 意外伤害保险</h2>
+    </nav>
+    <main class="main-content" id="main">
+        <h1>第11章 意外伤害保险</h1>
 
 <p>2018年，一则新闻在保险业引发了激烈讨论：某中年男子深夜加班时突然倒地不起，送医后抢救无效死亡，医院诊断为"心源性猝死"。他的家人向保险公司申请意外险理赔，被拒赔后诉至法院。保险公司的理由是：猝死是疾病导致的，不是意外。家属则坚持：人好好的突然就没了，这还不叫意外吗？</p>
 
@@ -53,6 +54,7 @@
 
 <p>保险学对"意外伤害"有极其严格的定义，必须同时满足四个要素：</p>
 
+<div class="table-scroll" style="overflow-x:auto">
 <table>
     <tr>
         <th>要素</th>
@@ -80,8 +82,40 @@
         <td>被狗咬伤 ✅ / 癌症转移导致骨折 ❌</td>
     </tr>
 </table>
+</div>
 
 <p>这四个条件必须同时满足，缺一不可。这个"四要素"是意外险理赔争议的核心判断框架。实务中，大量拒赔纠纷的核心分歧就在于——某一要素是否成立。</p>
+
+<figure>
+    <svg viewBox="0 0 720 230" role="img" aria-labelledby="acc-title acc-desc" xmlns="http://www.w3.org/2000/svg">
+        <title id="acc-title">意外伤害认定的四个要素</title>
+        <desc id="acc-desc">意外伤害必须同时满足外来、突发、非本意、非疾病四个要素，缺一不可。</desc>
+        <rect width="720" height="230" fill="#f8faff"/>
+        <g font-family="system-ui, 'PingFang SC', sans-serif" text-anchor="middle">
+            <g>
+                <rect x="30" y="34" width="150" height="70" rx="12" fill="#e0e7ff" stroke="#6366f1" stroke-width="2"/>
+                <text x="105" y="64" font-size="15" font-weight="700" fill="#1e1b4b">外来的</text>
+                <text x="105" y="86" font-size="12" fill="#4338ca">源自身外</text>
+                <rect x="200" y="34" width="150" height="70" rx="12" fill="#e0e7ff" stroke="#6366f1" stroke-width="2"/>
+                <text x="275" y="64" font-size="15" font-weight="700" fill="#1e1b4b">突发的</text>
+                <text x="275" y="86" font-size="12" fill="#4338ca">短时发生</text>
+                <rect x="370" y="34" width="150" height="70" rx="12" fill="#e0e7ff" stroke="#6366f1" stroke-width="2"/>
+                <text x="445" y="64" font-size="15" font-weight="700" fill="#1e1b4b">非本意的</text>
+                <text x="445" y="86" font-size="12" fill="#4338ca">非主观故意</text>
+                <rect x="540" y="34" width="150" height="70" rx="12" fill="#e0e7ff" stroke="#6366f1" stroke-width="2"/>
+                <text x="615" y="64" font-size="15" font-weight="700" fill="#1e1b4b">非疾病的</text>
+                <text x="615" y="86" font-size="12" fill="#4338ca">非疾病引起</text>
+            </g>
+            <g stroke="#a5b4fc" stroke-width="3" marker-end="url(#acm)">
+                <path d="M105 108 V146"/><path d="M275 108 V146"/><path d="M445 108 V146"/><path d="M615 108 V146"/>
+            </g>
+            <rect x="170" y="152" width="380" height="52" rx="14" fill="#6366f1"/>
+            <text x="360" y="184" font-size="15" font-weight="700" fill="#ffffff">四者同时满足 → 认定意外伤害</text>
+        </g>
+        <defs><marker id="acm" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#a5b4fc"/></marker></defs>
+    </svg>
+    <figcaption><strong>图 11-1</strong>：意外伤害认定的四要素——外来、突发、非本意、非疾病，四者必须同时成立，缺一不可。这也是意外险理赔争议的核心判别框架。（判定框架示意）</figcaption>
+</figure>
 
 <h2>意外伤害保险的责任范围</h2>
 
@@ -93,7 +127,7 @@
 <h3>残疾给付</h3>
 <p>意外险最独特的功能就在这里。被保险人因意外伤害导致身体残疾，保险公司根据<strong>伤残等级</strong>给付相应比例的保险金。中国保险行业统一使用<strong>《人身保险伤残评定标准》（行业标准JR/T 0083-2013）</strong>，将伤残分为10个等级：</p>
 
-<pre><code>伤残等级与赔付比例
+<pre style="overflow-x:auto"><code>伤残等级与赔付比例
   一级伤残（最重） → 赔付100%保额
   二级伤残         → 赔付90%保额
   三级伤残         → 赔付80%保额
@@ -118,6 +152,7 @@
 
 <p>按照投保方式和适用场景，意外险可以分为以下几类：</p>
 
+<div class="table-scroll" style="overflow-x:auto">
 <table>
     <tr>
         <th>类型</th>
@@ -150,6 +185,7 @@
         <td>有车一族、网约车司机</td>
     </tr>
 </table>
+</div>
 
 <h2>意外险的费率厘定</h2>
 
@@ -205,6 +241,7 @@
 
 <p>除了一般的意外事件，还有一些"边界案例"考验着意外险的认定逻辑：</p>
 
+<div class="table-scroll" style="overflow-x:auto">
 <table>
     <tr>
         <th>情境</th>
@@ -237,6 +274,7 @@
         <td>视情况。普通蚊虫叮咬不赔，但如果是有毒昆虫（如蜂蜇伤、蝎子蜇伤），可认定为意外。</td>
     </tr>
 </table>
+</div>
 
 <div class="tip">
     <p><strong>实务指导</strong>：如果你是保险从业者，遇到客户意外险理赔争议，记住三个判断优先级——第一，看条款定义，意外险条款中通常有"意外伤害"的明确定义；第二，看近因原则，确定导致损失的"最直接有效"的原因是什么；第三，看既往判例，同一类争议在不同法院的判决结果可能不同，要了解当地司法实践倾向。对消费者而言，如果遭遇意外险拒赔而你认为不合理，可以走<strong>保险合同纠纷投诉调解</strong>途径（12378保险投诉热线），不一定非要打官司。</p>
@@ -251,7 +289,7 @@
             <a href="index.html">📖 返回目录</a>
             <a href="12.html">下一章 →</a>
         </div>
-    </div>
+    </main>
 </div>
 </div>
 </body>

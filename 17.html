@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="theme.css">
 </head>
 <body>
+<a class="skip-link" href="#main">跳到正文</a>
 <div class="double-border">
 <div class="container">
     <div class="sidebar">
@@ -41,9 +42,9 @@
             <li><a href="27.html">第27章 中国保险市场专题分析</a></li>
             <li><a href="28.html">第28章 综合案例：保险公司经营分析</a></li>
         </ul>
-    </div>
-    <div class="main-content">
-        <h2>第17章 再保险</h2>
+    </nav>
+    <main class="main-content" id="main">
+        <h1>第17章 再保险</h1>
 
 <p>2011年3月11日，日本东北太平洋海域发生9.0级大地震，引发的海啸摧毁了福岛第一核电站。这场灾难造成的保险损失总额高达350-400亿美元，是当时人类历史上损失最惨重的自然灾害保险事件。但你可能不知道的是，承担这笔巨额赔款的并非某一家保险公司——实际买单的是遍布全球的数百家再保险公司和资本市场投资者。日本本土的保险公司通过再保险合约，把绝大部分风险转移到了国际市场。东京海上日动火灾保险公司的CEO后来在股东大会上说过一句话："如果没有再保险，福岛地震的那一天，日本保险业就已经破产了。"</p>
 
@@ -59,6 +60,7 @@
 
 <h3>再保险的功能</h3>
 
+<div class="table-scroll" style="overflow-x:auto">
 <table>
     <tr>
         <th>功能</th>
@@ -86,6 +88,7 @@
         <td>慕再（Munich Re）为新兴市场保险公司提供巨灾建模技术支持</td>
     </tr>
 </table>
+</div>
 
 <h2>比例再保险</h2>
 
@@ -95,7 +98,7 @@
 
 <p><strong>成数再保险（Quota Share Reinsurance）</strong>是最简单的形式——分出人把每一张保单的固定比例分给再保险人。比如成数比例是30%，那么每一张保单的保额的30%、保费的30%、赔款的30%都归再保险人。</p>
 
-<pre><code>成数再保险示例（成数比例30%）：
+<pre style="overflow-x:auto"><code>成数再保险示例（成数比例30%）：
 
 原始保单：保额 1000万，保费 20万，赔款 200万
 分出人（70%）：自留保额 700万，自留保费 14万，承担赔款 140万
@@ -123,6 +126,7 @@
 
 <p><strong>超额赔款再保险（Excess of Loss Reinsurance, XL）</strong>是应用最广泛的非比例再保险形式。它又分为三个子类型：</p>
 
+<div class="table-scroll" style="overflow-x:auto">
 <table>
     <tr>
         <th>类型</th>
@@ -145,10 +149,11 @@
         <td>适用经营稳定性保障：如果年赔付率超过120%，超出部分由再保险人承担</td>
     </tr>
 </table>
+</div>
 
 <p>非比例再保险的一个关键概念是<strong>起赔点（Priority / Attachment Point）</strong>和<strong>限额（Limit）</strong>。比如一个"超过500万以后的5000万"的超赔合约——500万是起赔点（分出人自己承担），5000万是再保险人的最高赔付限额。超过5500万以上的部分，如果还有更高层的再保险，就继续往上推。</p>
 
-<pre><code>多层超赔再保险结构示例（某财险公司的巨灾防护层）：
+<pre style="overflow-x:auto"><code>多层超赔再保险结构示例（某财险公司的巨灾防护层）：
 
 第1层：自留层 — 0 ~ 500万           ┐
                                      │ 公司自担，无再保险
@@ -157,6 +162,34 @@
 第3层：超赔再保险 — 2500万后的5000万 ┤ 承担2500万~7500万部分
                                      │
 第4层：巨灾债券/资本市场 — 7500万+   ┘ 资本市场投资者承担</code></pre>
+
+<figure>
+    <svg viewBox="0 0 720 244" role="img" aria-labelledby="xl-title xl-desc" xmlns="http://www.w3.org/2000/svg">
+        <title id="xl-title">多层超赔再保险的巨灾防护层</title>
+        <desc id="xl-desc">以自留层为底座，500万后的2000万、2500万后的5000万由超赔再保险人分层承担，7500万以上交由巨灾债券等资本市场投资者。</desc>
+        <rect width="720" height="244" fill="#f8faff"/>
+        <g font-family="system-ui, 'PingFang SC', sans-serif">
+            <rect x="60" y="28" width="600" height="44" fill="#c4b5fd" stroke="#7c3aed"/>
+            <rect x="60" y="76" width="600" height="44" fill="#a78bfa" stroke="#7c3aed"/>
+            <rect x="60" y="124" width="600" height="44" fill="#818cf8" stroke="#6366f1"/>
+            <rect x="60" y="172" width="600" height="44" fill="#e0e7ff" stroke="#6366f1"/>
+            <g font-size="13" fill="#1e1b4b">
+                <text x="76" y="55">第4层　巨灾债券 / 资本市场</text>
+                <text x="76" y="103">第3层　超赔再保险</text>
+                <text x="76" y="151">第2层　超赔再保险</text>
+                <text x="76" y="199" fill="#312e81">第1层　自留层（公司自担）</text>
+            </g>
+            <g font-size="13" fill="#3730a3" text-anchor="end">
+                <text x="644" y="55">7500万+</text>
+                <text x="644" y="103">2500万~7500万</text>
+                <text x="644" y="151">500万~2500万</text>
+                <text x="644" y="199">0~500万</text>
+            </g>
+            <text x="60" y="236" font-size="12" fill="#4338ca">损失自下而上逐层摊赔，超过上一层限额的部分进入更高层</text>
+        </g>
+    </svg>
+    <figcaption><strong>图 17-1</strong>：多层超赔再保险的巨灾防护层——自留层之上叠加超赔再保险，最高层由资本市场（巨灾债券）承接，损失自下而上逐层摊赔。（层式结构示意，额度取自正文示例）</figcaption>
+</figure>
 
 <h2>再保险安排方式</h2>
 
@@ -232,7 +265,7 @@
             <a href="index.html">📖 返回目录</a>
             <a href="18.html">下一章 →</a>
         </div>
-    </div>
+    </main>
 </div>
 </div>
 </body>

@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="theme.css">
 </head>
 <body>
+<a class="skip-link" href="#main">跳到正文</a>
 <div class="double-border">
 <div class="container">
     <div class="sidebar">
@@ -41,9 +42,9 @@
             <li><a href="27.html">第27章 中国保险市场专题分析</a></li>
             <li><a href="28.html">第28章 综合案例：保险公司经营分析</a></li>
         </ul>
-    </div>
-    <div class="main-content">
-        <h2>第18章 保险资金运用</h2>
+    </nav>
+    <main class="main-content" id="main">
+        <h1>第18章 保险资金运用</h1>
 
 <p>2015年，宝能系旗下的前海人寿在短短几个月内动用数百亿保险资金举牌万科A股，震动整个资本市场。而后安邦保险、华夏人寿等多家保险公司纷纷效仿，在二级市场掀起了一阵"险资举牌潮"。这些保险公司利用销售高现金价值保单快速获取保费收入，再将资金投入股市举牌上市公司——史称"野蛮人入侵"。这场风波最终导致监管部门出台了史上最严格的险资投资监管规定，多位保险公司高管被调查，数家公司的业务结构被强制整改。</p>
 
@@ -55,6 +56,7 @@
 
 <p>保险公司可以运用的资金，主要来自三个渠道：</p>
 
+<div class="table-scroll" style="overflow-x:auto">
 <table>
     <tr>
         <th>资金来源</th>
@@ -77,6 +79,7 @@
         <td>现金流来源，但具有不确定性——新业务增速波动会影响可用资金量</td>
     </tr>
 </table>
+</div>
 
 <p>截至2024年底，中国保险行业总资产约31万亿元，可运用资金规模接近28万亿元。这相当于A股总市值的约三分之一——体量巨大。保险资金因此被称为资本市场最重要的"长期机构投资者"之一。</p>
 
@@ -100,6 +103,7 @@
 
 <p>中国保险资金的投资渠道经历了从"极度受限"到"逐步放开"的历程。目前可投资的大类资产包括：</p>
 
+<div class="table-scroll" style="overflow-x:auto">
 <table>
     <tr>
         <th>资产类别</th>
@@ -132,6 +136,33 @@
         <td>私募股权（PE）、基础设施（如高速公路、地铁、清洁能源）、债权投资计划</td>
     </tr>
 </table>
+</div>
+
+<figure>
+    <svg viewBox="0 0 720 244" role="img" aria-labelledby="aa-title aa-desc" xmlns="http://www.w3.org/2000/svg">
+        <title id="aa-title">保险资金的大类资产配置</title>
+        <desc id="aa-desc">债券约占百分之四十五到五十居首，另类投资约百分之二十五到三十，股票基金约十到十五，银行存款约十，不动产约五到八。</desc>
+        <rect width="720" height="244" fill="#f8faff"/>
+        <g font-family="system-ui, 'PingFang SC', sans-serif" text-anchor="end">
+            <g font-size="14" fill="#1e1b4b">
+                <text x="160" y="62">债券</text><text x="160" y="102">另类投资</text>
+                <text x="160" y="142">股票和基金</text><text x="160" y="182">银行存款</text><text x="160" y="222">不动产</text>
+            </g>
+        </g>
+        <g>
+            <rect x="180" y="44" width="475" height="26" fill="#6366f1"/>
+            <rect x="180" y="84" width="275" height="26" fill="#7c3aed"/>
+            <rect x="180" y="124" width="125" height="26" fill="#4f46e5"/>
+            <rect x="180" y="164" width="100" height="26" fill="#818cf8"/>
+            <rect x="180" y="204" width="65" height="26" fill="#a5b4fc"/>
+        </g>
+        <g font-size="13" fill="#3730a3">
+            <text x="665" y="62">45%–50%</text><text x="465" y="102">25%–30%</text>
+            <text x="315" y="142">10%–15%</text><text x="290" y="182">约 10%</text><text x="255" y="222">5%–8%</text>
+        </g>
+    </svg>
+    <figcaption><strong>图 18-1</strong>：保险资金的大类资产配置——债券占比最高，另类投资（基础设施、股权等）次之，权益类受监管比例约束。柱长按各区间中点的相对大小绘制，具体区间以正文表格为准，此处仅作<em>教学示意</em>。</figcaption>
+</figure>
 
 <h3>另类投资的崛起</h3>
 
@@ -139,7 +170,7 @@
 
 <p>比如大型保险集团会设立自己的<strong>另类投资子公司</strong>（平安旗下的平安不动产、平安资本；太保旗下的太保私募等），直接投资基础设施项目——高速公路收费权、光伏电站、数据中心、长租公寓等。这些项目能提供5%-8%的长期稳定回报，且期限与保险负债高度匹配。</p>
 
-<pre><code>保险公司资产配置决策树（简化）：
+<pre style="overflow-x:auto"><code>保险公司资产配置决策树（简化）：
 
 输入：负债特征（久期/利率敏感性/流动性要求）
    ↓
@@ -221,7 +252,7 @@
 
 <p>监管部门对保险公司的各类投资设置了"四道红线"似的比例约束：</p>
 
-<pre><code>保险资金运用比例监管核心指标：
+<pre style="overflow-x:auto"><code>保险资金运用比例监管核心指标：
 
 ┌────────────────────────────────┬───────────┐
 │          监管指标              │  上限     │
@@ -264,7 +295,7 @@
             <a href="index.html">📖 返回目录</a>
             <a href="19.html">下一章 →</a>
         </div>
-    </div>
+    </main>
 </div>
 </div>
 </body>

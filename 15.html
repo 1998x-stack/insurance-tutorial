@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="theme.css">
 </head>
 <body>
+<a class="skip-link" href="#main">跳到正文</a>
 <div class="double-border">
 <div class="container">
     <div class="sidebar">
@@ -41,9 +42,9 @@
             <li><a href="27.html">第27章 中国保险市场专题分析</a></li>
             <li><a href="28.html">第28章 综合案例：保险公司经营分析</a></li>
         </ul>
-    </div>
-    <div class="main-content">
-        <h2>第15章 核保实务</h2>
+    </nav>
+    <main class="main-content" id="main">
+        <h1>第15章 核保实务</h1>
 
 <p>先讲一个真事。2018年，某寿险公司接到一份高额寿险投保申请——被保险人是45岁的企业主，年缴保费80万，保额3000万。投保材料显示健康状况"良好"，体检报告看起来也正常。但核保员在审核体检报告时发现一个细节：受检者的身高178cm、体重92kg，BMI高达29.0——已经接近肥胖线。再仔细看，报告中的尿酸和血脂指标虽然标注在"正常范围"内，但都处于临界值的上限。核保员调取了该被保险人在其他医院的既往就诊记录，发现其因痛风就诊过三次，且有脂肪肝病史。最终核保决定：<strong>加费50%</strong>承保。一年后，该被保险人因急性心肌梗死出险。如果不是当初的加费决定，这张保单的赔付将直接亏损。</p>
 
@@ -69,6 +70,7 @@
 
 <p>精算师设计产品时假设了一个"标准风险池"——假设承保的人群平均死亡率是多少、某个地区的火灾概率是多少。核保员的工作就是确保实际承保进来的人和财产，符合精算师的那些假设。如果核保太严，业务做不大，保费收入不够；如果核保太松，风险失控，赔付率飙升。核保是保险公司"既要又要"的平衡艺术。</p>
 
+<div class="table-scroll" style="overflow-x:auto">
 <table>
     <tr>
         <th>环节</th>
@@ -91,6 +93,7 @@
         <td>实际损失是否在预期范围内？</td>
     </tr>
 </table>
+</div>
 
 <h2>核保流程</h2>
 
@@ -108,7 +111,7 @@
 <h3>第四步：出单与归档</h3>
 <p>核保通过后，系统生成保单，打印盖章后送达投保人。所有核保材料归档保存，以备后续查阅和监管检查。核保档案的保管期限通常不低于保险合同终止后10年。</p>
 
-<pre><code>核保流水线（以寿险为例）：
+<pre style="overflow-x:auto"><code>核保流水线（以寿险为例）：
 
 投保申请提交
     ↓
@@ -125,6 +128,35 @@
                     └─ 拒保
                     ↓
             出单/出具延期/拒保通知书</code></pre>
+
+<figure>
+    <svg viewBox="0 0 720 262" role="img" aria-labelledby="uw-title uw-desc" xmlns="http://www.w3.org/2000/svg">
+        <title id="uw-title">核保漏斗：从申请到出单</title>
+        <desc id="uw-desc">核保依次经过受理、风险评估、核保决策与出单归档四个阶段，决策结果包括标准、加费、除外、延期与拒保。</desc>
+        <rect width="720" height="262" fill="#f8faff"/>
+        <g font-family="system-ui, 'PingFang SC', sans-serif" text-anchor="middle">
+            <rect x="40" y="26" width="480" height="38" rx="10" fill="#e0e7ff" stroke="#6366f1" stroke-width="2"/>
+            <text x="280" y="51" font-size="14" fill="#1e1b4b">① 投保申请受理</text>
+            <rect x="80" y="80" width="400" height="38" rx="10" fill="#e0e7ff" stroke="#6366f1" stroke-width="2"/>
+            <text x="280" y="105" font-size="14" fill="#1e1b4b">② 风险评估（风险分级）</text>
+            <rect x="120" y="134" width="320" height="38" rx="10" fill="#ede9fe" stroke="#7c3aed" stroke-width="2"/>
+            <text x="280" y="159" font-size="14" fill="#1e1b4b">③ 核保决策</text>
+            <rect x="160" y="188" width="240" height="38" rx="10" fill="#dcfce7" stroke="#0f766e" stroke-width="2"/>
+            <text x="280" y="213" font-size="14" fill="#0f3d38">④ 出单与归档</text>
+            <g stroke="#a5b4fc" stroke-width="3" marker-end="url(#uwm)">
+                <path d="M280 64 V78"/><path d="M280 118 V132"/><path d="M280 172 V186"/>
+            </g>
+            <path d="M440 153 H470" stroke="#a5b4fc" stroke-width="3" marker-end="url(#uwm)"/>
+            <g font-size="12" fill="#4338ca" text-anchor="start">
+                <text x="478" y="108">标准承保</text><text x="478" y="130">加费承保</text>
+                <text x="478" y="152">除外承保</text><text x="478" y="174">延期</text>
+                <text x="478" y="196">拒保</text>
+            </g>
+        </g>
+        <defs><marker id="uwm" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#a5b4fc"/></marker></defs>
+    </svg>
+    <figcaption><strong>图 15-1</strong>：核保漏斗——从大量申请中逐级筛选，根据风险分级给出标准承保、加费承保、除外承保、延期或拒保五类结果，最终只留下可承保风险。（流程结构示意）</figcaption>
+</figure>
 
 <div class="tip">
     <p><strong>行业趋势</strong>：近几年大型保险公司在大力推进"智能核保"系统。对于低额标准体保单（比如定期寿险50万以下），系统可以自动完成风险评估并直接出单，无需人工干预。平安人寿的"AI核保"系统上线后，自动核保通过率超过70%，标准体的承保时效从原来的3-5天缩短到几分钟。</p>
@@ -161,6 +193,7 @@
 
 <p>人身保险核保需要考虑的因素非常复杂，核保员像侦探一样，从各个维度拼凑出被保险人的完整风险画像。</p>
 
+<div class="table-scroll" style="overflow-x:auto">
 <table>
     <tr>
         <th>核保维度</th>
@@ -198,6 +231,7 @@
         <td>父母双方均患有糖尿病或恶性肿瘤、兄弟姐妹50岁前因心脏病去世</td>
     </tr>
 </table>
+</div>
 
 <p><strong>医学核保</strong>是人身险核保中的重中之重。核保员需要理解各种疾病的病理、风险分级和预后判断。比如一个甲状腺结节患者——核保员需要看TI-RADS分级：TI-RADS 1-2级通常标准体承保，3级可能除外甲状腺相关疾病，4级以上很可能延期或拒保。这就是为什么很多保险公司现在开始用AI辅助医学核保——让深度学习模型对体检报告中的异常指标进行自动风险分级。</p>
 
@@ -221,7 +255,7 @@
 
 <p>投保企业过去3-5年的出险记录是对其风险水平最直接的反映。一家每年都发生火灾的食品加工厂，即使今年做了"安全整改"，核保员也会非常慎重——这说明管理层的安全意识有系统性问题。行业内通过<strong>无赔款优待系数（No Claim Discount, NCD）</strong>来奖励低出险客户，这个制度本身就是一种筛选机制。</p>
 
-<pre><code>财产险核保查勘检查要点（示例）：
+<pre style="overflow-x:auto"><code>财产险核保查勘检查要点（示例）：
 
 □ 防火设施：灭火器有效期、消防栓水压、疏散通道畅通
 □ 安防系统：监控覆盖范围、入侵报警系统、夜间安保值班
@@ -234,6 +268,7 @@
 
 <p>核保员完成风险评估后，需要做出明确的核保决策。这个决策直接决定了这份保单是否签署以及以什么样的条件签署。不同决策类型的含义如下：</p>
 
+<div class="table-scroll" style="overflow-x:auto">
 <table>
     <tr>
         <th>核保决策</th>
@@ -266,6 +301,7 @@
         <td>严重既往症（恶性肿瘤、心衰）、高风险运动从业者不符合投保要求</td>
     </tr>
 </table>
+</div>
 
 <p>这里有个有趣的现象——很多投保人被"拒保"或"加费"后觉得不公平，认为"我明明很健康，为什么比别人多交钱？"事实上，核保不是惩罚，而是一种<strong>公平定价机制</strong>。保险公司算过账：如果对所有风险都收同样的保费，低风险客户其实是在补贴高风险客户，长期下来低风险客户会选择退保或减保，剩下的全是高风险——这就是所谓的"死亡螺旋"。</p>
 
@@ -280,7 +316,7 @@
             <a href="index.html">📖 返回目录</a>
             <a href="16.html">下一章 →</a>
         </div>
-    </div>
+    </main>
 </div>
 </div>
 </body>

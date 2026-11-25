@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="theme.css">
 </head>
 <body>
+<a class="skip-link" href="#main">跳到正文</a>
 <div class="double-border">
 <div class="container">
     <div class="sidebar">
@@ -41,9 +42,9 @@
             <li><a href="27.html">第27章 中国保险市场专题分析</a></li>
             <li><a href="28.html">第28章 综合案例：保险公司经营分析</a></li>
         </ul>
-    </div>
-    <div class="main-content">
-        <h2>第13章 责任与信用保证保险</h2>
+    </nav>
+    <main class="main-content" id="main">
+        <h1>第13章 责任与信用保证保险</h1>
 
 <p>2015年，美国发生了保险史上最具标志性的产品责任案件之一。一位76岁的老太太在麦当劳买了一杯咖啡，放在腿上打开杯盖时，咖啡洒出导致她大腿三度烧伤，住院治疗八天，皮肤移植手术两次。陪审团最终判决麦当劳赔偿286万美元（后降至64万）。这个"麦当劳咖啡烫伤案"引发了全美对<strong>产品责任</strong>的重新思考——一杯咖啡的温度是不是"不合理地危险"？企业应该为产品的设计缺陷承担多大责任？</p>
 
@@ -67,6 +68,7 @@
 
 <p>这是责任险中最重要、也最容易被忽略的概念。它决定了什么时间点的损失属于保险责任：</p>
 
+<div class="table-scroll" style="overflow-x:auto">
 <table>
     <tr>
         <th>维度</th>
@@ -94,10 +96,33 @@
         <td>职业责任险（医疗责任、律师责任、董事责任）</td>
     </tr>
 </table>
+</div>
 
 <div class="highlight">
     <p><strong>关键要点</strong>：如果你购买的是"索赔发生制"的责任险，一定要关注<strong>延长报告期（Extended Reporting Period, ERP）</strong>条款——也称为"发现期"条款。它的作用是：在保单到期后，给你额外的一段时间（通常60天到1年），让你仍然可以向保险公司报告在保险期内发生但尚未被索赔的事故。没有这个条款，你可能会遭遇"裸奔期"——事故发生在保险期内，但一年后才被起诉，彼时保险早已过期。</p>
 </div>
+
+<figure>
+    <svg viewBox="0 0 720 244" role="img" aria-labelledby="occ-title occ-desc" xmlns="http://www.w3.org/2000/svg">
+        <title id="occ-title">事故发生制与索赔发生制的时点差异</title>
+        <desc id="occ-desc">事故发生制下事故落在保险期内即赔，不论何时索赔；索赔发生制下首次索赔必須落在保险期内，否则需依靠延长报告期条款。</desc>
+        <rect width="720" height="244" fill="#f8faff"/>
+        <g font-family="system-ui, 'PingFang SC', sans-serif">
+            <rect x="215" y="46" width="250" height="56" fill="#e0e7ff" stroke="#818cf8"/>
+            <text x="340" y="80" text-anchor="middle" font-size="12" fill="#4338ca">保险期间</text>
+            <text x="30" y="80" font-size="14" font-weight="700" fill="#312e81">事故发生制</text>
+            <circle cx="300" cy="74" r="7" fill="#6366f1"/><text x="300" y="126" text-anchor="middle" font-size="12" fill="#4338ca">事故</text>
+            <circle cx="600" cy="74" r="7" fill="#6366f1"/><text x="600" y="126" text-anchor="middle" font-size="12" fill="#4338ca">索赔（可晚于保险期）</text>
+            <text x="700" y="80" text-anchor="end" font-size="15" fill="#0f766e">赔</text>
+            <rect x="215" y="150" width="250" height="56" fill="#ede9fe" stroke="#a78bfa"/>
+            <text x="340" y="184" text-anchor="middle" font-size="12" fill="#4c1d95">保险期间</text>
+            <text x="30" y="184" font-size="14" font-weight="700" fill="#4c1d95">索赔发生制</text>
+            <circle cx="300" cy="178" r="7" fill="#7c3aed"/><text x="360" y="228" text-anchor="middle" font-size="11" fill="#6d28d9">事故</text>
+            <circle cx="600" cy="178" r="7" fill="#7c3aed"/><text x="620" y="228" text-anchor="middle" font-size="11" fill="#6d28d9">索赔（需在保险期内）</text>
+        </g>
+    </svg>
+    <figcaption><strong>图 13-1</strong>：责任险两种触发机制的时点差异——事故发生制看“事故何时发生”，索赔发生制看“首次索赔何时提出”。前者常伴随长尾责任，后者需关注延长报告期（ERP）条款。（机制示意）</figcaption>
+</figure>
 
 <h2>主要责任险种</h2>
 
@@ -114,7 +139,7 @@
 <h3>职业责任险</h3>
 <p><strong>职业责任险（Professional Liability Insurance）</strong>——也称为"错误与遗漏保险（Errors & Omissions, E&O）"——针对专业服务提供者在执业过程中因疏忽或过失导致客户损失的法律责任。职业责任险的投保主体主要是各类专业人士：</p>
 
-<pre><code>主要职业责任险种：
+<pre style="overflow-x:auto"><code>主要职业责任险种：
   ├─ 医疗责任保险（Medical Malpractice Insurance）
   │   ——医生/医院因诊疗过失导致患者损害的赔偿责任
   ├─ 律师职业责任保险（Lawyers Professional Liability）
@@ -160,6 +185,7 @@
 
 <h3>常见保证保险类型</h3>
 
+<div class="table-scroll" style="overflow-x:auto">
 <table>
     <tr>
         <th>险种</th>
@@ -187,6 +213,7 @@
         <td>申请人申请财产保全但败诉时，保险公司赔偿被保全方的损失<br>（替代了传统诉讼保全担保的保证金方式）</td>
     </tr>
 </table>
+</div>
 
 <div class="warning">
     <p><strong>踩坑故事</strong>：2019年，某保险公司大规模承保P2P网贷平台的"履约保证保险"——承诺如果借款人违约，保险公司赔付投资人。但P2P行业在2020年全面爆雷，大量借款人违约，保险公司的赔付责任超过了其偿付能力的几十倍，直接导致这家公司被接管重组。这个案例说明了一个根本性问题：<strong>保证保险承保的是信用风险，而信用风险最大的特点是"系统性"和"顺周期性"</strong>——经济上行时看起来风险很低，经济下行时所有违约一起爆发，保险公司的风险分散机制完全失效。做保证保险，永远不要以为自己能"精准定价"。</p>
@@ -216,7 +243,7 @@
     <li><strong>抗辩与和解控制权</strong>——这个是责任险条款中的"隐形条款"。通常情况下，保险公司有权决定是否与被索赔方（原告）进行和解以及和解金额。因为保险公司是"掏钱的人"，它自然有权决定"怎么掏钱最划算"</li>
 </ul>
 
-<pre><code>责任险理赔流程：
+<pre style="overflow-x:auto"><code>责任险理赔流程：
   事故发生 → 被保险人通知保险公司
                     ↓
   保险公司委托律师评估责任
@@ -242,7 +269,7 @@
             <a href="index.html">📖 返回目录</a>
             <a href="14.html">下一章 →</a>
         </div>
-    </div>
+    </main>
 </div>
 </div>
 </body>

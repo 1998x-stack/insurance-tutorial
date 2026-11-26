@@ -5,6 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
     <title>第28章 综合案例：保险公司经营分析</title>
     <link rel="stylesheet" href="theme.css">
+    <style>
+        .sens-widget { background:#f8faff; border:1px solid #c7d2fe; border-radius:18px; padding:16px 18px; margin:22px 0; }
+        .sens-widget h3 { margin-top:0; }
+        .sens-controls { display:flex; flex-wrap:wrap; gap:14px 18px; align-items:center; margin:14px 0; }
+        .sens-controls label { font-weight:600; color:#3730a3; }
+        .sens-controls output { color:#4338ca; font-variant-numeric:tabular-nums; }
+        .sens-controls input[type=range] { flex:1 1 240px; min-width:200px; accent-color:#6366f1; }
+        .sens-widget button { font:inherit; font-weight:600; cursor:pointer; background:#6366f1; color:#fff; border:none; border-radius:40px; padding:8px 18px; }
+        .sens-result { font-variant-numeric:tabular-nums; background:#eef2ff; border-left:6px solid #6366f1; border-radius:12px; padding:12px 16px; }
+        .sens-result b { color:#4f46e5; }
+    </style>
 </head>
 <body>
 <a class="skip-link" href="#main">跳到正文</a>
@@ -273,6 +284,17 @@
 
 <p>这里有一个关键洞察：投资收益率假设每降低50个基点，安泰的内含价值就会缩水约25亿元。如果假设从4.5%调整到更现实的3.5%，内含价值将缩水17%。这样大范围的调整可能触发监管关注，但如果管理层选择"按兵不动"，又会导致精算假设与实际经验之间的差距持续扩大——这是一个需要勇气和智慧的两难选择。</p>
 
+<section class="sens-widget" aria-labelledby="sens-heading">
+  <h3 id="sens-heading">互动试算：投资收益率假设对内含价值的影响</h3>
+  <p>沿用上表的敏感性关系——以 EV = 280 亿元（假设 4.5%）为基准，投资收益率假设每变动 1 个百分点，内含价值同向变动约 50 亿元。拖动滑杆调整假设，观察内含价值与偏离程度。<em>（此处采用线性近似，取自本节案例数据，仅作教学示意；实际非线性关系更复杂。）</em></p>
+  <div class="sens-controls">
+    <label for="sens-rate">长期投资收益率假设：<output id="sens-rate-out" for="sens-rate">4.5%</output></label>
+    <input type="range" id="sens-rate" min="3" max="5" step="0.1" value="4.5">
+    <button type="button" id="sens-reset">演示：下调至 4.0%</button>
+  </div>
+  <p class="sens-result" id="sens-result" aria-live="polite">正在计算…</p>
+</section>
+
 <h2>战略诊断与建议</h2>
 
 <p>综合以上六个维度的分析，我们来给安泰人寿做一份战略诊断报告。这里我用自己的话总结核心问题，同时标注对应课程章节——你可以回头复习相关知识点。</p>
@@ -417,5 +439,23 @@
     </div>
 </div>
 </div>
+<script>
+(function(){
+  var rate=document.getElementById('sens-rate');
+  if(!rate) return;
+  var out=document.getElementById('sens-rate-out'), res=document.getElementById('sens-result');
+  var BASE_EV=280, BASE_R=4.5, SLOPE=50;
+  function calc(){
+    var r=+rate.value, ev=BASE_EV+(r-BASE_R)*SLOPE, dev=(ev-BASE_EV)/BASE_EV*100;
+    out.textContent=r.toFixed(1)+'%';
+    res.innerHTML='假设 r = '+r.toFixed(1)+'% 时，内含价值 EV ≈ <b>'+ev.toFixed(1)+' 亿元</b>，'+
+      '相对 4.5% 基准（280 亿元）变动 <b>'+(dev>=0?'+':'')+dev.toFixed(1)+'%</b>。'+
+      (r<4.5?'假设越保守，内含价值越低——下调虽更贴近现实，但会牵动当期利润与资本。':'更高的假设能抬高账面内含价值，却会累积利差损风险。');
+  }
+  rate.addEventListener('input',calc); rate.addEventListener('change',calc);
+  document.getElementById('sens-reset').addEventListener('click',function(){ rate.value='4'; calc(); });
+  calc();
+})();
+</script>
 </body>
 </html>

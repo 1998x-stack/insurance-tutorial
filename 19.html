@@ -5,6 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
     <title>第19章 寿险精算基础</title>
     <link rel="stylesheet" href="theme.css">
+    <style>
+        .calc-widget { background:#f8faff; border:1px solid #c7d2fe; border-radius:18px; padding:16px 18px; margin:22px 0; }
+        .calc-widget h3 { margin-top:0; }
+        .calc-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:14px; margin:14px 0; }
+        .calc-grid label { display:flex; flex-direction:column; gap:6px; font-weight:600; color:#3730a3; font-size:0.92rem; }
+        .calc-grid select, .calc-grid input { font:inherit; padding:8px 10px; border:1px solid #c7d2fe; border-radius:10px; background:#fff; color:#1e293b; }
+        .calc-result { font-variant-numeric:tabular-nums; background:#eef2ff; border-left:6px solid #6366f1; border-radius:12px; padding:12px 16px; margin:6px 0 0; }
+        .calc-result b { color:#4f46e5; font-size:1.05rem; }
+    </style>
 </head>
 <body>
 <a class="skip-link" href="#main">跳到正文</a>
@@ -158,6 +167,29 @@
 </ul>
 
 <p>精算师通过这张表，就能计算出任何寿险产品的预期赔付成本。比如一个30岁的人买10年期定期寿险，保额100万——我们查表知道30-40岁之间每年的死亡概率，乘以保额，再折现到当前，就能算出这张保单的纯风险保费。</p>
+
+<section class="calc-widget" aria-labelledby="snp-heading">
+  <h3 id="snp-heading">互动试算：1 年期定期寿险的趸缴净保费</h3>
+  <p>用上表各年龄的死亡概率 q<sub>x</sub> 与折现公式 19-1，可估算 1 年期定期寿险的趸缴净保费：<strong>SNP ≈ q<sub>x</sub> × 保额 / (1 + i)</strong>。调整年龄、保额与预定利率，观察纯风险成本如何随年龄迅速放大。<em>（仅含死亡赔付成本，未计入费用与利润；保额为输入示意，与实际产品无关。）</em></p>
+  <div class="calc-grid">
+    <label for="snp-age">投保年龄 x
+      <select id="snp-age">
+        <option value="0">0 岁（q×1000 = 0.50）</option>
+        <option value="30" selected>30 岁（q×1000 = 0.69）</option>
+        <option value="60">60 岁（q×1000 = 5.13）</option>
+        <option value="80">80 岁（q×1000 = 42.38）</option>
+      </select>
+    </label>
+    <label for="snp-sum">保额（元）
+      <input type="number" id="snp-sum" value="1000000" min="10000" step="10000">
+    </label>
+    <label for="snp-rate">预定利率 i（%）
+      <input type="number" id="snp-rate" value="3" min="0" max="10" step="0.1">
+    </label>
+  </div>
+  <p><button type="button" id="snp-compare" style="font:inherit;font-weight:600;cursor:pointer;background:#6366f1;color:#fff;border:none;border-radius:40px;padding:8px 18px;">对比：若预定利率降到 2%</button></p>
+  <p class="calc-result" id="snp-result" aria-live="polite">正在计算…</p>
+</section>
 
 <h3>第四套生命表（2025版）核心变化</h3>
 
@@ -390,5 +422,30 @@ Vₜ = 已收净保费累积值（含利息）- 已发生赔付累积值（含�
     </div>
 </div>
 </div>
+<script>
+(function(){
+  var age=document.getElementById('snp-age');
+  if(!age) return;
+  var sum=document.getElementById('snp-sum'), rate=document.getElementById('snp-rate'),
+      res=document.getElementById('snp-result');
+  var Q={0:0.00050,30:0.00069,60:0.00513,80:0.04238};
+  var EX={0:79.2,30:50.5,60:21.3,80:8.7};
+  function fmt(x){ return Math.round(x).toLocaleString('zh-CN'); }
+  function calc(){
+    var a=+age.value, q=Q[a], S=Math.max(0,+sum.value||0), i=Math.max(0,+rate.value||0)/100;
+    var v=1/(1+i), snp=q*S*v;
+    res.innerHTML='年龄 <b>'+a+'</b> 岁：q<sub>x</sub> = '+q.toFixed(5)+'，平均余命 e<sub>x</sub> = '+EX[a]+' 年；'+
+      '保额 '+fmt(S)+' 元、预定利率 '+(i*100).toFixed(1)+'% 时，1 年期趸缴净保费 SNP ≈ <b>¥'+fmt(snp)+'</b>。'+
+      '相比 30 岁（约 ¥'+fmt(Q[30]*S*v)+'），此时纯风险成本约为其 '+(Q[a]/Q[30]).toFixed(1)+' 倍。';
+  }
+  [age,sum,rate].forEach(function(el){ el.addEventListener('input',calc); el.addEventListener('change',calc); });
+  document.getElementById('snp-compare').addEventListener('click',function(){
+    var a=+age.value, S=Math.max(0,+sum.value||0), q=Q[a];
+    var base=q*S/(1+Math.max(0,+rate.value||0)/100), low=q*S/1.02;
+    res.innerHTML+='<br>若预定利率降至 2%，该净保费约为 <b>¥'+fmt(low)+'</b>，比当前利率假设高 ¥'+fmt(low-base)+'。可见长期产品对利率假设的敏感性。';
+  });
+  calc();
+})();
+</script>
 </body>
 </html>

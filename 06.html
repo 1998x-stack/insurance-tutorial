@@ -5,6 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
     <title>第6章 保险费率与精算原理</title>
     <link rel="stylesheet" href="theme.css">
+    <style>
+        .lln-widget { background:#f8faff; border:1px solid #c7d2fe; border-radius:18px; padding:16px 18px; margin:22px 0; }
+        .lln-widget h3 { margin-top:0; }
+        .lln-controls { display:flex; flex-wrap:wrap; gap:12px 18px; align-items:center; margin:12px 0; }
+        .lln-controls label { font-weight:600; color:#3730a3; }
+        .lln-controls output { color:#4338ca; font-variant-numeric:tabular-nums; }
+        .lln-controls input[type=range] { flex:1 1 220px; min-width:180px; accent-color:#6366f1; }
+        .lln-controls button { background:#6366f1; color:#fff; border:none; border-radius:40px; padding:8px 20px; font-weight:600; cursor:pointer; font-size:0.95rem; }
+        .lln-controls button:hover { background:#4f46e5; }
+        .lln-chart { width:100%; height:auto; display:block; background:#fff; border-radius:12px; }
+        .lln-readout { font-variant-numeric:tabular-nums; }
+        .lln-readout b { color:#4f46e5; }
+    </style>
 </head>
 <body>
 <a class="skip-link" href="#main">跳到正文</a>
@@ -90,6 +103,38 @@ P(|X̄ - μ| < ε) ≥ 1 - σ²/(nε²)  (切比雪夫不等式)
 </div>
 
 <p>这条定律决定了保险公司必须追求<strong>规模</strong>——没有足够的保单数量，精算定价就失去了统计基础，风险定价就会失准。</p>
+
+<section class="lln-widget" aria-labelledby="lln-heading">
+  <h3 id="lln-heading">互动演示：承保越多，平均损失越接近期望</h3>
+  <p>下面用一个简化的车险模型演示大数定律：每个风险单位以 1% 的概率发生事故，事故损失在 4 万至 20 万元之间均匀分布，因此单个风险单位的期望损失 μ = 1% × 12 万元 = <strong>1200 元</strong>。拖动滑块改变承保单位数 n，观察模拟出的平均损失如何向 μ 收敛。<em>（模型参数为教学示意；模拟结果由页面内置的确定性随机数生成，仅用于说明收敛趋势。）</em></p>
+  <div class="lln-controls">
+    <label for="lln-n">承保单位数 n：<output id="lln-n-out" for="lln-n">100</output></label>
+    <input type="range" id="lln-n" min="10" max="5000" step="10" value="100" aria-describedby="lln-readout">
+    <button type="button" id="lln-reset">重新模拟</button>
+  </div>
+  <figure>
+    <svg id="lln-chart" class="lln-chart" viewBox="0 0 720 260" role="img" aria-labelledby="lln-chart-title lln-chart-desc" xmlns="http://www.w3.org/2000/svg">
+      <title id="lln-chart-title">模拟平均损失随承保单位数收敛到期望损失</title>
+      <desc id="lln-chart-desc">横轴为承保单位数（对数刻度），纵轴为模拟平均损失。红色虚线为期望损失 1200 元，蓝色折线为随 n 增大的模拟平均损失，逐渐贴近虚线。</desc>
+      <rect width="720" height="260" fill="#ffffff"/>
+      <g font-family="system-ui,'PingFang SC',sans-serif">
+        <line x1="54" y1="20" x2="54" y2="226" stroke="#c7d2fe" stroke-width="1.5"/>
+        <line x1="54" y1="226" x2="704" y2="226" stroke="#c7d2fe" stroke-width="1.5"/>
+        <line x1="54" y1="144" x2="704" y2="144" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="6 4"/>
+        <text x="700" y="140" font-size="12" fill="#b91c1c" text-anchor="end">μ = 1200</text>
+        <polyline id="lln-poly" fill="none" stroke="#6366f1" stroke-width="2.5" points=""/>
+        <text x="54" y="248" font-size="12" fill="#4338ca" text-anchor="middle">10</text>
+        <text x="295" y="248" font-size="12" fill="#4338ca" text-anchor="middle">100</text>
+        <text x="536" y="248" font-size="12" fill="#4338ca" text-anchor="middle">1000</text>
+        <text x="704" y="248" font-size="12" fill="#4338ca" text-anchor="middle">5000</text>
+        <text x="20" y="123" font-size="12" fill="#4338ca" text-anchor="middle" transform="rotate(-90 20 123)">模拟平均损失（元）</text>
+        <text x="380" y="16" font-size="12" fill="#4338ca" text-anchor="middle">横轴：承保单位数 n（对数刻度）</text>
+      </g>
+    </svg>
+    <figcaption><strong>图 6-2</strong>：n 越大，模拟平均损失越接近期望损失 μ。注意 n 较小时折线波动剧烈——这正是精算定价需要足够大样本量的原因（教学示意）。</figcaption>
+  </figure>
+  <p class="lln-readout" id="lln-readout" aria-live="polite">正在计算…</p>
+</section>
 
 <h3>大数定律的局限性</h3>
 <p>大数定律有两个关键假设：<strong>独立性</strong>和<strong>同分布</strong>。在现实中，这两个假设常常不能完全满足。地震发生时，一个城市的所有保单同时发生损失——不独立。不同年龄、不同职业的人死亡率差异很大——不同分布。所以精算师需要在这些"不完美"条件下做调整，引入<strong>风险分类</strong>、<strong>巨灾模型</strong>、<strong>信度理论</strong>等工具来改进定价精度。</p>
@@ -306,5 +351,33 @@ P(|X̄ - μ| < ε) ≥ 1 - σ²/(nε²)  (切比雪夫不等式)
     </div>
 </div>
 </div>
+<script>
+(function(){
+  var slider=document.getElementById('lln-n');
+  if(!slider||!document.getElementById('lln-chart')) return;
+  var out=document.getElementById('lln-n-out'), poly=document.getElementById('lln-poly'),
+      readout=document.getElementById('lln-readout'), btn=document.getElementById('lln-reset');
+  var W=720, H=260, padL=54, padR=16, padT=20, padB=34;
+  var MU=1200, YMAX=3000, baseSeed=20250101, seed=baseSeed;
+  var X0=Math.log10(10), X1=Math.log10(5000);
+  function rand(){ seed=(seed*1664525+1013904223)>>>0; return seed/4294967296; }
+  function xFor(i){ return padL+(Math.log10(i)-X0)/(X1-X0)*((W-padR)-padL); }
+  function yFor(v){ v=Math.max(0,Math.min(v,YMAX)); return padT+(YMAX-v)/YMAX*((H-padB)-padT); }
+  function draw(n){
+    seed=baseSeed; var sum=0, pts=[], step=Math.max(1,Math.floor(n/120));
+    for(var i=1;i<=n;i++){
+      if(rand()<0.01) sum+=40000+160000*rand();
+      if(i%step===0||i===n) pts.push(xFor(i).toFixed(1)+','+yFor(sum/i).toFixed(1));
+    }
+    poly.setAttribute('points', pts.join(' '));
+    out.textContent=n;
+    var mean=sum/n, dev=(mean-MU)/MU*100;
+    readout.innerHTML='当前 n = <b>'+n+'</b>：模拟平均损失 <b>¥'+Math.round(mean)+'</b>，'+'相对期望 μ = ¥'+MU+' 的偏差 <b>'+dev.toFixed(1)+'%</b>。'+ (n<300?'样本量偏小，波动大——这时定价高度依赖安全附加。':'样本量增大，折线趋于平稳。');
+  }
+  slider.addEventListener('input',function(){ draw(+slider.value); });
+  btn.addEventListener('click',function(){ baseSeed=(baseSeed*48271)%2147483647||20250102; draw(+slider.value); });
+  draw(+slider.value);
+})();
+</script>
 </body>
 </html>

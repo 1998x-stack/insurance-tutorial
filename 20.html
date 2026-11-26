@@ -5,6 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
     <title>第20章 非寿险精算</title>
     <link rel="stylesheet" href="theme.css">
+    <style>
+        .cred-widget { background:#f8faff; border:1px solid #c7d2fe; border-radius:18px; padding:16px 18px; margin:22px 0; }
+        .cred-widget h3 { margin-top:0; }
+        .cred-controls { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:14px; margin:14px 0; }
+        .cred-controls label { display:flex; flex-direction:column; gap:6px; font-weight:600; color:#3730a3; font-size:0.9rem; }
+        .cred-controls output { color:#4338ca; font-variant-numeric:tabular-nums; }
+        .cred-controls input[type=range] { accent-color:#6366f1; }
+        .cred-controls input[type=number] { font:inherit; padding:8px 10px; border:1px solid #c7d2fe; border-radius:10px; }
+        .cred-result { font-variant-numeric:tabular-nums; background:#eef2ff; border-left:6px solid #6366f1; border-radius:12px; padding:12px 16px; }
+        .cred-result b { color:#4f46e5; }
+    </style>
 </head>
 <body>
 <a class="skip-link" href="#main">跳到正文</a>
@@ -296,6 +307,26 @@
 
 <p>这个公式的直觉是：当个体差异远大于随机波动时（即"好的风险"和"差的风险"之间的差异很大），K值小，信度因子趋近1，我们应该相信个人经验。反之，如果随机波动远大于个体差异（大家看起来都差不多），我们就应该向先验均值回归。</p>
 
+<section class="cred-widget" aria-labelledby="cred-heading">
+  <h3 id="cred-heading">互动感受：信度因子如何“收缩”个人经验</h3>
+  <p>按 Bühlmann 模型 <strong>Z = N / (N + K)</strong>，拉动滑杆改变理赔次数 N 与信度参数 K，再看加权后的经验费率如何向先验均值收缩。<em>（个人经验与先验均值均为输入示意，仅演示加权逻辑，不代表任何真实费率。）</em></p>
+  <div class="cred-controls">
+    <label for="cred-n">理赔次数 N：<output id="cred-n-out" for="cred-n">200</output>
+      <input type="range" id="cred-n" min="10" max="2000" step="10" value="200">
+    </label>
+    <label for="cred-k">信度参数 K：<output id="cred-k-out" for="cred-k">100</output>
+      <input type="range" id="cred-k" min="10" max="1000" step="10" value="100">
+    </label>
+    <label for="cred-obs">个人经验损失率（%）
+      <input type="number" id="cred-obs" value="75" min="0" max="200" step="1">
+    </label>
+    <label for="cred-prior">先验均值损失率（%）
+      <input type="number" id="cred-prior" value="60" min="0" max="200" step="1">
+    </label>
+  </div>
+  <p class="cred-result" id="cred-result" aria-live="polite">正在计算…</p>
+</section>
+
 <h3>经验费率</h3>
 
 <p>经验费率是信度理论最广泛的应用。在车险中，你的无赔款优待系数（NCD, No Claim Discount）就是信度理论的一个简单版本——连续无事故的年份越多，你的"个人经验"就越可信，保费折扣就越大。在更大规模的企业保险中，经验费率更是核心定价工具：一家工厂的火灾损失记录直接影响它的续保费率。</p>
@@ -341,5 +372,26 @@
     </main>
 </div>
 </div>
+<script>
+(function(){
+  var n=document.getElementById('cred-n');
+  if(!n) return;
+  var k=document.getElementById('cred-k'), nOut=document.getElementById('cred-n-out'),
+      kOut=document.getElementById('cred-k-out'), obs=document.getElementById('cred-obs'),
+      prior=document.getElementById('cred-prior'), res=document.getElementById('cred-result');
+  function calc(){
+    var N=+n.value, K=+k.value, z=N/(N+K);
+    var o=Math.max(0,+obs.value||0), p=Math.max(0,+prior.value||0);
+    var blended=z*o+(1-z)*p;
+    nOut.textContent=N; kOut.textContent=K;
+    res.innerHTML='信度因子 Z = '+N+' / ('+N+' + '+K+') = <b>'+z.toFixed(3)+'</b>。'+
+      '加权费率 = Z × 个人经验 + (1 − Z) × 先验均值 = '+(z*100).toFixed(1)+'% × '+o+'% + '+
+      (100-z*100).toFixed(1)+'% × '+p+'% = <b>'+blended.toFixed(2)+'%</b>。'+
+      (z<0.5?'此时个人数据权重不足一半，费率主要跟随先验均值。':'此时个人经验已占主导，费率明显向个人损失率靠拢。');
+  }
+  [n,k,obs,prior].forEach(function(el){ el.addEventListener('input',calc); el.addEventListener('change',calc); });
+  calc();
+})();
+</script>
 </body>
 </html>

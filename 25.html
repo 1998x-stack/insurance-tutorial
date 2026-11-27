@@ -5,6 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
     <title>第25章 保险会计与信息披露</title>
     <link rel="stylesheet" href="theme.css">
+    <style>
+        .calc-widget { background:#f8faff; border:1px solid #c7d2fe; border-radius:18px; padding:16px 18px; margin:22px 0; }
+        .calc-widget h3 { margin-top:0; }
+        .calc-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:14px; margin:14px 0; }
+        .calc-grid label { display:flex; flex-direction:column; gap:6px; font-weight:600; color:#3730a3; font-size:0.92rem; }
+        .calc-grid input { font:inherit; padding:8px 10px; border:1px solid #c7d2fe; border-radius:10px; background:#fff; color:#1e293b; }
+        .calc-result { font-variant-numeric:tabular-nums; background:#eef2ff; border-left:6px solid #6366f1; border-radius:12px; padding:12px 16px; margin:6px 0 0; }
+        .calc-result b { color:#4f46e5; }
+    </style>
 </head>
 <body>
 <a class="skip-link" href="#main">跳到正文</a>
@@ -138,6 +147,18 @@
             <li>CSM不能在首日一次性确认为利润，而要在保险合同的服务期间逐步释放</li>
             <li>每个报告日，CSM的余额都要重新计量——如果假设变了，CSM也要调整</li>
         </ul>
+
+        <section class="calc-widget" aria-labelledby="csm-heading">
+            <h3 id="csm-heading">互动试算：CSM 的年度滚动（roll-forward）</h3>
+            <p>CSM 的期末余额可拆解为：<strong>期末 = 期初 − 当期摊销 + 新增业务/假设调整</strong>，其中当期摊销 = 期初 × 服务释放比例。调整参数，观察 CSM 如何在服务期间被逐步确认为利润。<em>（教学示意：数值为虚构示例，仅用于展示滚动结构，既非监管口径也非任何公司披露数据。）</em></p>
+            <div class="calc-grid">
+                <label for="csm-open">期初 CSM（万元）<input type="number" id="csm-open" value="1000" min="0" step="50"></label>
+                <label for="csm-rel">当期释放比例（%）<input type="number" id="csm-rel" value="10" min="0" max="100" step="1"></label>
+                <label for="csm-new">新增业务/假设调整（万元）<input type="number" id="csm-new" value="120" step="20"></label>
+            </div>
+            <p><button type="button" id="csm-proj" style="font:inherit;font-weight:600;cursor:pointer;background:#6366f1;color:#fff;border:none;border-radius:40px;padding:8px 18px;">展开：未来 3 年滚动预测</button></p>
+            <p class="calc-result" id="csm-result" aria-live="polite">正在计算…</p>
+        </section>
 
         <h3>三种计量模型</h3>
 
@@ -329,5 +350,26 @@
     </main>
 </div>
 </div>
+<script>
+(function(){
+  var O=document.getElementById('csm-open'), R=document.getElementById('csm-rel'), Nn=document.getElementById('csm-new'),
+      res=document.getElementById('csm-result');
+  if(!O) return;
+  function fmt(x){ return x.toLocaleString('zh-CN',{maximumFractionDigits:1}); }
+  function calc(){
+    var o=Math.max(0,+O.value||0), r=Math.min(1,Math.max(0,(+R.value||0)/100)), ad=+Nn.value||0;
+    var rel=o*r, close=o-rel+ad;
+    res.innerHTML='当期摊销 <b>¥'+fmt(rel)+'</b> 万（计入当期利润），期末 CSM 余额 <b>¥'+fmt(close)+'</b> 万。'+
+      '每期摊销的是“未赚利润”，不是现金收支，所以它影响利润表而不直接改变现金。';
+  }
+  [O,R,Nn].forEach(function(el){ el.addEventListener('input',calc); el.addEventListener('change',calc); });
+  document.getElementById('csm-proj').addEventListener('click',function(){
+    var o=Math.max(0,+O.value||0), r=Math.min(1,Math.max(0,(+R.value||0)/100)), ad=+Nn.value||0, out='<br><b>3 年滚动：</b>';
+    for(var y=1;y<=3;y++){ var rel=o*r; o=o-rel+ad; out+='第'+y+'年末 ¥'+fmt(o)+' 万； '; }
+    res.innerHTML+=out;
+  });
+  calc();
+})();
+</script>
 </body>
 </html>

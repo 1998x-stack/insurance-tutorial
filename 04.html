@@ -5,6 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
     <title>第4章 保险基本原则（下）</title>
     <link rel="stylesheet" href="theme.css">
+    <style>
+        .calc-widget { background:#f8faff; border:1px solid #c7d2fe; border-radius:18px; padding:16px 18px; margin:22px 0; }
+        .calc-widget h3 { margin-top:0; }
+        .calc-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:14px; margin:14px 0; }
+        .calc-grid label { display:flex; flex-direction:column; gap:6px; font-weight:600; color:#3730a3; font-size:0.92rem; }
+        .calc-grid input { font:inherit; padding:8px 10px; border:1px solid #c7d2fe; border-radius:10px; background:#fff; color:#1e293b; }
+        .calc-result { font-variant-numeric:tabular-nums; background:#eef2ff; border-left:6px solid #6366f1; border-radius:12px; padding:12px 16px; margin:6px 0 0; }
+        .calc-result b { color:#4f46e5; }
+    </style>
 </head>
 <body>
 <a class="skip-link" href="#main">跳到正文</a>
@@ -253,6 +262,18 @@
 
 <p>我国保险实务中最常用的是<strong>比例分摊法</strong>。比如一栋房子价值500万，在A公司投保400万，在B公司投保300万（总保额700万，超出实际价值）。发生火灾损失100万：A公司赔付 100 × 400/700 ≈ 57.14万，B公司赔付 100 × 300/700 ≈ 42.86万，合计100万——被保险人不能因为买了多家保险就多拿钱。</p>
 
+<section class="calc-widget" aria-labelledby="contrib-heading">
+  <h3 id="contrib-heading">互动试算：两家公司按比例分摊</h3>
+  <p>按<strong>比例分摊法</strong>，甲、乙两家公司分别赔付 损失 × 保额 / (保额<sub>甲</sub> + 保额<sub>乙</sub>)，合计以实际损失为上限。调整下面的数字，观察分摊比例如何随保额变化。<em>（教学示意：仅演示公式，不含免赔额、共保条款等实务约定。）</em></p>
+  <div class="calc-grid">
+    <label for="con-loss">实际损失（万元）<input type="number" id="con-loss" value="100" min="0" step="10"></label>
+    <label for="con-a">甲保额（万元）<input type="number" id="con-a" value="400" min="0" step="10"></label>
+    <label for="con-b">乙保额（万元）<input type="number" id="con-b" value="300" min="0" step="10"></label>
+  </div>
+  <p><button type="button" id="con-seq" style="font:inherit;font-weight:600;cursor:pointer;background:#6366f1;color:#fff;border:none;border-radius:40px;padding:8px 18px;">对比：改用顺序分摊（甲先赔满）</button></p>
+  <p class="calc-result" id="con-result" aria-live="polite">正在计算…</p>
+</section>
+
 <div class="highlight">
     <p><strong>重要例外</strong>：分摊原则只适用于财产保险（损失补偿性质的合同）。人身保险不适用分摊原则——你可以同时在多家保险公司购买多份重疾险或寿险，确诊重疾后每家公司都按约定的保额给付，不存在"分摊"的问题。这就是"补偿性合同"和"给付性合同"的根本区别。</p>
 </div>
@@ -299,5 +320,28 @@ A公司为厂房在甲保险公司投保财产险800万（不定值保险），
     </main>
 </div>
 </div>
+<script>
+(function(){
+  var L=document.getElementById('con-loss'), A=document.getElementById('con-a'), B=document.getElementById('con-b'),
+      res=document.getElementById('con-result');
+  if(!L) return;
+  function fmt(x){ return x.toLocaleString('zh-CN',{maximumFractionDigits:2}); }
+  function calc(){
+    var loss=Math.max(0,+L.value||0), a=Math.max(0,+A.value||0), b=Math.max(0,+B.value||0), tot=a+b;
+    if(tot<=0){ res.textContent='请至少为一家公司填写大于 0 的保额。'; return; }
+    var pa=loss*a/tot, pb=loss*b/tot;
+    res.innerHTML='总保额 <b>'+fmt(tot)+'</b> 万元：甲赔付 <b>¥'+fmt(pa)+'</b> 万（'+(a/tot*100).toFixed(1)+'%），'+
+      '乙赔付 <b>¥'+fmt(pb)+'</b> 万（'+(b/tot*100).toFixed(1)+'%），合计 <b>¥'+fmt(pa+pb)+'</b> 万，恰等于实际损失 '+fmt(loss)+' 万。';
+  }
+  [L,A,B].forEach(function(el){ el.addEventListener('input',calc); el.addEventListener('change',calc); });
+  document.getElementById('con-seq').addEventListener('click',function(){
+    var loss=Math.max(0,+L.value||0), a=Math.max(0,+A.value||0), b=Math.max(0,+B.value||0);
+    var pa=Math.min(a,loss), pb=Math.max(0,loss-pa);
+    res.innerHTML='<b>顺序分摊</b>：甲先在其保额内赔付 <b>¥'+fmt(pa)+'</b> 万，剩余 <b>¥'+fmt(pb)+
+      '</b> 万由乙赔付（乙若不足则缺口自负）。这与比例分摊的结果不同，说明"先出单先赔"会改变各公司的承担额度——实务中采用哪种方式取决于保单约定。';
+  });
+  calc();
+})();
+</script>
 </body>
 </html>

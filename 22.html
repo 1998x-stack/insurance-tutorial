@@ -5,6 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
     <title>第22章 企业风险管理</title>
     <link rel="stylesheet" href="theme.css">
+    <style>
+        .calc-widget { background:#f8faff; border:1px solid #c7d2fe; border-radius:18px; padding:16px 18px; margin:22px 0; }
+        .calc-widget h3 { margin-top:0; }
+        .calc-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:14px; margin:14px 0; }
+        .calc-grid label { display:flex; flex-direction:column; gap:6px; font-weight:600; color:#3730a3; font-size:0.92rem; }
+        .calc-grid input { font:inherit; padding:8px 10px; border:1px solid #c7d2fe; border-radius:10px; background:#fff; color:#1e293b; }
+        .calc-result { font-variant-numeric:tabular-nums; background:#eef2ff; border-left:6px solid #6366f1; border-radius:12px; padding:12px 16px; margin:6px 0 0; }
+        .calc-result b { color:#4f46e5; }
+    </style>
 </head>
 <body>
 <a class="skip-link" href="#main">跳到正文</a>
@@ -325,6 +334,18 @@ RAROC(B) = (4000 - 300) / 30000 = 12.3%
 
 结论：虽然B产品线净利润更高，但A产品线的资本使用效率更优。</code></pre>
 
+<section class="calc-widget" aria-labelledby="raroc-heading">
+  <h3 id="raroc-heading">互动试算：一条产品线的 RAROC</h3>
+  <p>按公式 RAROC =（净利润 − 预期损失）/ 经济资本。调整三个输入，看资本使用效率如何变化；点击按钮可与教材中的 B 产品线对比。（教学示意：金额单位统一为万元，RAROC 以百分比表示。）</p>
+  <div class="calc-grid">
+    <label for="ra-profit">净利润（万元）<input type="number" id="ra-profit" value="3000" step="100"></label>
+    <label for="ra-el">预期损失（万元）<input type="number" id="ra-el" value="500" step="100"></label>
+    <label for="ra-cap">经济资本（万元）<input type="number" id="ra-cap" value="15000" step="1000"></label>
+  </div>
+  <p><button type="button" id="ra-b" style="font:inherit;font-weight:600;cursor:pointer;background:#6366f1;color:#fff;border:none;border-radius:40px;padding:8px 18px;">对比：加载 B 产品线（4000 / 300 / 30000）</button></p>
+  <p class="calc-result" id="ra-result" aria-live="polite">正在计算…</p>
+</section>
+
 <div class="tip">
     <p><strong>实务要点</strong>：RAROC最大的贡献是解决了保险公司内部"资源分配"的问题。过去业务部门争资源（资本额度）时吵得不可开交；有了RAROC，争论变成了数字之间的比较。A部门说"我的RAROC比你高5个百分点"，那资本就应该优先分配给A部门。这种"用数据说话"的文化，是ERM成熟组织的重要标志。</p>
 </div>
@@ -343,5 +364,26 @@ RAROC(B) = (4000 - 300) / 30000 = 12.3%
     </main>
 </div>
 </div>
+<script>
+(function(){
+  var P=document.getElementById('ra-profit'), E=document.getElementById('ra-el'), C=document.getElementById('ra-cap'),
+      res=document.getElementById('ra-result');
+  if(!P) return;
+  function pct(x){ return (x*100).toFixed(1)+'%'; }
+  function calc(){
+    var p=+P.value||0, e=+E.value||0, c=+C.value||0;
+    if(c<=0){ res.textContent='经济资本必须大于 0。'; return; }
+    var r=(p-e)/c;
+    res.innerHTML='RAROC = ('+p+' − '+e+') / '+c+' = <b>'+pct(r)+'</b>。'+
+      (r<0?' 当前风险调整后回报为负，该业务在消耗资本。':(r>=0.15?' 高于常见的最低资本回报门槛（约 15%，示意），资本使用效率较优。':' 低于常见门槛（约 15%，示意），需要重定价或收缩规模。'));
+  }
+  [P,E,C].forEach(function(el){ el.addEventListener('input',calc); el.addEventListener('change',calc); });
+  document.getElementById('ra-b').addEventListener('click',function(){
+    P.value=4000; E.value=300; C.value=30000; calc();
+    res.innerHTML+='<br>与 A 产品线（3000/500/15000，RAROC 16.7%）相比，B 产品线净利润更高但占用资本翻倍，RAROC 反而更低——这正是 RAROC 作为资本分配依据的意义。';
+  });
+  calc();
+})();
+</script>
 </body>
 </html>

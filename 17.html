@@ -5,6 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
     <title>第17章 再保险</title>
     <link rel="stylesheet" href="theme.css">
+    <style>
+        .calc-widget { background:#f8faff; border:1px solid #c7d2fe; border-radius:18px; padding:16px 18px; margin:22px 0; }
+        .calc-widget h3 { margin-top:0; }
+        .calc-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:14px; margin:14px 0; }
+        .calc-grid label { display:flex; flex-direction:column; gap:6px; font-weight:600; color:#3730a3; font-size:0.92rem; }
+        .calc-grid input { font:inherit; padding:8px 10px; border:1px solid #c7d2fe; border-radius:10px; background:#fff; color:#1e293b; }
+        .calc-result { font-variant-numeric:tabular-nums; background:#eef2ff; border-left:6px solid #6366f1; border-radius:12px; padding:12px 16px; margin:6px 0 0; }
+        .calc-result b { color:#4f46e5; }
+    </style>
 </head>
 <body>
 <a class="skip-link" href="#main">跳到正文</a>
@@ -113,6 +122,18 @@
 <p>假设一家保险公司对某类财产险的自留额定为500万元。如果收到一份600万的投保申请，那500万自留，100万作为"溢额"分给再保险人。如果收到一份300万的投保申请，全部自留，无需分保。</p>
 
 <p>溢额再保险的灵活性远高于成数——分出人可以把好风险多自留、坏风险多分保。但管理上也更复杂，需要逐笔计算每个危险单位的分保比例。</p>
+
+<section class="calc-widget" aria-labelledby="surplus-heading">
+  <h3 id="surplus-heading">互动试算：溢额再保险的分出与自留</h3>
+  <p>溢额合约约定自留额与线数（共几线），容量 = 自留额 × 线数。自留额为“第一线”，每多一线再保险人多吃一份自留额。<em>（教学示意：保额与保费的分配比例一致，忽略再保佣金与清盘条款。）</em></p>
+  <div class="calc-grid">
+    <label for="sp-sum">单笔保额（万元）<input type="number" id="sp-sum" value="1800" min="0" step="100"></label>
+    <label for="sp-ret">自留额（万元）<input type="number" id="sp-ret" value="500" min="1" step="50"></label>
+    <label for="sp-lines">合约线数<input type="number" id="sp-lines" value="3" min="1" step="1"></label>
+  </div>
+  <p><button type="button" id="sp-quota" style="font:inherit;font-weight:600;cursor:pointer;background:#6366f1;color:#fff;border:none;border-radius:40px;padding:8px 18px;">对比：改用成数再保险（30%）</button></p>
+  <p class="calc-result" id="sp-result" aria-live="polite">正在计算…</p>
+</section>
 
 <div class="highlight">
     <p><strong>行业经验</strong>：在实际操作中，很多保险公司会把成数与溢额组合使用——先做一个20%的成数再保险（作为"基础层"），再做一个自留额500万的溢额再保险（作为"超额层"）。用两层再保险结构，既保证了业务量的稳定分出，又保留了对优质业务的灵活性。这叫<strong>成数-溢额混合再保险</strong>，是国际财产险市场的主流结构。</p>
@@ -268,5 +289,27 @@
     </main>
 </div>
 </div>
+<script>
+(function(){
+  var S=document.getElementById('sp-sum'), R=document.getElementById('sp-ret'), N=document.getElementById('sp-lines'),
+      res=document.getElementById('sp-result');
+  if(!S) return;
+  function fmt(x){ return x.toLocaleString('zh-CN',{maximumFractionDigits:1}); }
+  function calc(){
+    var s=Math.max(0,+S.value||0), r=Math.max(1,+R.value||0), n=Math.max(1,+N.value||0);
+    var cap=r*n, ret=Math.min(s,r), ced=Math.max(0,Math.min(s,cap)-ret), over=Math.max(0,s-cap);
+    res.innerHTML='自留 <b>¥'+fmt(ret)+'</b> 万（占 '+(s>0?(ret/s*100).toFixed(1):'0')+'%），'+
+      '分出 <b>¥'+fmt(ced)+'</b> 万；合约容量 '+fmt(cap)+' 万。'+
+      (over>0?'超出容量 <b class="">¥'+fmt(over)+'</b> 万需另行安排（临时分保或其他合约）。':'保额在合约容量内，无需额外安排。');
+  }
+  [S,R,N].forEach(function(el){ el.addEventListener('input',calc); el.addEventListener('change',calc); });
+  document.getElementById('sp-quota').addEventListener('click',function(){
+    var s=Math.max(0,+S.value||0), q=0.3;
+    res.innerHTML='<b>成数 30%</b>：每一笔保单均分出 '+fmt(s*q)+' 万给再保险人，自留 '+fmt(s*(1-q))+' 万。'+
+      '与溢额不同，成数不受单笔保额大小影响、比例恒定，但小额与巨额业务被“一刀切”。';
+  });
+  calc();
+})();
+</script>
 </body>
 </html>

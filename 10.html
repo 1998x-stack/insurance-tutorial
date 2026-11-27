@@ -5,6 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
     <title>第10章 健康保险</title>
     <link rel="stylesheet" href="theme.css">
+    <style>
+        .calc-widget { background:#f8faff; border:1px solid #c7d2fe; border-radius:18px; padding:16px 18px; margin:22px 0; }
+        .calc-widget h3 { margin-top:0; }
+        .calc-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:14px; margin:14px 0; }
+        .calc-grid label { display:flex; flex-direction:column; gap:6px; font-weight:600; color:#3730a3; font-size:0.92rem; }
+        .calc-grid input { font:inherit; padding:8px 10px; border:1px solid #c7d2fe; border-radius:10px; background:#fff; color:#1e293b; }
+        .calc-result { font-variant-numeric:tabular-nums; background:#eef2ff; border-left:6px solid #6366f1; border-radius:12px; padding:12px 16px; margin:6px 0 0; }
+        .calc-result b { color:#4f46e5; }
+    </style>
 </head>
 <body>
 <a class="skip-link" href="#main">跳到正文</a>
@@ -128,7 +137,20 @@
 
 <p>2016年前后，中国保险市场出现了一个现象级产品——<strong>百万医疗险</strong>。保额高达100万-600万，保费却只有每年几百到一两千元，是"低保费高杠杆"的典型代表。它的核心机制是：<strong>高免赔额</strong>（通常1万元）+ <strong>高保额</strong>（报销上限百万级）+ <strong>报销制</strong>（花多少报多少，扣除社保报销和免赔额后的余额）。</p>
 
-<p>百万医疗险的设计逻辑是：小额医疗费用（1万以下）客户自留，保险公司只赔大额医疗支出——这大幅降低了保费，让普通人也能获得"看得起大病"的保障。2024年市场数据表明，百万医疗险的有效保单已超过1.2亿张，是健康险市场当之无愧的"顶梁柱"。</p>
+<p>百万医疗险的设计逻辑是：小额医疗费用（1万以下）客户自留，保险公司只赔大额医疗支出——这大幅降低了保费，让普通人也能获得“看得起大病”的保障。2024年市场数据表明，百万医疗险的有效保单已超过1.2亿张，是健康险市场当之无愧的“顶梁柱”。</p>
+
+<section class="calc-widget" aria-labelledby="med-heading">
+  <h3 id="med-heading">互动试算：百万医疗险到底赔多少？</h3>
+  <p>报销顺序：先由社保按比例报销，剩余自付部分超出免赔额后，再由百万医疗险按约定比例报销。调整参数，观察“高免赔额”如何把小额风险留给客户、把大额风险留给保险公司。<em>（教学示意：社保报销比例、赔付比例均为输入假设，实际以条款为准。）</em></p>
+  <div class="calc-grid">
+    <label for="med-cost">医疗总费用（元）<input type="number" id="med-cost" value="300000" min="0" step="1000"></label>
+    <label for="med-si">社保报销比例（%）<input type="number" id="med-si" value="70" min="0" max="100" step="1"></label>
+    <label for="med-ded">免赔额（元）<input type="number" id="med-ded" value="10000" min="0" step="1000"></label>
+    <label for="med-ratio">商业险报销比例（%）<input type="number" id="med-ratio" value="100" min="0" max="100" step="5"></label>
+  </div>
+  <p><button type="button" id="med-small" style="font:inherit;font-weight:600;cursor:pointer;background:#6366f1;color:#fff;border:none;border-radius:40px;padding:8px 18px;">对比：总费用降到 8000 元（小额支出）</button></p>
+  <p class="calc-result" id="med-result" aria-live="polite">正在计算…</p>
+</section>
 
 <h3>中高端医疗险</h3>
 
@@ -291,5 +313,27 @@
     </main>
 </div>
 </div>
+<script>
+(function(){
+  var C=document.getElementById('med-cost'), S=document.getElementById('med-si'),
+      D=document.getElementById('med-ded'), R=document.getElementById('med-ratio'),
+      res=document.getElementById('med-result');
+  if(!C) return;
+  function fmt(x){ return Math.round(x).toLocaleString('zh-CN'); }
+  function calc(){
+    var cost=Math.max(0,+C.value||0), si=Math.min(1,Math.max(0,(+S.value||0)/100)),
+        ded=Math.max(0,+D.value||0), ra=Math.min(1,Math.max(0,(+R.value||0)/100));
+    var siPay=cost*si, rest=cost-siPay, ins=Math.max(0,rest-ded)*ra, out=rest-ins;
+    res.innerHTML='社保报销 <b>¥'+fmt(siPay)+'</b>，自付余额 ¥'+fmt(rest)+'；扣除免赔额 ¥'+fmt(ded)+' 后，'+
+      '百万医疗险赔付 <b>¥'+fmt(ins)+'</b>，个人最终自付 <b>¥'+fmt(out)+'</b>（占总费用 '+(cost>0?(out/cost*100).toFixed(1):'0')+'%）。';
+  }
+  [C,S,D,R].forEach(function(el){ el.addEventListener('input',calc); el.addEventListener('change',calc); });
+  document.getElementById('med-small').addEventListener('click',function(){
+    C.value=8000; calc();
+    res.innerHTML+='<br>总费用在免赔额附近时，商业险几乎不赔——这正是百万医疗险“保费极低”的原因：小额风险由客户自留。';
+  });
+  calc();
+})();
+</script>
 </body>
 </html>

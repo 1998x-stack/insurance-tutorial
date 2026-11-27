@@ -5,6 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
     <title>第18章 保险资金运用</title>
     <link rel="stylesheet" href="theme.css">
+    <style>
+        .calc-widget { background:#f8faff; border:1px solid #c7d2fe; border-radius:18px; padding:16px 18px; margin:22px 0; }
+        .calc-widget h3 { margin-top:0; }
+        .calc-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:14px; margin:14px 0; }
+        .calc-grid label { display:flex; flex-direction:column; gap:6px; font-weight:600; color:#3730a3; font-size:0.92rem; }
+        .calc-grid input { font:inherit; padding:8px 10px; border:1px solid #c7d2fe; border-radius:10px; background:#fff; color:#1e293b; }
+        .calc-result { font-variant-numeric:tabular-nums; background:#eef2ff; border-left:6px solid #6366f1; border-radius:12px; padding:12px 16px; margin:6px 0 0; }
+        .calc-result b { color:#4f46e5; }
+    </style>
 </head>
 <body>
 <a class="skip-link" href="#main">跳到正文</a>
@@ -164,6 +173,21 @@
     <figcaption><strong>图 18-1</strong>：保险资金的大类资产配置——债券占比最高，另类投资（基础设施、股权等）次之，权益类受监管比例约束。柱长按各区间中点的相对大小绘制，具体区间以正文表格为准，此处仅作<em>教学示意</em>。</figcaption>
 </figure>
 
+<section class="calc-widget" aria-labelledby="aa-calc-heading">
+  <h3 id="aa-calc-heading">互动试算：大类配置组合的预期收益率</h3>
+  <p>组合预期收益率 = Σ（各类占比 × 该类假设收益率），占比会自动归一化。下表各类收益率均为<strong>教学示意</strong>假设，可自行调整。留意：提高权益比例能抬高预期收益，但同时放大波动（偿付能力资本占用也上升）。</p>
+  <div class="calc-grid">
+    <label for="aa-bond">债券占比（%）<input type="number" id="aa-bond" value="47" min="0" step="1"></label>
+    <label for="aa-bond-y">债券收益率（%）<input type="number" id="aa-bond-y" value="3.0" min="0" step="0.1"></label>
+    <label for="aa-alt">另类投资占比（%）<input type="number" id="aa-alt" value="28" min="0" step="1"></label>
+    <label for="aa-alt-y">另类收益率（%）<input type="number" id="aa-alt-y" value="6.0" min="0" step="0.1"></label>
+    <label for="aa-eq">权益占比（%）<input type="number" id="aa-eq" value="13" min="0" step="1"></label>
+    <label for="aa-eq-y">权益收益率（%）<input type="number" id="aa-eq-y" value="8.0" min="0" step="0.1"></label>
+  </div>
+  <p><button type="button" id="aa-up" style="font:inherit;font-weight:600;cursor:pointer;background:#6366f1;color:#fff;border:none;border-radius:40px;padding:8px 18px;">对比：把权益比例提到监管上限 30%</button></p>
+  <p class="calc-result" id="aa-result" aria-live="polite">正在计算…</p>
+</section>
+
 <h3>另类投资的崛起</h3>
 
 <p>近年来，另类投资在保险资金配置中的地位越来越重要。原因很简单：传统债券和存款的收益率随着利率下行不断走低，保险公司的负债成本（保单预定利率）却下降得慢。"利差损"压力下，保险公司不得不寻找更高收益的资产——另类投资就扮演了这个角色。</p>
@@ -298,5 +322,27 @@
     </main>
 </div>
 </div>
+<script>
+(function(){
+  var B=document.getElementById('aa-bond'), BY=document.getElementById('aa-bond-y'),
+      A=document.getElementById('aa-alt'), AY=document.getElementById('aa-alt-y'),
+      Q=document.getElementById('aa-eq'), QY=document.getElementById('aa-eq-y'),
+      res=document.getElementById('aa-result');
+  if(!B) return;
+  function calc(){
+    var b=+B.value||0, a=+A.value||0, q=+Q.value||0, tot=b+a+q;
+    if(tot<=0){ res.textContent='请至少填写一类的占比。'; return; }
+    var r=(b*(+BY.value||0)+a*(+AY.value||0)+q*(+QY.value||0))/tot;
+    res.innerHTML='归一化后：债券 <b>'+(b/tot*100).toFixed(1)+'%</b>、另类 <b>'+(a/tot*100).toFixed(1)+'%</b>、权益 <b>'+(q/tot*100).toFixed(1)+
+      '%</b>，组合预期收益率 ≈ <b>'+r.toFixed(2)+'%</b>。';
+  }
+  [B,BY,A,AY,Q,QY].forEach(function(el){ el.addEventListener('input',calc); el.addEventListener('change',calc); });
+  document.getElementById('aa-up').addEventListener('click',function(){
+    var old=+Q.value||0; Q.value=30; calc();
+    res.innerHTML+='<br>权益从 '+old+'% 提到 30% 后，预期收益率升高，但权益类波动远大于债券（示意上可视为风险放大数倍），且占用更多偿付能力资本——收益与风险的权衡才是配置的核心。';
+  });
+  calc();
+})();
+</script>
 </body>
 </html>

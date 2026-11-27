@@ -5,6 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
     <title>第12章 财产损失保险</title>
     <link rel="stylesheet" href="theme.css">
+    <style>
+        .calc-widget { background:#f8faff; border:1px solid #c7d2fe; border-radius:18px; padding:16px 18px; margin:22px 0; }
+        .calc-widget h3 { margin-top:0; }
+        .calc-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:14px; margin:14px 0; }
+        .calc-grid label { display:flex; flex-direction:column; gap:6px; font-weight:600; color:#3730a3; font-size:0.92rem; }
+        .calc-grid input { font:inherit; padding:8px 10px; border:1px solid #c7d2fe; border-radius:10px; background:#fff; color:#1e293b; }
+        .calc-result { font-variant-numeric:tabular-nums; background:#eef2ff; border-left:6px solid #6366f1; border-radius:12px; padding:12px 16px; margin:6px 0 0; }
+        .calc-result b { color:#4f46e5; }
+    </style>
 </head>
 <body>
 <a class="skip-link" href="#main">跳到正文</a>
@@ -298,7 +307,18 @@
     </div>
 </div>
 
-<p>注意：<strong>不足额投保</strong>是财产险中最大的"坑"之一。很多企业为了省保费压低投保金额，结果出险后发现赔付被按比例打了折扣，追悔莫及。正确的做法是——按保险标的的实际价值（或重置价值）足额投保，不要在这个上面做文章。</p>
+<section class="calc-widget" aria-labelledby="loss-heading">
+  <h3 id="loss-heading">互动试算：不足额投保与免赔额</h3>
+  <p>按式 (12-1)，先算投保金额与保险价值之比，再乘以核定损失，最后扣除免赔额（赔付不为负数）。调整参数，看看“投保比例”与“免赔额”两个旋钮各自偷走了多少赔款。<em>（教学示意：采用绝对免赔额、按实际价值赔付，不含相对免赔、分摊等其他约定。）</em></p>
+  <div class="calc-grid">
+    <label for="loss-value">出险时保险价值（万元）<input type="number" id="loss-value" value="200" min="1" step="10"></label>
+    <label for="loss-sum">投保金额（万元）<input type="number" id="loss-sum" value="100" min="0" step="10"></label>
+    <label for="loss-dmg">核定损失（万元）<input type="number" id="loss-dmg" value="50" min="0" step="5"></label>
+    <label for="loss-ded">免赔额（万元）<input type="number" id="loss-ded" value="0.5" min="0" step="0.5"></label>
+  </div>
+  <p><button type="button" id="loss-full" style="font:inherit;font-weight:600;cursor:pointer;background:#6366f1;color:#fff;border:none;border-radius:40px;padding:8px 18px;">对比：改为足额投保（保额=保险价值）</button></p>
+  <p class="calc-result" id="loss-result" aria-live="polite">正在计算…</p>
+</section>很多企业为了省保费压低投保金额,结果出险后发现赔付被按比例打了折扣,追悔莫及。正确的做法是--按保险标的的实际价值(或重置价值)足额投保,不要在这个上面做文章。</p>
 
 <div class="tip">
     <p><strong>理赔原则</strong>：财产险遵循<strong>损失补偿原则（Principle of Indemnity）</strong>——被保险人不能因为保险而获利，只能恢复到损失发生前的经济状态。这意味着：同一笔损失不能从多家保险公司重复获得赔偿（如果有重复投保，各公司按比例分摊）；也不能通过保险"赚"钱（比如用旧换新时，保险公司会扣除折旧费）。这个原则是财产险区别于人身险（可以重复赔付）的根本所在。</p>
@@ -316,5 +336,28 @@
     </main>
 </div>
 </div>
+<script>
+(function(){
+  var V=document.getElementById('loss-value'), S=document.getElementById('loss-sum'),
+      D=document.getElementById('loss-dmg'), E=document.getElementById('loss-ded'),
+      res=document.getElementById('loss-result');
+  if(!V) return;
+  function fmt(x){ return x.toLocaleString('zh-CN',{maximumFractionDigits:2}); }
+  function pay(v,s,d,e){ var r=s<=0?0:Math.min(1,s/v); return Math.max(0,d*r-e); }
+  function calc(){
+    var v=Math.max(1,+V.value||0), s=Math.max(0,+S.value||0), d=Math.max(0,+D.value||0), e=Math.max(0,+E.value||0);
+    var ratio=Math.min(1,s/v), p=pay(v,s,d,e);
+    res.innerHTML='投保比例 <b>'+(ratio*100).toFixed(1)+'%</b>，比例赔付后为 ¥'+fmt(d*ratio)+' 万，扣除免赔额 ¥'+fmt(e)+
+      ' 万，实赔 <b>¥'+fmt(p)+'</b> 万（占核定损失 '+(d>0?(p/d*100).toFixed(1):'0')+'%）。'+
+      '其中因不足额投保少赔 <b>¥'+fmt(Math.max(0,d-d*ratio))+'</b> 万。';
+  }
+  [V,S,D,E].forEach(function(el){ el.addEventListener('input',calc); el.addEventListener('change',calc); });
+  document.getElementById('loss-full').addEventListener('click',function(){
+    S.value=V.value; calc();
+    res.innerHTML+='<br>若按足额投保（保额 '+fmt(+V.value)+' 万），同样损失下实赔升至 <b>¥'+fmt(pay(+V.value,+V.value,+D.value||0,+E.value||0))+'</b> 万，不再被比例折扣。';
+  });
+  calc();
+})();
+</script>
 </body>
 </html>
